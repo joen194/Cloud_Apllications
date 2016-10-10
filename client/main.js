@@ -3,7 +3,7 @@
 
 //   <!-- angular dependencies -->
 import angular from 'angular';
-
+import ngRoute from 'angular-route'
 
 //    <!-- application code -->
 import './js/app.js';
