@@ -1,0 +1,1 @@
+Hierin zitten de statische bestanden, kan overal aangeraakt worden

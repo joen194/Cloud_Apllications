@@ -1,0 +1,12 @@
+{
+  "name": "Student_Interactor",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "meteor-node-stubs": "~0.2.0"
+  }
+}
