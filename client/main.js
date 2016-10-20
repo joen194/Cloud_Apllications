@@ -25,6 +25,7 @@ Template.MainPageLes.events({
 
 console.log(lesTitel);
 		Lessen.insert({
+			userId: Meteor.userId(),
 			lesnaam: lesTitel
 		});
 
