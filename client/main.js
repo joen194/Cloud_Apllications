@@ -15,15 +15,18 @@ Template.OverzichtLessen.helpers({
 	}
 });
 
-Template.OverzichtLessen.events({
+Template.MainPageLes.events({
 	'click #addLes' : function(e){
 		e.preventDefault();
 
-		var lesTitel = template.find('#TitelLes').value;
 
+		var lesTitel = $('#TitelLes').val();
+
+
+console.log(lesTitel);
 		Lessen.insert({
 			lesnaam: lesTitel
 		});
-		OverzichtLessen.update(Lessen);
+
 	}
 });
