@@ -19,15 +19,20 @@ Template.MainPageLes.events({
 	'click #addLes' : function(e){
 		e.preventDefault();
 
-
 		var lesTitel = $('#TitelLes').val();
-
-
-console.log(lesTitel);
+		console.log("qnjfk");
 		Lessen.insert({
 			userId: Meteor.userId(),
 			lesnaam: lesTitel
 		});
 
 	}
+
+
 });
+Template.OverzichtLessen.events({
+		'click #deleteLes': function(e){
+		console.log("in delete functie");
+		Lessen.remove(this._id);
+	}
+})
