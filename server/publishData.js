@@ -4,3 +4,7 @@ Meteor.publish('DataLessen', function(){
 	return Lessen.find({userId: this.userId})
 
 });
+
+Meteor.publish('DataVragen', function(){
+	return Vragen.find({userId: this.userId})
+});

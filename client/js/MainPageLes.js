@@ -19,7 +19,11 @@ Template.MainPageLes.events({
 	}
 });
 
-//################ Om een lessen uit de DB te halen #######################
+/*Template.OverzichtLessen.onCreated(function(){
+  this.ShowVragen = new ReactiveVar(false);
+});*/
+
+//################ Om de lessen uit de DB te halen #######################
 
 Template.OverzichtLessen.helpers({
 	historyLes: function(){
@@ -27,9 +31,15 @@ Template.OverzichtLessen.helpers({
 	}
 });
 
-//##################### Om lessen te verwijderen ##########################
+
+
+//##################### Om lessen te verwijderen en te bekijken ##########################
 
 Template.OverzichtLessen.events({
+	/*'click #viewLes' : function(event, template){
+		template.ShowVragen.set(true);
+	}*/
+
 	'click #deleteLes': function(e){
 		e.preventDefault();
 		
@@ -38,4 +48,6 @@ Template.OverzichtLessen.events({
 			return alert(error.reason);
 		});
 	}
-})
+
+	
+});
