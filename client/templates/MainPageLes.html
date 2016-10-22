@@ -1,35 +1,36 @@
 <template name="MainPageLes">
 
-  	<h1>Overzicht van alle lessen</h1>
-  	<div class="container">
+  <h1>Overzicht van alle lessen</h1>
+  <div class="container">
   <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Voeg les toe</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Voeg les toe</button>
 
   <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Nieuwe les aanmaken</h4>
-        </div>
-        <div class="modal-body">
-          <p>Titel: <input id="TitelLes" type="text" ><button  id="addLes" type="button" class="btn btn-default" >aanmaken</button>
-          </p>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog">
       
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Nieuwe les aanmaken</h4>
+          </div>
+          <div class="modal-body">
+            <p>Titel: <input id="TitelLes" type="text" ><button  id="addLes" type="button" class="btn btn-default" >aanmaken</button>
+            </p>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        
+      </div>
     </div>
-  </div>
   
-</div>
+  </div>
 </template>
+
 <template name="OverzichtLessen">
 	{{#each historyLes}}
 	<h1>{{lesnaam}} <button>View</button><button>Edit</button><button id="deleteLes" type="button">Delete</button></h1>
