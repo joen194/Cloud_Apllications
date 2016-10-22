@@ -1,0 +1,23 @@
+
+
+
+<template name="LoginPage">
+	{{#if newRegister}}
+        {{> LoginForm}}
+      {{else}}
+        {{> RegisterPage}}
+    {{/if}}
+</template>
+
+
+<template name="LoginForm">
+	<h1>Login</h1>
+	<p>Login met google</p>
+	{{> loginButtons}}
+	<p>Login met een account</p>
+	<p>username: </p> <input type="text" name="InputName">
+	<p>Passwoord:</p> <input type="Password" name="InputPassword"> <br>
+	<button id="LoginBtn" type="button">Login</button>
+	<p>Nog niet geregistreerd?</p>
+	<button id="RegisterBtn" type="button">Registreer</button>
+</template>

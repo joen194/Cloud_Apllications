@@ -31,6 +31,8 @@ Template.OverzichtLessen.helpers({
 
 Template.OverzichtLessen.events({
 	'click #deleteLes': function(e){
+		e.preventDefault();
+		
 		Meteor.call('LesVerwijderen', this._id, function(error, id){
 		if (error)
 			return alert(error.reason);
