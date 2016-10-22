@@ -1,4 +1,8 @@
 
+
+//################## Om te abonneren op de lessen data #####################
+Meteor.subscribe('DataLessen');
+
 //###################### Om een les aan te maken ###########################
 
 Template.MainPageLes.events({
@@ -7,10 +11,11 @@ Template.MainPageLes.events({
 
 		var lesTitel = $('#TitelLes').val();
 
-		Lessen.insert({
-			userId: Meteor.userId(),
-			lesnaam: lesTitel
+		Meteor.call('LesToevoegen', lesTitel, function(error, id){
+		if (error)
+			return alert(error.reason);
 		});
+
 	}
 });
 
@@ -25,8 +30,10 @@ Template.OverzichtLessen.helpers({
 //##################### Om lessen te verwijderen ##########################
 
 Template.OverzichtLessen.events({
-		'click #deleteLes': function(e){
-		console.log("in delete functie");
-		Lessen.remove(this._id);
+	'click #deleteLes': function(e){
+		Meteor.call('LesVerwijderen', this._id, function(error, id){
+		if (error)
+			return alert(error.reason);
+		});
 	}
 })

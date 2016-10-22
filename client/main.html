@@ -36,7 +36,11 @@
   <h1>student interactor</h1>
 
     {{> MainPage}}
-    {{>MainPageLes}}
-    {{> OverzichtLessen}}
+
+    {{#if currentUser}}
+      {{>MainPageLes}}
+      {{> OverzichtLessen}}
+    {{/if}}
+
           
   </body>
