@@ -1,4 +1,6 @@
 
 Meteor.publish('DataLessen', function(){
-	return Lessen.find();
+	//geeft enkel data van de gebruiker terug 
+	return Lessen.find({userId: this.userId})
+
 });

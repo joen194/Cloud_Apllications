@@ -11,4 +11,4 @@ Meteor.methods({
 		Lessen.remove(lesTitel);
 	}
 
-});
+});	
