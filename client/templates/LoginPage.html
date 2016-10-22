@@ -3,9 +3,10 @@
 
 <template name="LoginPage">
 	{{#if newRegister}}
-        {{> LoginForm}}
-      {{else}}
         {{> RegisterPage}}
+      {{else}}
+        
+        {{> LoginForm}}
     {{/if}}
 </template>
 
