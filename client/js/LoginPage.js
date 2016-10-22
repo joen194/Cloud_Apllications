@@ -15,14 +15,7 @@ Template.LoginPage.events({
 
 
 Template.LoginPage.helpers({
-	'newRegister' : function () {
-
-	}
+  newRegister() {
+    return Session.get('newRegister');
+  }
 });
-
-
-  Template.LoginPage.helpers({
-    newRegister() {
-      return Session.get('newRegister');
-    }
-  });

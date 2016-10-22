@@ -38,8 +38,16 @@
     {{> MainPage}}
 
     {{#if currentUser}}
-      {{>MainPageLes}}
-      {{> OverzichtLessen}}
+
+      {{#if showVraag}}
+        {{> MainPageVragen}}
+        {{> OverzichtVragen}}
+      {{else}}
+        {{> MainPageLes}}
+        {{> OverzichtLessen}}
+
+      {{/if}}
+
     {{else}}
       {{> LoginPage}}
     {{/if}}
