@@ -1,7 +1,13 @@
 Meteor.subscribe('DataVragen');
 
+Template.MainPageVragen.onRendered (function(){
+	Session.set('showOpenvraag', true);
+	Session.set('meerkeuzeBevestigt', false);
+});
+
 //###################### Om een vraag aan te maken ###########################
 Template.MainPageVragen.events({
+
 	'click #addVraag' : function(e){
 		e.preventDefault();
 
@@ -14,6 +20,20 @@ Template.MainPageVragen.events({
 			return alert(error.reason);
 		});
 
+	}, 
+	'click #Openvraag': function(e) {
+		Session.set('showOpenvraag', true);
+
+	}, 
+	'click #Meerkeuzevraag': function(e) {
+		Session.set('showOpenvraag', false);
+	}
+
+});
+//######################### helpers ##############################
+Template.MainPageVragen.helpers({
+	showOpenvraag: function(){
+		return Session.get('showOpenvraag');
 	}
 });
 

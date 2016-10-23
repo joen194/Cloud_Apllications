@@ -2,7 +2,7 @@
   <h1>Overzicht van alle vragen</h1>
     <div class="container">
     <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Voeg vraag toe</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="voegVraagToe">Voeg vraag toe</button>
 
     <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
@@ -15,11 +15,33 @@
               <h4 class="modal-title">Nieuwe vraag aanmaken</h4>
             </div>
             <div class="modal-body">
-              <p>Titel: <input id="TitelVraag" type="text" ><button  id="addVraag" type="button" class="btn btn-default" >aanmaken</button>
+              <p>Titel: <input id="TitelVraag" type="text" >
               </p>
+              <p>
+              Openvraag: <input name="soortVraag" type="radio" checked="" id="Openvraag" value="Openvraag">                                        
+              Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag">
+              </p>
+              {{#if showOpenvraag}}
+                <div>
+                  <p>
+                    Open antwoorden hier
+                  </p>
+                </div>
+              {{else}}
+                <div>
+                  <p>
+                    Hoeveel meerkeuze antwoorden wilt u? Typ een getal tussen 1 en 10
+                    <input id="aantalMeerkeuze" type="text" > <button type="button" class="btn btn-default" id="aantalMeerkeuzeButton">Bevestig</button>
+                    {{#if meerkeuzeBevestigt}}
+                    {{/if}}
 
+                    
+                  </p>
+                </div>
+              {{/if}}
             </div>
             <div class="modal-footer">
+            <button  id="addVraag" type="button" class="btn btn-default">aanmaken</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>          
