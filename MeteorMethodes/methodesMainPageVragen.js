@@ -12,8 +12,9 @@ Meteor.methods({
 		Session.set('tijdelijkVraagId', tijdelijkVraagId);
 	}, 
 
-	VraagVerwijderen: function(vraagTitel) {
-		Vragen.remove(vraagTitel);
+	VraagVerwijderen: function(vraagId) {
+		Vragen.remove(vraagId);
+		Antwoorden.remove({vragenId:vraagId});
 	},
 
 	AntwoordToevoegen: function(antwoordInput, tijdelijkVraagId){

@@ -73,6 +73,7 @@ Template.OverzichtVragen.events({
 		e.preventDefault();
 
 		Meteor.call('VraagVerwijderen', this._id, function(error, id){
+		
 		if (error)
 			return alert(error.reason);
 		});
