@@ -20,8 +20,6 @@ Template.MainPageVragen.events({
 		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, function(error, res){
 		if (error)
 			return alert(error.reason);
-		var idVraag = res;
-		console.log(idVraag);
 		});
 
 		Session.set('aangemaakt',true);
@@ -29,8 +27,13 @@ Template.MainPageVragen.events({
 
 	},
 	'click #bevestigAntwoord':function(e){
+		var antwoordInput = $('#antwoordInput').val();
+		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
 
-
+		Meteor.call('AntwoordToevoegen', antwoordInput, tijdelijkVraagId, function(error,res) {
+			if (error)
+				return alert(error.reason);
+		});
 	},
 	'click #Openvraag': function(e) {
 		Session.set('showOpenvraag', true);
