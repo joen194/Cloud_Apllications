@@ -15,9 +15,7 @@ Template.body.events({
 
 		Session.set('showVraag', true);
 		var tijdelijkId = this._id;
-		Session.set('tijdelijkIdSession', tijdelijkId);
-		console.log(tijdelijkId);
-		
+		Session.set('tijdelijkIdSession', tijdelijkId);		
 	}
 });
 

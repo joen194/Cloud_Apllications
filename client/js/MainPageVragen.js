@@ -1,8 +1,10 @@
 Meteor.subscribe('DataVragen');
 
 Template.MainPageVragen.onRendered (function(){
-	Session.set('showOpenvraag', true);
+	Session.set('showOpenvraag', false);
+	Session.set('showMeerkeuzevraag', false);
 	Session.set('meerkeuzeBevestigt', false);
+	Session.set('aangemaakt',false);
 });
 
 //###################### Om een vraag aan te maken ###########################
@@ -15,18 +17,29 @@ Template.MainPageVragen.events({
 
 		var tijdelijkId = Session.get('tijdelijkIdSession');		
 
-		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, function(error, id){
+		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, function(error, res){
 		if (error)
 			return alert(error.reason);
+		var idVraag = res;
+		console.log(idVraag);
 		});
 
-	}, 
+		Session.set('aangemaakt',true);
+		Session.set('showOpenvraag', true);
+
+	},
+	'click #bevestigAntwoord':function(e){
+
+
+	},
 	'click #Openvraag': function(e) {
 		Session.set('showOpenvraag', true);
+		Session.set('showMeerkeuzevraag', false);
 
 	}, 
 	'click #Meerkeuzevraag': function(e) {
 		Session.set('showOpenvraag', false);
+		Session.set('showMeerkeuzevraag', true);
 	}
 
 });
@@ -34,6 +47,12 @@ Template.MainPageVragen.events({
 Template.MainPageVragen.helpers({
 	showOpenvraag: function(){
 		return Session.get('showOpenvraag');
+	},
+	showMeerkeuzevraag: function(){
+		return Session.get('showMeerkeuzevraag');
+	},
+	aangemaakt: function(){
+		return Session.get('aangemaakt');
 	}
 });
 

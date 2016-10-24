@@ -16,10 +16,13 @@
             </div>
             <div class="modal-body">
               <p>Titel: <input id="TitelVraag" type="text" >
+              <button  id="addVraag" type="button" class="btn btn-default">aanmaken</button>
               </p>
               <p>
-              Openvraag: <input name="soortVraag" type="radio" checked="" id="Openvraag" value="Openvraag">                                        
-              Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag">
+              {{#if aangemaakt}}
+                Openvraag: <input name="soortVraag" type="radio" checked="" id="Openvraag" value="Openvraag">                                        
+                Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag">
+              {{/if}}
               </p>
               {{#if showOpenvraag}}
                 <div>
@@ -27,11 +30,12 @@
                     Open antwoorden hier
                   </p>
                 </div>
-              {{else}}
+              {{/if}}
+              {{#if showMeerkeuzevraag}}
                 <div>
                   <p>
                     Hoeveel meerkeuze antwoorden wilt u? Typ een getal tussen 1 en 10
-                    <input id="aantalMeerkeuze" type="text" > <button type="button" class="btn btn-default" id="aantalMeerkeuzeButton">Bevestig</button>
+                    <input id="aantalMeerkeuze" type="text" > <button type="button" class="btn btn-default" id="bevestigAntwoord">Bevestig</button>
                     {{#if meerkeuzeBevestigt}}
                     {{/if}}
 
@@ -41,7 +45,7 @@
               {{/if}}
             </div>
             <div class="modal-footer">
-            <button  id="addVraag" type="button" class="btn btn-default">aanmaken</button>
+            
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>          
