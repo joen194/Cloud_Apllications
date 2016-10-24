@@ -15,9 +15,11 @@
               <h4 class="modal-title">Nieuwe vraag aanmaken</h4>
             </div>
             <div class="modal-body">
+            {{#if nieuweVraag}}
               <p>Titel: <input id="TitelVraag" type="text" >
               <button  id="addVraag" type="button" class="btn btn-default">aanmaken</button>
               </p>
+            {{/if}}
               <p>
               {{#if aangemaakt}}
                 Openvraag: <input name="soortVraag" type="radio" checked="" id="Openvraag" value="Openvraag">                                        
@@ -34,19 +36,15 @@
               {{#if showMeerkeuzevraag}}
                 <div>
                   <p>
-                    Hoeveel meerkeuze antwoorden wilt u? Typ een getal tussen 1 en 10
-                    <input id="antwoordInput" type="text" > <button type="button" class="btn btn-default" id="bevestigAntwoord">Bevestig</button>
-                    {{#if meerkeuzeBevestigt}}
-                    {{/if}}
-
-                    
+                    Typ hier je meerkeuze antwoord en druk op bevestig.
+                    <input id="antwoordInput" type="text" > <button type="button" class="btn btn-default" id="bevestigAntwoord">Bevestig</button>            
                   </p>
                 </div>
               {{/if}}
             </div>
             <div class="modal-footer">
             
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" id="closeVraag">Close</button>
             </div>
           </div>          
         </div>
@@ -56,6 +54,6 @@
 
 <template name="OverzichtVragen">
   	{{#each historyVraag}}
-  		<h1>{{vraagnaam}} <button>Edit</button><button  id="deleteVraag" type="button">Delete</button></h1>
+  		<h1>{{vraagnaam}} <button id="editVraag">Edit</button><button  id="deleteVraag">Delete</button><button>Show</button><button>Check</button> </h1>
 	{{/each}}
 </template>

@@ -7,9 +7,17 @@ Template.MainPageVragen.onRendered (function(){
 	Session.set('aangemaakt',false);
 });
 
-//###################### Om een vraag aan te maken ###########################
+//###################### Vraag field resetten ###########################
 Template.MainPageVragen.events({
+	'click #voegVraagToe': function(e){
+		e.preventDefault();
 
+		Session.set('nieuweVraag',true);
+		Session.set('showOpenvraag', false);
+		Session.set('showMeerkeuzevraag', false);
+		Session.set('aangemaakt',false);
+	},
+//#################### Vraag toevoegen aan database ##########################
 	'click #addVraag' : function(e){
 		e.preventDefault();
 
@@ -24,30 +32,43 @@ Template.MainPageVragen.events({
 
 		Session.set('aangemaakt',true);
 		Session.set('showOpenvraag', true);
+		Session.set('nieuweVraag',false);
 
 	},
+//#################### Knop voor meerkeuzeantwoord te bevestigen ##########################
 	'click #bevestigAntwoord':function(e){
+		e.preventDefault();
 		var antwoordInput = $('#antwoordInput').val();
 		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
 
 		Meteor.call('AntwoordToevoegen', antwoordInput, tijdelijkVraagId, function(error,res) {
 			if (error)
 				return alert(error.reason);
+			else
+				return alert("Antwoord aangemaakt");
 		});
+		$('#antwoordInput').val('');
 	},
+//############################### Radio button voor openvraag #################################
 	'click #Openvraag': function(e) {
+		e.preventDefault();
 		Session.set('showOpenvraag', true);
 		Session.set('showMeerkeuzevraag', false);
 
 	}, 
+//######################## Radio button voor meerkeuzevraag ###################################
 	'click #Meerkeuzevraag': function(e) {
+		e.preventDefault();
 		Session.set('showOpenvraag', false);
 		Session.set('showMeerkeuzevraag', true);
 	}
 
 });
-//######################### helpers ##############################
+//################################## helpers #########################################
 Template.MainPageVragen.helpers({
+	nieuweVraag: function(){
+		return Session.get('nieuweVraag');
+	},
 	showOpenvraag: function(){
 		return Session.get('showOpenvraag');
 	},
@@ -73,10 +94,14 @@ Template.OverzichtVragen.events({
 		e.preventDefault();
 
 		Meteor.call('VraagVerwijderen', this._id, function(error, id){
-		
+
 		if (error)
 			return alert(error.reason);
 		});
+	},
+	'click #editVraag':function(e) {
+		e.preventDefault();
 
+		
 	}
 })

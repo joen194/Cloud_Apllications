@@ -1,4 +1,5 @@
 var tijdelijkVraagId;
+//############################ methodes om data in db te inserten ##########################
 Meteor.methods({
 	VraagToevoegen: function(vraagTitel, tijdelijkId) {
 		Vragen.insert({
