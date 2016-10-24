@@ -1,5 +1,20 @@
   <template name="MainPage">
   	<h1>HoofdPagina</h1>
+
+  	{{#if currentUser}}
+
+      {{#if showVraag}}
+        {{> MainPageVragen}}
+        {{> OverzichtVragen}}
+      {{else}}
+        {{> MainPageLes}}
+        {{> OverzichtLessen}}
+
+      {{/if}}
+
+    {{else}}
+      {{> LoginPage}}
+    {{/if}}
   	
   </template>
 
