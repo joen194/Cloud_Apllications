@@ -35,22 +35,5 @@
 
   <h1>student interactor</h1>
 
-    {{> MainPage}}
 
-    {{#if currentUser}}
-
-      {{#if showVraag}}
-        {{> MainPageVragen}}
-        {{> OverzichtVragen}}
-      {{else}}
-        {{> MainPageLes}}
-        {{> OverzichtLessen}}
-
-      {{/if}}
-
-    {{else}}
-      {{> LoginPage}}
-    {{/if}}
-
-          
   </body>
