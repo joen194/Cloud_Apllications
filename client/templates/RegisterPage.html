@@ -1,15 +1,21 @@
 <template name="RegisterPage">
 	<h1>Register</h1>
 
-	<p>Voornaam: </p>
-	<input type="text" name="NaamInput">
-	<p>Achternaam: </p>
-	<input type="text" name="AchternaamInput">
-	<p>e-mail</p>
-	<input type="text" name="MailInput">
-	<p>Passwoord: </p>
-	<input type="password" name="PasswoordInput">
+	<form>
 
+		<p>Voornaam: </p>
+		<input type="text" id="NaamInput">
+		<p>Achternaam: </p>
+		<input type="text" id="AchternaamInput">
+		<p>e-mail</p>
+		<input type="text" id="MailInput">
+		<p>Passwoord: </p>
+		<input type="password" id="PasswoordInput">
+		<input type="submit" name="Register" value="submit">
+
+		
+	</form>
 	<button id="BackBtn">Back</button>
+
 
 </template>

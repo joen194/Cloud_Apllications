@@ -19,3 +19,16 @@ Template.LoginPage.helpers({
     return Session.get('newRegister');
   }
 });
+
+
+Template.LoginForm.events({
+
+
+	'click #LoginBtn' : function(events){
+		events.preventDefault();
+		var emailvar = $('#InputMail').val();
+		var passwoordvar = $('#InputPassword').val();
+
+		Meteor.loginWithPassword(emailvar, passwoordvar);
+	}
+});
