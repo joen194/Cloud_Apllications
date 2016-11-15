@@ -13,7 +13,8 @@ AccountsTemplates.configure({
         theme: "light",
         data_type: "image"
     },
-    showReCaptcha: true	
+    showReCaptcha: true,
+    sendVerificationEmail: true	
 
 });
 
