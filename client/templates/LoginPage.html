@@ -2,23 +2,34 @@
 
 
 <template name="LoginPage">
-	{{#if newRegister}}
-        {{> RegisterPage}}
-      {{else}}
-        
         {{> LoginForm}}
-    {{/if}}
 </template>
 
 
 <template name="LoginForm">
 	<h1>Login</h1>
-	<p>Login met google</p>
-	{{> loginButtons}}
-	<p>Login met een account</p>
-	<p>Mail: </p> <input type="text" id="InputMail">
-	<p>Passwoord:</p> <input type="Password" id="InputPassword"> <br>
-	<button id="LoginBtn" type="button">Login</button>
-	<p>Nog niet geregistreerd?</p>
-	<button id="RegisterBtn" type="button">Registreer</button>
+
+	<div class="login-modal">
+		{{> atForm}}
+
+
+	</div>
+
 </template>
+
+
+
+
+<template name="override-atPwdFormBtn">
+  <button type="submit" class="at-btn submit {{submitDisabled}} btn-primary" id="at-btn">
+    {{buttonText}}
+    
+  </button>
+
+
+
+</template>
+
+
+
+

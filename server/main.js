@@ -11,4 +11,11 @@ Meteor.startup(() => {
   		lesnaam: 'les x2'
   	});
   };*/
+
+
+});
+AccountsTemplates.configure({
+    reCaptcha: {
+        secretKey: 'nope'
+    },
 });
