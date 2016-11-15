@@ -14,6 +14,10 @@ Meteor.startup(() => {
 
 
 });
+
+
+//################## Code voor ReCaptcha #########################
+
 AccountsTemplates.configure({
     reCaptcha: {
         secretKey: 'nope'
