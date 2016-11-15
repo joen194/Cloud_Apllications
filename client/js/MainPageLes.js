@@ -10,14 +10,27 @@ Template.MainPageLes.events({
 		e.preventDefault();
 
 		var lesTitel = $('#TitelLes').val();
-
-		Meteor.call('LesToevoegen', lesTitel, function(error, id){
+		var idpinboard = makeid();
+		Meteor.call('LesToevoegen', lesTitel, idpinboard, function(error, id){
 		if (error)
 			return alert(error.reason);
 		});
 
 	}
 });
+
+//#################### Om een random code te genereren ####################
+function makeid()
+{
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 6; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+
+}
 
 /*Template.OverzichtLessen.onCreated(function(){
   this.ShowVragen = new ReactiveVar(false);

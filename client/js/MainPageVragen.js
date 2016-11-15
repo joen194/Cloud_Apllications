@@ -17,13 +17,14 @@ Template.MainPageVragen.events({
 		Session.set('showMeerkeuzevraag', false);
 		Session.set('aangemaakt',false);
 	},
+	
 //#################### Vraag toevoegen aan database ##########################
 	'click #addVraag' : function(e){
 		e.preventDefault();
 
 		var vraagTitel = $('#TitelVraag').val();
 
-		var tijdelijkId = Session.get('tijdelijkIdSession');		
+		var tijdelijkId = Session.get('tijdelijkIdSession');	
 
 		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, function(error, res){
 		if (error)
@@ -88,8 +89,17 @@ Template.OverzichtVragen.helpers({
 	}
 });
 
-//################ Om een vraag te deleten #######################
+//################ Om een vraag te deleten, showen en editen #######################
 Template.OverzichtVragen.events({
+	'click #showVraag' : function(e){
+		e.preventDefault();
+
+		Session.set('showVraag', false);
+		Session.set('showVraagOpBord', true); 
+
+		Session.set('idVanVraag', this._id);
+
+	},
 	'click #deleteVraag': function(e){
 		e.preventDefault();
 
@@ -104,4 +114,6 @@ Template.OverzichtVragen.events({
 
 		
 	}
-})
+});
+
+//################ Om een vraag zichtbaar te maken #######################

@@ -1,4 +1,14 @@
-#addles{
-	margin-left: 200px;
-	background-color: lightgreen;
+#viewLes{
+	background-color: lightblue;
+}
+#editLes{
+	background-color: yellow;
+}
+#deleteLes{
+	background-color: red;
+}
+#lessen{
+	border: solid black;
+	margin-top: 5px;
+	margin-left: 5px; 
 }

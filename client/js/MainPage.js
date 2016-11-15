@@ -17,3 +17,8 @@ Template.MainPage.helpers({
     return Session.get('showVraag');
   }
 });
+Template.MainPage.helpers({
+  showVraagOpBord() {
+    return Session.get('showVraagOpBord');
+  }
+});

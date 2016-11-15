@@ -1,5 +1,4 @@
-  <template name="MainPage">
-  	<h1>HoofdPagina</h1>
+  <template name="MainPage">  	
 
   	{{#if currentUser}}
 
@@ -7,8 +6,13 @@
         {{> MainPageVragen}}
         {{> OverzichtVragen}}
       {{else}}
-        {{> MainPageLes}}
-        {{> OverzichtLessen}}
+        {{#if showVraagOpBord}}
+          {{> VraagOpBord}}
+        {{else}}
+          {{> MainPageLes}}
+          {{> OverzichtLessen}}
+        {{/if}}
+
 
       {{/if}}
 

@@ -10,7 +10,6 @@ Meteor.methods({
 			tijdelijkVraagId = id;
 			console.log(id);
 		});
-		Session.set('tijdelijkVraagId', tijdelijkVraagId);
 	}, 
 
 	VraagVerwijderen: function(vraagId) {
