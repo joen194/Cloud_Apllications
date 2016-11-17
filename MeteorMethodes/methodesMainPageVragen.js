@@ -4,8 +4,8 @@ Meteor.methods({
 	VraagToevoegen: function(vraagTitel, tijdelijkId, roomCodeLes) {
 		Vragen.insert({
 			userId: Meteor.userId(),
-			lessenId: tijdelijkId,
-			vraagnaam: vraagTitel,
+			lessenId: tijdelijkLesId,
+			vraagnaam: vraagTitel
 			roomCode: roomCodeLes
 		}, function(error,id){
 			tijdelijkVraagId = id;

@@ -53,7 +53,18 @@
 </template>
 
 <template name="OverzichtVragen">
-  	{{#each historyVraag}}
-  		<h1>{{vraagnaam}} <button id="editVraag">Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button><button>Check</button> </h1>
-	{{/each}}
+	{{#each historyVraag}}
+		<h1>{{vraagnaam}}</h1>
+    <p><button id="editVraag">Edit</button><button  id="deleteVraag">Delete</button><button>Show</button><button>Check</button> </p> 
+    {{#if showEdit}}
+    <div>
+        {{#each editAnswer}}
+          <p>
+          {{antwoord}}: <input id={{_id}} type="text">
+          </p>
+        {{/each}}
+        <button type="button" class="btn btn-default" id="saveAntwoorden">Save</button> 
+    </div>
+  {{/if}}
+  {{/each}}  
 </template>

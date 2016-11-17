@@ -1,4 +1,6 @@
 Meteor.subscribe('DataVragen');
+Meteor.subscribe('DataAntwoorden');
+var editVraagIsTrue = true;
 
 Template.MainPageVragen.onRendered (function(){
 	Session.set('showOpenvraag', false);
@@ -24,8 +26,7 @@ Template.MainPageVragen.events({
 
 		var vraagTitel = $('#TitelVraag').val();
 
-		var tijdelijkId = Session.get('tijdelijkIdSession');
-		var tijdelijkeRoomCode = Session.get('getRoomCode');
+		var tijdelijkLesId = Session.get('tijdelijkIdSession');		
 
 		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, tijdelijkeRoomCode, function(error, res){
 		if (error)
@@ -85,9 +86,19 @@ Template.MainPageVragen.helpers({
 //################ Om de juiste vragen uit de DB te halen #######################
 Template.OverzichtVragen.helpers({
 	historyVraag : function(){
-		var tijdelijkId = Session.get('tijdelijkIdSession');
-		return Vragen.find({lessenId: tijdelijkId});
+		var tijdelijkLesId = Session.get('tijdelijkIdSession');
+		return Vragen.find({lessenId: tijdelijkLesId});
+	},
+	showEdit: function() {
+		return Session.get('showEdit');
+	},
+	editAnswer: function(){
+		var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
+		console.log(tijdelijkVraagId);
+		//Session.set('showEdit', false);
+		return Antwoorden.find({vragenId: tijdelijkVraagId});
 	}
+	
 });
 
 //################ Om een vraag te deleten, showen en editen #######################
@@ -112,8 +123,16 @@ Template.OverzichtVragen.events({
 	},
 	'click #editVraag':function(e) {
 		e.preventDefault();
+	
+		if (editVraagIsTrue){
+			Session.set('showEdit', true);
+			editVraagIsTrue = false;			
+		} else {
+			Session.set('showEdit', false);
+			editVraagIsTrue = true;
+		}
 
-		
+		Session.set('tijdelijkVraagId2', this._id);
 	}
 });
 
