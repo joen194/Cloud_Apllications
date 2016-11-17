@@ -28,7 +28,7 @@ Template.MainPageVragen.events({
 
 		var tijdelijkLesId = Session.get('tijdelijkIdSession');		
 
-		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, tijdelijkeRoomCode, function(error, res){
+		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
 		if (error)
 			return alert(error.reason);
 		});
