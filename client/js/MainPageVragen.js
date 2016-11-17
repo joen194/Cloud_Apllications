@@ -24,9 +24,10 @@ Template.MainPageVragen.events({
 
 		var vraagTitel = $('#TitelVraag').val();
 
-		var tijdelijkId = Session.get('tijdelijkIdSession');	
+		var tijdelijkId = Session.get('tijdelijkIdSession');
+		var tijdelijkeRoomCode = Session.get('getRoomCode');
 
-		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, function(error, res){
+		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkId, tijdelijkeRoomCode, function(error, res){
 		if (error)
 			return alert(error.reason);
 		});

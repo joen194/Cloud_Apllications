@@ -15,7 +15,8 @@ Template.MainPageLes.events({
 		if (error)
 			return alert(error.reason);
 		});
-
+		Session.set('getRoomCode', idpinboard);
+		console.log("hier is de room " + idpinboard);
 	}
 });
 
