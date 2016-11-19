@@ -26,7 +26,8 @@ Template.MainPageVragen.events({
 
 		var vraagTitel = $('#TitelVraag').val();
 
-		var tijdelijkLesId = Session.get('tijdelijkIdSession');		
+		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
+		var tijdelijkeRoomCode = Session.get('getRoomCode');	
 
 		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
 		if (error)
