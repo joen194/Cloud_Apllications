@@ -5,7 +5,7 @@ import { Accounts } from 'meteor/accounts-base';
 
 AccountsTemplates.configure({
     reCaptcha: {
-        secretKey: 'nope'
+        secretKey: '6LcKBwwUAAAAAHReVsve4JiKyNfohiiY8Ie4B5mU'
     },
 });
 
@@ -26,8 +26,8 @@ Accounts.onCreateUser(function(options, user) {
 
 //################## Mail Settings ###############################
     // 1. Set up stmp
-    var username = '@outlook.be';
-    var password = '';
+    var username = 'student.interactor@outlook.be';
+    var password = 'CloudApplications';
     var server = 'smtp-mail.outlook.com';
     var port = '587';
 
@@ -38,7 +38,7 @@ Accounts.onCreateUser(function(options, user) {
 
     // 2. Format the email
     //-- Set the from address
-    Accounts.emailTemplates.from = '@outlook.be';
+    Accounts.emailTemplates.from = 'student.interactor@outlook.be';
 
     //-- Application name
     Accounts.emailTemplates.siteName = 'Student interactor';

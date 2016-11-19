@@ -10,10 +10,10 @@
   },
   "public": {
         "reCaptcha": {
-            "siteKey": "nope"
+            "siteKey": "6LcKBwwUAAAAAJA4Dk9i95lsurU8VngCNbe21DnC"
         }
     },
     "reCaptcha": {
-        "secretKey": "nope"
+        "secretKey": "6LcKBwwUAAAAAHReVsve4JiKyNfohiiY8Ie4B5mU"
     }
 }

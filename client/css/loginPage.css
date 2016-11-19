@@ -1,0 +1,49 @@
+.login-modal{
+
+	text-align: center;
+}
+.at-form{
+	border-style: solid;
+	border-radius: 15px 15px 15px 15px;
+	border-width: 1px;
+	border-color: #c4c4c4;
+	width: 50%;
+	margin-left: 25%;
+	padding-bottom: 2%;
+	box-shadow: 10px 10px 30px #8e8e8e;
+
+}
+.login-modal div {
+	margin-bottom: 2%;
+}
+.g-recaptcha{
+	margin: auto;
+	width: 30%;
+	display: block;
+}
+
+
+@media screen and (min-width: 500px) and (max-width: 900px) {
+	.at-form{
+		width: 60%;
+		margin-left: 20%;
+	}
+	.g-recaptcha{
+		width: 80%;
+
+	}
+	 
+}
+@media screen and (max-width: 500px) {
+	.at-form{
+		width: 90%;
+		margin-left: 5%;
+		
+	}	
+	.g-recaptcha{
+		width: 95%;
+
+	}
+
+   
+}
