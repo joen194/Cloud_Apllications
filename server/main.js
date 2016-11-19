@@ -4,14 +4,25 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
 
-	getantwoorden: function(azerty) {
+
+
+	getRoomcode: function(code) {
 	      
-	      var antwoord = vragen.find({lessenId: azerty});
+	    var checkroomcode = Lessen.find({"roomCode" : code}).fetch();
+	    if (checkroomcode.lesnaam !== undefined) {
+	    	console.log(checkroomcode[0]);
 
-	      console.log(antwoord);
-	      return antwoord;
-
+		    var result = {};
+		    result.lesnaam= checkroomcode[0].lesnaam;
+		    result.roomCode=checkroomcode[0].roomCode;
+		    return result;
+	    }
+	    else{
+	    	return false;
+	    }
+	    
 	}
+
 
 });
 
