@@ -9,7 +9,7 @@ Meteor.methods({
 			roomCode: roomCodeLes
 		}, function(error,id){
 			tijdelijkVraagId = id;
-			console.log(id);
+			Session.set('tijdelijkVraagId',tijdelijkVraagId);
 		});
 	}, 
 
@@ -24,5 +24,7 @@ Meteor.methods({
 			vragenId: tijdelijkVraagId,
 			antwoord: antwoordInput
 		});
-	}
+	},
+
+	//AntwoordAanpassen: function()
 });	

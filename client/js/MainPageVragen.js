@@ -1,6 +1,8 @@
 Meteor.subscribe('DataVragen');
 Meteor.subscribe('DataAntwoorden');
 var editVraagIsTrue = true;
+var j = 0;
+var tijdelijkEditId = [] ;
 
 Template.MainPageVragen.onRendered (function(){
 	Session.set('showOpenvraag', false);
@@ -44,6 +46,7 @@ Template.MainPageVragen.events({
 		e.preventDefault();
 		var antwoordInput = $('#antwoordInput').val();
 		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
+		console.log(tijdelijkVraagId);
 
 		Meteor.call('AntwoordToevoegen', antwoordInput, tijdelijkVraagId, function(error,res) {
 			if (error)
@@ -90,13 +93,8 @@ Template.OverzichtVragen.helpers({
 		var tijdelijkLesId = Session.get('tijdelijkIdSession');
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
-	showEdit: function() {
-		return Session.get('showEdit');
-	},
 	editAnswer: function(){
-		var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
-		console.log(tijdelijkVraagId);
-		//Session.set('showEdit', false);
+		//var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
 		return Antwoorden.find({vragenId: tijdelijkVraagId});
 	}
 	
@@ -122,18 +120,56 @@ Template.OverzichtVragen.events({
 			return alert(error.reason);
 		});
 	},
-	'click #editVraag':function(e) {
+	'click .editVraag':function(e) {
 		e.preventDefault();
+		//console.log(e.currentTarget.id);
 	
-		if (editVraagIsTrue){
-			Session.set('showEdit', true);
-			editVraagIsTrue = false;			
-		} else {
-			Session.set('showEdit', false);
-			editVraagIsTrue = true;
-		}
 
-		Session.set('tijdelijkVraagId2', this._id);
+		var obj = Antwoorden.find();
+		var db = obj.collection._docs._map;
+		var editId;
+		
+		var inArray = true; 
+
+		if ($.inArray(this._id, tijdelijkEditId) != -1) {
+			console.log(this._id);
+			$("#div" + this._id).toggle();
+		}
+		else {
+			tijdelijkEditId[j] = this._id;
+			j++;
+			$("#div" + this._id).append("<p>" + this.vraagnaam + "</p>");
+			var $input = document.createElement("input");
+			$input.id = this._id;
+			$("#div" + this._id).append($input);
+			for (var item in db) {	
+				editId = eval("obj.collection._docs._map." + item + ".vragenId");
+				if (editId == this._id) {
+					var tijdelijkAntwoord = eval("obj.collection._docs._map." + item + ".antwoord");
+					$("#div" + this._id).append("<p>" + tijdelijkAntwoord + "</p>");
+					$input = document.createElement("input");
+					tijdelijkAntwoord = eval("obj.collection._docs._map." + item + "._id");
+					$input.id = tijdelijkAntwoord;
+					$("#div" + this._id).append($input);
+				}
+			}
+			$input = document.createElement("button");
+			var t = document.createTextNode("Save");       // Create a text node
+			$input.appendChild(t);
+			$input.id = "saveAntwoorden";
+			$input.type = "button";
+			$("#div" + this._id).append($input);
+			$("#div" + this._id).toggle();
+		}					
+	},
+	'click #saveAntwoorden':function(e) {
+		e.preventDefault();
+
+		var test1 = $('.test1').val();
+		console.log(test1);
+		Session.set('showEdit', false);
+		editVraagIsTrue = true;
+		//Meteor.call('AntwoordenAanpassen', )
 	}
 });
 
