@@ -50,6 +50,6 @@ Accounts.onCreateUser(function(options, user) {
 
     //-- Email text
     Accounts.emailTemplates.verifyEmail.text = function(user, url) {
-       // var newUrl = url.replace('/#','');
-        return 'Bedankt om te registreren.  Klik op deze link om u registratie af te ronden \r\n' + url;
+        var newUrl = url.replace('/#','/leerkracht/#');
+        return 'Bedankt om te registreren.  Klik op deze link om u registratie af te ronden \r\n' + newUrl ;
     };

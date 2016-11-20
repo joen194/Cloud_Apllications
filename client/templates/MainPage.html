@@ -4,21 +4,33 @@
   <div id="PageContent">
 
     	{{#if currentUser}}
+      
 
-        {{#if showVraag}}
-          {{> MainPageVragen}}
-          {{> OverzichtVragen}}
-        {{else}}
-          {{#if showVraagOpBord}}
-            {{> VraagOpBord}}
+        
+
+        {{#if currentUser.emails.[0].verified}}
+          {{#if showVraag}}
+            {{> MainPageVragen}}
+            {{> OverzichtVragen}}
           {{else}}
-            {{> MainPageLes}}
-            {{> OverzichtLessen}}
-          {{/if}}
+            {{#if showVraagOpBord}}
+              {{> VraagOpBord}}
+            {{else}}
+              {{> MainPageLes}}
+              {{> OverzichtLessen}}
+            {{/if}}
 
+
+
+          {{/if}}
+          {{> SideNavBar}}
+          
+        {{else}}
+        <p class="alert alert-warning">You need to verify your email address. <a href="#" class="resend-verification-link">Resend verification link</a>.</p>
+
+          
 
         {{/if}}
-        {{> SideNavBar}}
 
       {{else}}
         {{> LoginForm}}
