@@ -43,6 +43,7 @@
 #SideNavbar li p{
 	transition:all 500ms ease;
 	font-size: 1%;
+	cursor: pointer;
 }
 
 
