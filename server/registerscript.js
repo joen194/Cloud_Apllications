@@ -26,8 +26,8 @@ Accounts.onCreateUser(function(options, user) {
 
 //################## Mail Settings ###############################
     // 1. Set up stmp
-    var username = '@outlook.be';
-    var password = '';
+    var username = 'student.interactor@outlook.be';
+    var password = 'nope';
     var server = 'smtp-mail.outlook.com';
     var port = '587';
 
@@ -38,7 +38,7 @@ Accounts.onCreateUser(function(options, user) {
 
     // 2. Format the email
     //-- Set the from address
-    Accounts.emailTemplates.from = '@outlook.be';
+    Accounts.emailTemplates.from = 'student.interactor@outlook.be';
 
     //-- Application name
     Accounts.emailTemplates.siteName = 'Student interactor';

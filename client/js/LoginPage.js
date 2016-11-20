@@ -9,7 +9,7 @@ Template['override-atPwdFormBtn'].replaces('atPwdFormBtn');
 
 AccountsTemplates.configure({
 	reCaptcha: {
-        siteKey: "nope",
+        siteKey: "6LcKBwwUAAAAAJA4Dk9i95lsurU8VngCNbe21DnC",
         theme: "light",
         data_type: "image"
     },

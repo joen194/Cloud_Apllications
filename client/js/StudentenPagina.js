@@ -4,13 +4,15 @@ Template.StudentenPagina.events({
 		e.preventDefault();
 
 		var roomCodeInput = $('#roomCodeField').val();
-		console.log(roomCodeInput);
-		var roomCode = Session.get('getRoomCode');
-		if(roomCode === roomCodeInput){
-			console.log("juiste roomcode " + roomCode);
-		}
-		else{
-			console.log(roomCode);
-		}
+
+		Meteor.call('getRoomcode', roomCodeInput ,function(err, response) {
+			if(err) {
+				alert(err);
+				return;
+			}
+			console.log(response);
+			
+		});
+
 	}
 });

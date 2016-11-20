@@ -10,11 +10,11 @@
     "meteor-node-stubs": "~0.2.0"
   },
   "public": {
+        "reCaptcha": {
+            "siteKey": "6LcKBwwUAAAAAJA4Dk9i95lsurU8VngCNbe21DnC"
+        }
+    },
     "reCaptcha": {
-      "siteKey": "nope"
+        "secretKey": "nope"
     }
-  },
-  "reCaptcha": {
-    "secretKey": "nope"
-  }
 }
