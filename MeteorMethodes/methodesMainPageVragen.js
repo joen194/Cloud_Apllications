@@ -26,5 +26,11 @@ Meteor.methods({
 		});
 	},
 
-	//AntwoordAanpassen: function()
+	VraagAanpassen: function(titelAanpassen, vraagId){
+		Vragen.update({_id: vraagId}, {$set:{vraagnaam: titelAanpassen}});
+	},
+
+	AntwoordenAanpassen: function(antwoorden){
+		Antwoorden.update();
+	}
 });	

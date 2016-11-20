@@ -1,5 +1,6 @@
 Meteor.subscribe('DataVragen');
 Meteor.subscribe('DataAntwoorden');
+
 var editVraagIsTrue = true;
 var j = 0;
 var tijdelijkEditId = [] ;
@@ -127,9 +128,8 @@ Template.OverzichtVragen.events({
 
 		var obj = Antwoorden.find();
 		var db = obj.collection._docs._map;
-		var editId;
-		
-		var inArray = true; 
+		console.log(db);
+		var editId;		
 
 		if ($.inArray(this._id, tijdelijkEditId) != -1) {
 			console.log(this._id);
@@ -138,23 +138,26 @@ Template.OverzichtVragen.events({
 		else {
 			tijdelijkEditId[j] = this._id;
 			j++;
-			$("#div" + this._id).append("<p>" + this.vraagnaam + "</p>");
+			//$("#div" + this._id).append("<p>" + this.vraagnaam + "</p>");*
 			var $input = document.createElement("input");
 			$input.id = this._id;
+			$input.value = this.vraagnaam;
+			$input.type = "text";
 			$("#div" + this._id).append($input);
 			for (var item in db) {	
 				editId = eval("obj.collection._docs._map." + item + ".vragenId");
 				if (editId == this._id) {
 					var tijdelijkAntwoord = eval("obj.collection._docs._map." + item + ".antwoord");
-					$("#div" + this._id).append("<p>" + tijdelijkAntwoord + "</p>");
+					$("#div" + this._id).append("<br>" + "<br>");
 					$input = document.createElement("input");
+					$input.value = tijdelijkAntwoord;
 					tijdelijkAntwoord = eval("obj.collection._docs._map." + item + "._id");
 					$input.id = tijdelijkAntwoord;
 					$("#div" + this._id).append($input);
 				}
 			}
 			$input = document.createElement("button");
-			var t = document.createTextNode("Save");       // Create a text node
+			t = document.createTextNode("Save");       // Create a text node
 			$input.appendChild(t);
 			$input.id = "saveAntwoorden";
 			$input.type = "button";
@@ -165,11 +168,18 @@ Template.OverzichtVragen.events({
 	'click #saveAntwoorden':function(e) {
 		e.preventDefault();
 
-		var test1 = $('.test1').val();
-		console.log(test1);
-		Session.set('showEdit', false);
-		editVraagIsTrue = true;
-		//Meteor.call('AntwoordenAanpassen', )
+		console.log(this._id);
+
+		//var titelAanpassen = $('#' + this._id).val();
+		var titelAanpassen = "Vraag 1";
+		console.log(titelAanpassen);
+		Meteor.call('VraagAanpassen', titelAanpassen, this._id, function(error, id){
+
+		if (error)
+			return alert(error.reason);
+		});
+
+		//Meteor.call('')
 	}
 });
 
