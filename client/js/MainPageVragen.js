@@ -128,7 +128,6 @@ Template.OverzichtVragen.events({
 
 		var obj = Antwoorden.find();
 		var db = obj.collection._docs._map;
-		console.log(db);
 		var editId;		
 
 		if ($.inArray(this._id, tijdelijkEditId) != -1) {
@@ -179,7 +178,20 @@ Template.OverzichtVragen.events({
 			return alert(error.reason);
 		});
 
-		//Meteor.call('')
+		var obj = Antwoorden.find();
+		var db = obj.collection._docs._map;
+		for (var item in db) {
+			var ophalenVragenId =	eval("obj.collection._docs._map." + item + ".vragenId");
+			if (ophalenVragenId == this._id) {
+				var ophalenInputsId =	eval("obj.collection._docs._map." + item + "._id");
+				var antwoordAanpassen = "Test1"; //$('#' + ophalenInputsId).val();
+				Meteor.call('AntwoordAanpassen', antwoordAanpassen, ophalenInputsId, function(error, id){
+
+				if (error)
+					return alert(error.reason);
+				});
+			}			
+		}
 	}
 });
 

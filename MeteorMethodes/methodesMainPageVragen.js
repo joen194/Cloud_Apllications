@@ -30,7 +30,7 @@ Meteor.methods({
 		Vragen.update({_id: vraagId}, {$set:{vraagnaam: titelAanpassen}});
 	},
 
-	AntwoordenAanpassen: function(antwoorden){
-		Antwoorden.update();
+	AntwoordAanpassen: function(antwoordAanpassen,ophalenInputsId){
+		Antwoorden.update({_id: ophalenInputsId}, {$set:{antwoord: antwoordAanpassen}});
 	}
 });	
