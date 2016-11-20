@@ -131,7 +131,6 @@ Template.OverzichtVragen.events({
 		var editId;		
 
 		if ($.inArray(this._id, tijdelijkEditId) != -1) {
-			console.log(this._id);
 			$("#div" + this._id).toggle();
 		}
 		else {
@@ -139,9 +138,9 @@ Template.OverzichtVragen.events({
 			j++;
 			//$("#div" + this._id).append("<p>" + this.vraagnaam + "</p>");*
 			var $input = document.createElement("input");
-			$input.id = this._id;
-			$input.value = this.vraagnaam;
+			$input.id = "input" + this._id;
 			$input.type = "text";
+			$input.value = this.vraagnaam;
 			$("#div" + this._id).append($input);
 			for (var item in db) {	
 				editId = eval("obj.collection._docs._map." + item + ".vragenId");
@@ -149,9 +148,10 @@ Template.OverzichtVragen.events({
 					var tijdelijkAntwoord = eval("obj.collection._docs._map." + item + ".antwoord");
 					$("#div" + this._id).append("<br>" + "<br>");
 					$input = document.createElement("input");
+					$input.type = "text";
 					$input.value = tijdelijkAntwoord;
 					tijdelijkAntwoord = eval("obj.collection._docs._map." + item + "._id");
-					$input.id = tijdelijkAntwoord;
+					$input.id = "input" + tijdelijkAntwoord;
 					$("#div" + this._id).append($input);
 				}
 			}
@@ -167,11 +167,7 @@ Template.OverzichtVragen.events({
 	'click #saveAntwoorden':function(e) {
 		e.preventDefault();
 
-		console.log(this._id);
-
-		//var titelAanpassen = $('#' + this._id).val();
-		var titelAanpassen = "Vraag 1";
-		console.log(titelAanpassen);
+		var titelAanpassen = $("#input" + this._id).val();		
 		Meteor.call('VraagAanpassen', titelAanpassen, this._id, function(error, id){
 
 		if (error)
@@ -184,7 +180,7 @@ Template.OverzichtVragen.events({
 			var ophalenVragenId =	eval("obj.collection._docs._map." + item + ".vragenId");
 			if (ophalenVragenId == this._id) {
 				var ophalenInputsId =	eval("obj.collection._docs._map." + item + "._id");
-				var antwoordAanpassen = "Test1"; //$('#' + ophalenInputsId).val();
+				var antwoordAanpassen = $('#input' + ophalenInputsId).val();
 				Meteor.call('AntwoordAanpassen', antwoordAanpassen, ophalenInputsId, function(error, id){
 
 				if (error)
