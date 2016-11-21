@@ -66,15 +66,11 @@ Template.OverzichtLessen.events({
 	'click #saveLessen': function(e) {
 		e.preventDefault();
 
-		console.log(this._id);
-
 		var lesInput = $('#input' + this._id).val();
-		console.log(lesInput);
-
 		Meteor.call('LessenAanpassen',lesInput, this._id, function(error,id) {
 			if (error)
 				return alert(error.reason);
-			
 		});
+		$('#div' + this._id).toggle();
 	}	
 });
