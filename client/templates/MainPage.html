@@ -10,10 +10,12 @@
 
         <!--{{#if currentUser.emails.[0].verified}}-->
           {{#if showVraag}}
+            {{> roomCode}}
             {{> MainPageVragen}}
             {{> OverzichtVragen}}
           {{else}}
             {{#if showVraagOpBord}}
+              {{> roomCode}}
               {{> VraagOpBord}}
             {{else}}
               {{> MainPageLes}}
