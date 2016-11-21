@@ -25,7 +25,17 @@ Template.MainPage.events({
 });
 
 Template.MainPage.helpers({
-  showVraag() {
+  verify(){
+
+	var usergegevens= Meteor.user().emails;
+	if (usergegevens === undefined) {
+		return true;
+	}else{
+		return usergegevens[ 0 ].verified;
+	}
+ 	return false;
+
+ },showVraag() {
     return Session.get('showVraag');
   }
 });
