@@ -55,9 +55,18 @@
 <template name="OverzichtVragen">
 	{{#each historyVraag}}
 		<h1>{{vraagnaam}}</h1>
-    <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button><button>Check</button> </p> 
-
-    <div id="div{{_id}}">
+    <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button><button>Check</button> </p>
+    <div id='div{{_id}}' style="display: none">
+      <input type="text" id="input{{_id}}" value="{{vraagnaam}}">
+      <br><br>
+      {{#each multipleChoiceHTML}}
+        <input type="text" id="input{{_id}}" value="{{multipleChoice}}"> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
+        <br><br>
+      {{/each}}
+      <input type="text" id="extraMultipleChoiceAanmaken">
+      <button id="saveMultipleChoice" type="button">Save</button>
     </div>
+    <!--<div id="div{{_id}}">
+    </div>-->
   {{/each}}   
 </template>

@@ -1,9 +1,9 @@
 Meteor.subscribe('DataVragen');
 Meteor.subscribe('DataMultipleChoice');
 
-var editVraagIsTrue = true;
-var j = 0;
-var tijdelijkEditId = [] ;
+//var editVraagIsTrue = true;
+//var j = 0;
+//var tijdelijkEditId = [] ;
 
 Template.MainPageVragen.onRendered (function(){
 	Session.set('showOpenvraag', false);
@@ -93,11 +93,10 @@ Template.OverzichtVragen.helpers({
 		var tijdelijkLesId = Session.get('tijdelijkIdSession');
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
-	editAnswer: function(){
-		//var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
+	multipleChoiceHTML: function(){
+		var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
-	}
-	
+	},	
 });
 
 //################ Om een vraag te deleten, showen en editen #######################
@@ -122,10 +121,10 @@ Template.OverzichtVragen.events({
 	},
 	'click .editVraag':function(e) {
 		e.preventDefault();
-		//console.log(e.currentTarget.id);
-	
+		Session.set('tijdelijkVraagId2', this._id);
+		$('#div' + this._id).toggle();
 
-		var obj = MultipleChoice.find();
+		/*var obj = MultipleChoice.find();
 		var db = obj.collection._docs._map;
 		console.log(db);
 
@@ -163,16 +162,23 @@ Template.OverzichtVragen.events({
 			$input.type = "button";
 			$("#div" + this._id).append($input);
 			$("#div" + this._id).toggle();
-		}					
+		}*/					
 	},
 	'click #saveMultipleChoice':function(e) {
 		e.preventDefault();
 
-		var titelAanpassen = $("#input" + this._id).val();		
+		var titelAanpassen = $("#input" + this._id).val();
 		Meteor.call('VraagAanpassen', titelAanpassen, this._id, function(error, id){
 
 		if (error)
 			return alert(error.reason);
+		});
+
+		
+		var multipleChoiceAanpassen = $('#input' + ophalenInputsId).val();
+		Meteor.call('MultipleChoiceAanpassen', multipleChoiceAanpassen, ophalenInputsId, function(error, id){
+			if (error)
+				return alert(error.reason);
 		});
 
 		var obj = MultipleChoice.find();
@@ -189,7 +195,27 @@ Template.OverzichtVragen.events({
 				});
 			}			
 		}
-		//$("#div" + this._id).toggle();
+
+		if ($("#extraMultipleChoiceAanmaken").val() != ''){
+			var multipleChoiceInput = $("#extraMultipleChoiceAanmaken").val();
+			Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, this._id, function(error,res) {
+				if (error)
+					return alert(error.reason);
+			});
+
+
+		}
+		$("#extraMultipleChoiceAanmaken").val('');
+		$("#div" + this._id).toggle();
+	},
+	'click .buttonRemoveMultipleChoice': function(e){
+		e.preventDefault();
+		console.log(e.currentTarget.id);
+
+		Meteor.call('MultipleChoiceVerwijderen', e.currentTarget.id, function(error,id) {
+			if (error)
+				return alert(error.reason);
+		});
 	}
 });
 

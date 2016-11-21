@@ -32,5 +32,9 @@ Meteor.methods({
 
 	MultipleChoiceAanpassen: function(multipleChoiceAanpassen,ophalenInputsId){
 		MultipleChoice.update({_id: ophalenInputsId}, {$set:{multipleChoice: multipleChoiceAanpassen}});
+	},
+
+	MultipleChoiceVerwijderen: function(id) {
+		MultipleChoice.remove(id);
 	}
 });	
