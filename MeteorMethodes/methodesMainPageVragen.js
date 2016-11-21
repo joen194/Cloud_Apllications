@@ -31,6 +31,6 @@ Meteor.methods({
 	},
 
 	MultipleChoiceAanpassen: function(multipleChoiceAanpassen,ophalenInputsId){
-		MultipleChoice.update({_id: ophalenInputsId}, {$set:{antwoord: multipleChoiceAanpassen}});
+		MultipleChoice.update({_id: ophalenInputsId}, {$set:{multipleChoice: multipleChoiceAanpassen}});
 	}
 });	

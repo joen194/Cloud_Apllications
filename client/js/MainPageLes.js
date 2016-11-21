@@ -50,10 +50,11 @@ Template.OverzichtLessen.helpers({
 //##################### Om lessen te verwijderen en te bekijken ##########################
 
 Template.OverzichtLessen.events({
-	/*'click #viewLes' : function(event, template){
-		template.ShowVragen.set(true);
-	}*/
-
+	'click #editLes' : function(e){
+		e.preventDefault();
+		
+		$('#div' + this._id).toggle();	
+	},
 	'click #deleteLes': function(e){
 		e.preventDefault();
 		
@@ -61,7 +62,19 @@ Template.OverzichtLessen.events({
 		if (error)
 			return alert(error.reason);
 		});
-	}
+	},
+	'click #saveLessen': function(e) {
+		e.preventDefault();
 
-	
+		console.log(this._id);
+
+		var lesInput = $('#input' + this._id).val();
+		console.log(lesInput);
+
+		Meteor.call('LessenAanpassen',lesInput, this._id, function(error,id) {
+			if (error)
+				return alert(error.reason);
+			
+		});
+	}	
 });

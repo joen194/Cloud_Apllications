@@ -189,6 +189,7 @@ Template.OverzichtVragen.events({
 				});
 			}			
 		}
+		//$("#div" + this._id).toggle();
 	}
 });
 

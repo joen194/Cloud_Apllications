@@ -35,8 +35,9 @@
 <template name="OverzichtLessen">
   <div class="row">
     {{#each historyLes}}
-    <div class="col-sm-3" id="lessen">
-	     <h1>{{lesnaam}}</h1> <button id="viewLes" type="button">View</button><button id="editLes" type="button">Edit</button><button id="deleteLes" type="button">Delete</button>
+    <div class="col-sm-3" id="lessen"> 
+	     <h1 id='h1{{lesnaam}}'>{{lesnaam}}</h1> <div id='div{{_id}}' style="display:none"><input type="text" id='input{{_id}}'><button type="button" id='saveLessen'>Save</button></div>
+       <button id="viewLes" type="button">View</button><button id="editLes" type="button">Edit</button><button id="deleteLes" type="button">Delete</button>
     </div>
 	 {{/each}}
   </div>

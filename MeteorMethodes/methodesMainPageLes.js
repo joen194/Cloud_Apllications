@@ -15,5 +15,8 @@ Meteor.methods({
 	LesVerwijderen: function(lesTitel){
 		Lessen.remove(lesTitel);
 		
+	},
+	LessenAanpassen: function(lesInput, lesId) {
+		Lessen.update({_id: lesId}, {$set:{lesnaam: lesInput}});
 	}
 });	
