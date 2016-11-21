@@ -1,5 +1,5 @@
 Meteor.subscribe('DataVragen');
-Meteor.subscribe('DataAntwoorden');
+Meteor.subscribe('DataMultipleChoice');
 
 var editVraagIsTrue = true;
 var j = 0;
@@ -31,7 +31,6 @@ Template.MainPageVragen.events({
 
 		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
 		var tijdelijkeRoomCode = Session.get('getRoomCode');	
-
 		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
 		if (error)
 			return alert(error.reason);
@@ -43,19 +42,19 @@ Template.MainPageVragen.events({
 
 	},
 //#################### Knop voor meerkeuzeantwoord te bevestigen ##########################
-	'click #bevestigAntwoord':function(e){
+	'click #bevestigMultipleChoice':function(e){
 		e.preventDefault();
-		var antwoordInput = $('#antwoordInput').val();
+		var multipleChoiceInput = $('#multipleChoiceInput').val();
 		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
 		console.log(tijdelijkVraagId);
 
-		Meteor.call('AntwoordToevoegen', antwoordInput, tijdelijkVraagId, function(error,res) {
+		Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, function(error,res) {
 			if (error)
 				return alert(error.reason);
 			else
-				return alert("Antwoord aangemaakt");
+				return alert("MultipleChoice aangemaakt");
 		});
-		$('#antwoordInput').val('');
+		$('#multipleChoiceInput').val('');
 	},
 //############################### Radio button voor openvraag #################################
 	'click #Openvraag': function(e) {
@@ -96,7 +95,7 @@ Template.OverzichtVragen.helpers({
 	},
 	editAnswer: function(){
 		//var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
-		return Antwoorden.find({vragenId: tijdelijkVraagId});
+		return MultipleChoice.find({vragenId: tijdelijkVraagId});
 	}
 	
 });
@@ -126,8 +125,10 @@ Template.OverzichtVragen.events({
 		//console.log(e.currentTarget.id);
 	
 
-		var obj = Antwoorden.find();
+		var obj = MultipleChoice.find();
 		var db = obj.collection._docs._map;
+		console.log(db);
+
 		var editId;		
 
 		if ($.inArray(this._id, tijdelijkEditId) != -1) {
@@ -145,26 +146,26 @@ Template.OverzichtVragen.events({
 			for (var item in db) {	
 				editId = eval("obj.collection._docs._map." + item + ".vragenId");
 				if (editId == this._id) {
-					var tijdelijkAntwoord = eval("obj.collection._docs._map." + item + ".antwoord");
+					var tijdelijkMultipleChoice = eval("obj.collection._docs._map." + item + ".multipleChoice");
 					$("#div" + this._id).append("<br>" + "<br>");
 					$input = document.createElement("input");
 					$input.type = "text";
-					$input.value = tijdelijkAntwoord;
-					tijdelijkAntwoord = eval("obj.collection._docs._map." + item + "._id");
-					$input.id = "input" + tijdelijkAntwoord;
+					$input.value = tijdelijkMultipleChoice;
+					tijdelijkMultipleChoice = eval("obj.collection._docs._map." + item + "._id");
+					$input.id = "input" + tijdelijkMultipleChoice;
 					$("#div" + this._id).append($input);
 				}
 			}
 			$input = document.createElement("button");
 			t = document.createTextNode("Save");       // Create a text node
 			$input.appendChild(t);
-			$input.id = "saveAntwoorden";
+			$input.id = "saveMultipleChoice";
 			$input.type = "button";
 			$("#div" + this._id).append($input);
 			$("#div" + this._id).toggle();
 		}					
 	},
-	'click #saveAntwoorden':function(e) {
+	'click #saveMultipleChoice':function(e) {
 		e.preventDefault();
 
 		var titelAanpassen = $("#input" + this._id).val();		
@@ -174,14 +175,14 @@ Template.OverzichtVragen.events({
 			return alert(error.reason);
 		});
 
-		var obj = Antwoorden.find();
+		var obj = MultipleChoice.find();
 		var db = obj.collection._docs._map;
 		for (var item in db) {
 			var ophalenVragenId =	eval("obj.collection._docs._map." + item + ".vragenId");
 			if (ophalenVragenId == this._id) {
 				var ophalenInputsId =	eval("obj.collection._docs._map." + item + "._id");
-				var antwoordAanpassen = $('#input' + ophalenInputsId).val();
-				Meteor.call('AntwoordAanpassen', antwoordAanpassen, ophalenInputsId, function(error, id){
+				var multipleChoiceAanpassen = $('#input' + ophalenInputsId).val();
+				Meteor.call('MultipleChoiceAanpassen', multipleChoiceAanpassen, ophalenInputsId, function(error, id){
 
 				if (error)
 					return alert(error.reason);

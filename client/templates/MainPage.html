@@ -8,7 +8,7 @@
 
         
 
-        {{#if currentUser.emails.[0].verified}}
+        <!--{{#if currentUser.emails.[0].verified}}-->
           {{#if showVraag}}
             {{> MainPageVragen}}
             {{> OverzichtVragen}}
@@ -25,12 +25,12 @@
           {{/if}}
           {{> SideNavBar}}
           
-        {{else}}
+        <!--{{else}}
         <p class="alert alert-warning">You need to verify your email address. <a href="#" class="resend-verification-link">Resend verification link</a>.</p>
 
           
 
-        {{/if}}
+        {{/if}}-->
 
       {{else}}
         {{> LoginForm}}

@@ -15,14 +15,14 @@ Meteor.methods({
 
 	VraagVerwijderen: function(vraagId) {
 		Vragen.remove(vraagId);
-		Antwoorden.remove({vragenId:vraagId});
+		MultipleChoice.remove({vragenId:vraagId});
 	},
 
-	AntwoordToevoegen: function(antwoordInput, tijdelijkVraagId){
-		Antwoorden.insert({
+	MultipleChoiceToevoegen: function(multipleChoiceInput, tijdelijkVraagId){
+		MultipleChoice.insert({
 			userId: Meteor.userId(),
 			vragenId: tijdelijkVraagId,
-			antwoord: antwoordInput
+			multipleChoice: multipleChoiceInput
 		});
 	},
 
@@ -30,7 +30,7 @@ Meteor.methods({
 		Vragen.update({_id: vraagId}, {$set:{vraagnaam: titelAanpassen}});
 	},
 
-	AntwoordAanpassen: function(antwoordAanpassen,ophalenInputsId){
-		Antwoorden.update({_id: ophalenInputsId}, {$set:{antwoord: antwoordAanpassen}});
+	MultipleChoiceAanpassen: function(multipleChoiceAanpassen,ophalenInputsId){
+		MultipleChoice.update({_id: ophalenInputsId}, {$set:{antwoord: multipleChoiceAanpassen}});
 	}
 });	

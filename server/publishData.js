@@ -8,6 +8,6 @@ Meteor.publish('DataVragen', function(){
 	return Vragen.find({userId: this.userId})
 });
 
-Meteor.publish('DataAntwoorden', function(){
-	return Antwoorden.find({userId: this.userId});
+Meteor.publish('DataMultipleChoice', function(){
+	return MultipleChoice.find({userId: this.userId});
 });
