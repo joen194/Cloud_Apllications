@@ -27,17 +27,20 @@ Template.MainPage.events({
 Template.MainPage.helpers({
   verify(){
 
-	var usergegevens= Meteor.user().emails;
-	if (usergegevens === undefined) {
-		return true;
-	}else{
-		return usergegevens[ 0 ].verified;
-	}
- 	return false;
+		var usergegevens= Meteor.user();
+		console.log(usergegevens);
+		if (!('emails' in usergegevens)) {
+			console.log("tst");
+			return true;
+		}else{
+			console.log(usergegevens.emails[ 0 ].verified);
+			return usergegevens.emails[ 0 ].verified;
+		}
+	 	return false;
 
- },showVraag() {
-    return Session.get('showVraag');
-  }
+	},showVraag() {
+	    return Session.get('showVraag');
+	}
 });
 Template.MainPage.helpers({
   showVraagOpBord() {
