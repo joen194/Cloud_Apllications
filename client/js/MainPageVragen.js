@@ -123,6 +123,7 @@ Template.OverzichtVragen.events({
 	'click .editVraag':function(e) {
 		e.preventDefault();
 		Session.set('tijdelijkVraagId2', this._id);
+		$(".divEditSluiten").hide();
 		$('#div' + this._id).toggle(500);						
 
 		/*var obj = MultipleChoice.find();
