@@ -5,3 +5,7 @@ Router.route('/', function () {
 Router.route('/leerkracht', function () {
   this.render('MainPage');
 });
+
+Router.route('/roomCodeLeerkrachten', function() {
+	this.render('roomCode');
+});

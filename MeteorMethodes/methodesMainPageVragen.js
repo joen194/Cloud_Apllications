@@ -36,5 +36,10 @@ Meteor.methods({
 
 	MultipleChoiceVerwijderen: function(id) {
 		MultipleChoice.remove(id);
+	},
+
+	multipleChoiceIdOpvragen: function(id) {
+		MultipleChoice.find({vragenId: id});
+
 	}
 });	

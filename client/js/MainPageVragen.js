@@ -108,6 +108,7 @@ Template.OverzichtVragen.events({
 		Session.set('showVraagOpBord', true); 
 
 		Session.set('idVanVraag', this._id);
+		var win = window.open("http://localhost:3000/leerkracht", "", "width=200,height=100");
 
 	},
 	'click #deleteVraag': function(e){
@@ -122,7 +123,7 @@ Template.OverzichtVragen.events({
 	'click .editVraag':function(e) {
 		e.preventDefault();
 		Session.set('tijdelijkVraagId2', this._id);
-		$('#div' + this._id).toggle();
+		$('#div' + this._id).toggle(500);						
 
 		/*var obj = MultipleChoice.find();
 		var db = obj.collection._docs._map;
@@ -166,6 +167,7 @@ Template.OverzichtVragen.events({
 	},
 	'click #saveMultipleChoice':function(e) {
 		e.preventDefault();
+		console.log(this._id);
 
 		var titelAanpassen = $("#input" + this._id).val();
 		Meteor.call('VraagAanpassen', titelAanpassen, this._id, function(error, id){
@@ -174,15 +176,28 @@ Template.OverzichtVragen.events({
 			return alert(error.reason);
 		});
 
-		
-		var multipleChoiceAanpassen = $('#input' + ophalenInputsId).val();
-		Meteor.call('MultipleChoiceAanpassen', multipleChoiceAanpassen, ophalenInputsId, function(error, id){
-			if (error)
-				return alert(error.reason);
-		});
+		var db = MultipleChoice.find({vragenId: this._id}).fetch();
+
+		for (var item in db) {
+			if(item.vragenId == this._id) {
+				var ophalenInputsId = item._id;
+				console.log(ophalenInputsId);
+				var multipleChoiceAanpassen = $('#input' + ophalenInputsId).val();
+				console.log(multipleChoiceAanpassen);
+				Meteor.call('MultipleChoiceAanpassen', multipleChoiceAanpassen, ophalenInputsId, function(error, id){
+
+				if (error)
+					return alert(error.reason);
+				});
+			}
+
+		}
+		//***************************************oude save code ***************************************************
+		/*
 
 		var obj = MultipleChoice.find();
 		var db = obj.collection._docs._map;
+		//console.log(db);
 		for (var item in db) {
 			var ophalenVragenId =	eval("obj.collection._docs._map." + item + ".vragenId");
 			if (ophalenVragenId == this._id) {
@@ -194,10 +209,11 @@ Template.OverzichtVragen.events({
 					return alert(error.reason);
 				});
 			}			
-		}
+		}*/
 
-		if ($("#extraMultipleChoiceAanmaken").val() != ''){
-			var multipleChoiceInput = $("#extraMultipleChoiceAanmaken").val();
+		if ($("#extraMultipleChoiceAanmaken" + this._id).val() != ''){
+			var multipleChoiceInput = $("#extraMultipleChoiceAanmaken" + this._id).val();
+
 			Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, this._id, function(error,res) {
 				if (error)
 					return alert(error.reason);
@@ -205,7 +221,7 @@ Template.OverzichtVragen.events({
 
 
 		}
-		$("#extraMultipleChoiceAanmaken").val('');
+		$("#extraMultipleChoiceAanmaken" + this._id).val('');
 		$("#div" + this._id).toggle();
 	},
 	'click .buttonRemoveMultipleChoice': function(e){
