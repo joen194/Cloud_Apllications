@@ -41,15 +41,5 @@ Meteor.methods({
 	multipleChoiceIdOpvragen: function(id) {
 		MultipleChoice.find({vragenId: id});
 
-	},
-	AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling) {
-		Antwoorden.insert({
-			vraagId: tijdelijkeVraagId,
-			Antwoord: tijdelijkAntwoord,
-			naamLeerling: tijdelijkeNaam_leerling
-		}, function(error,id){
-			tijdelijkVraagId = id;
-			Session.set('tijdelijkVraagId',tijdelijkVraagId);
-		});
 	}
 });	

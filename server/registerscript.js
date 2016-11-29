@@ -1,5 +1,21 @@
 
 import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
+
+
+
+
+Meteor.methods({
+
+
+    sendVerificationLink: function(id) {
+          
+        Accounts.sendVerificationEmail(id);
+    }
+
+
+});
+
 
 //################## Code voor ReCaptcha #########################
 

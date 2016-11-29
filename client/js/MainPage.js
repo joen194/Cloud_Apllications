@@ -30,10 +30,8 @@ Template.MainPage.helpers({
 		var usergegevens= Meteor.user();
 		console.log(usergegevens);
 		if (!('emails' in usergegevens)) {
-			console.log("tst");
 			return true;
 		}else{
-			console.log(usergegevens.emails[ 0 ].verified);
 			return usergegevens.emails[ 0 ].verified;
 		}
 	 	return false;

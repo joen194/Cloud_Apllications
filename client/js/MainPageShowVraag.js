@@ -5,9 +5,5 @@ Template.VraagOpBord.helpers({
 		var tijdelijkId = Session.get('idVanVraag');
 		console.log("hierdenid " + tijdelijkId);
 		return Vragen.find({_id: tijdelijkId});
-	}, 
-	historyAnswers : function(){
-		var tijdelijkVraagId = Session.get('idVanVraag');
-		return Antwoorden.find({vraagId: tijdelijkVraagId});
 	}
 });
