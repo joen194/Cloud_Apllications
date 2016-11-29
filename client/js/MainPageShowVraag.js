@@ -4,12 +4,10 @@ Template.VraagOpBord.helpers({
 	historyVraag : function(){
 		var tijdelijkId = Session.get('idVanVraag');
 		console.log("hierdenid " + tijdelijkId);
-		
-		
-		// var tijdelijkeRoomCode = Session.get('getRoomCode');
-		
-
-
 		return Vragen.find({_id: tijdelijkId});
+	}, 
+	historyAnswers : function(){
+		var tijdelijkVraagId = Session.get('idVanVraag');
+		return Antwoorden.find({vraagId: tijdelijkVraagId});
 	}
 });

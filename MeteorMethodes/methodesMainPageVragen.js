@@ -43,7 +43,7 @@ Meteor.methods({
 
 	},
 	AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling) {
-		Vragen.insert({
+		Antwoorden.insert({
 			vraagId: tijdelijkeVraagId,
 			Antwoord: tijdelijkAntwoord,
 			naamLeerling: tijdelijkeNaam_leerling

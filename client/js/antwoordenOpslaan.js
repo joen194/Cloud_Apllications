@@ -1,6 +1,6 @@
 Meteor.subscribe('antwoorden');
 
-Template.MainPageVragen.events({
+Template.studentenZienVraagView.events({
 	'click #submitAntwoord': function(e){
 		e.preventDefault();
 		var tijdelijkeVraagId = "u9rB6aNSmtXoLutFF"
