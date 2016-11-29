@@ -35,7 +35,6 @@ Template.MainPageVragen.events({
 		if (error)
 			return alert(error.reason);
 		});
-
 		Session.set('aangemaakt',true);
 		Session.set('showOpenvraag', true);
 		Session.set('nieuweVraag',false);
