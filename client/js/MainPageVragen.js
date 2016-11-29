@@ -103,11 +103,7 @@ Template.OverzichtVragen.events({
 	'click #showVraag' : function(e){
 		e.preventDefault();
 
-		Session.set('showVraag', false);
-		Session.set('showVraagOpBord', true); 
-
-		Session.set('idVanVraag', this._id);
-		var win = window.open("http://localhost:3000/leerkracht", "", "width=200,height=100");
+		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + this._id, "", "fullscreen=yes");
 
 	},
 	'click #deleteVraag': function(e){

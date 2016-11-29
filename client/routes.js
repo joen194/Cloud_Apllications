@@ -7,5 +7,5 @@ Router.route('/leerkracht', function () {
 });
 
 Router.route('/roomCodeLeerkrachten', function() {
-	this.render('roomCode');
+	this.render('vraagOpBord');
 });

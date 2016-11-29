@@ -11,17 +11,11 @@
 
        
           {{#if showVraag}}
-            {{> roomCode}}
             {{> MainPageVragen}}
             {{> OverzichtVragen}}
-          {{else}}
-            {{#if showVraagOpBord}}
-              {{> roomCode}}
-              {{> VraagOpBord}}
-            {{else}}
-              {{> MainPageLes}}
-              {{> OverzichtLessen}}
-            {{/if}}
+          {{else}}   
+            {{> MainPageLes}}
+            {{> OverzichtLessen}}
           {{/if}}
           {{> SideNavBar}}
 
