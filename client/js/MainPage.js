@@ -1,15 +1,6 @@
 
 
 Template.MainPage.events({
-	'click #viewLes' : function(e){
-		e.preventDefault();
-
-		Session.set('showVraag', true);
-		var tijdelijkLesId = this._id;
-		Session.set('tijdelijkIdSession', tijdelijkLesId);
-		console.log(tijdelijkLesId);
-		
-	},
 	'click .resend-verification-link' : function(e){
 		console.log(Meteor.userId());
 		var userid = Meteor.userId();

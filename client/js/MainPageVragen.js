@@ -67,6 +67,15 @@ Template.MainPageVragen.events({
 		e.preventDefault();
 		Session.set('showOpenvraag', false);
 		Session.set('showMeerkeuzevraag', true);
+	},
+
+	'click #showVragenBord': function(e){
+		e.preventDefault();
+		var tijdelijkeRoomCode = Session.get('getRoomCode');
+		console.log(tijdelijkeRoomCode);
+		//var db = Lessen.find({roomCode: tijdelijkeRoomCode}).fetch();
+
+		//var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + this._id, "", "fullscreen=yes");
 	}
 
 });
@@ -103,7 +112,7 @@ Template.OverzichtVragen.events({
 	'click #showVraag' : function(e){
 		e.preventDefault();
 
-		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + this._id, "", "fullscreen=yes");
+		
 
 	},
 	'click #deleteVraag': function(e){

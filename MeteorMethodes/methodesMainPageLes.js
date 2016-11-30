@@ -18,5 +18,9 @@ Meteor.methods({
 	},
 	LessenAanpassen: function(lesInput, lesId) {
 		Lessen.update({_id: lesId}, {$set:{lesnaam: lesInput}});
+	},
+
+	GetRoomCode: function(LesId) {
+		
 	}
 });	

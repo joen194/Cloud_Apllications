@@ -50,6 +50,17 @@ Template.OverzichtLessen.helpers({
 //##################### Om lessen te verwijderen en te bekijken ##########################
 
 Template.OverzichtLessen.events({
+	'click #viewLes' : function(e){
+		e.preventDefault();
+
+		Session.set('showVraag', true);
+		var tijdelijkLesId = this._id;
+		Session.set('tijdelijkIdSession', tijdelijkLesId);
+		var db = Lessen.find({_id: this._id}).fetch();
+		Session.set('getRoomCode', db[0].roomCode);
+		console.log(tijdelijkLesId);
+		
+	},
 	'click #editLes' : function(e){
 		e.preventDefault();
 		
