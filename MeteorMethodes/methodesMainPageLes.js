@@ -4,7 +4,8 @@ Meteor.methods({
 		Lessen.insert({
 			userId: Meteor.userId(),
 			lesnaam: lesTitel,
-			roomCode: randomCode
+			roomCode: randomCode,
+			vraagId: null
 		});
 	},
 	InsertRoomCode : function(randomCode){
@@ -12,8 +13,10 @@ Meteor.methods({
 			roomCode : randomCode
 		});
 	},
-	LesVerwijderen: function(lesTitel){
-		Lessen.remove(lesTitel);
+	LesVerwijderen: function(lesId){
+		Lessen.remove(lesId);
+		Vragen.remove({lessenId: lesId});
+		MultipleChoice.remove({lessenId: lesId});
 		
 	},
 	LessenAanpassen: function(lesInput, lesId) {

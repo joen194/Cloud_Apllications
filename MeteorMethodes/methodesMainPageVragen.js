@@ -18,10 +18,11 @@ Meteor.methods({
 		MultipleChoice.remove({vragenId:vraagId});
 	},
 
-	MultipleChoiceToevoegen: function(multipleChoiceInput, tijdelijkVraagId){
+	MultipleChoiceToevoegen: function(multipleChoiceInput, tijdelijkVraagId, lesId){
 		MultipleChoice.insert({
 			userId: Meteor.userId(),
 			vragenId: tijdelijkVraagId,
+			lessenId: lesId,
 			multipleChoice: multipleChoiceInput
 		});
 	},
@@ -41,5 +42,9 @@ Meteor.methods({
 	multipleChoiceIdOpvragen: function(id) {
 		MultipleChoice.find({vragenId: id});
 
+	},
+
+	VraagIdAanpassen : function(lessenId, vraagId) {
+		Lessen.update({_id: lessenId},{$set:{vraagId: vraagId}});
 	}
 });	

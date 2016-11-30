@@ -45,9 +45,9 @@ Template.MainPageVragen.events({
 		e.preventDefault();
 		var multipleChoiceInput = $('#multipleChoiceInput').val();
 		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
-		console.log(tijdelijkVraagId);
+		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
 
-		Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, function(error,res) {
+		Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, tijdelijkLesId, function(error,res) {
 			if (error)
 				return alert(error.reason);
 			else
@@ -72,10 +72,8 @@ Template.MainPageVragen.events({
 	'click #showVragenBord': function(e){
 		e.preventDefault();
 		var tijdelijkeRoomCode = Session.get('getRoomCode');
-		console.log(tijdelijkeRoomCode);
-		//var db = Lessen.find({roomCode: tijdelijkeRoomCode}).fetch();
 
-		//var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + this._id, "", "fullscreen=yes");
+		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode, "", "fullscreen=yes");
 	}
 
 });
@@ -110,9 +108,12 @@ Template.OverzichtVragen.helpers({
 //################ Om een vraag te deleten, showen en editen #######################
 Template.OverzichtVragen.events({
 	'click #showVraag' : function(e){
-		e.preventDefault();
+		e.preventDefault();	
+		Meteor.call('VraagIdAanpassen', this.lessenId, this._id, function(error, id){
 
-		
+		if (error)
+			return alert(error.reason);
+		});
 
 	},
 	'click #deleteVraag': function(e){
