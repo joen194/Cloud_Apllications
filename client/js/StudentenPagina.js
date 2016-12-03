@@ -1,4 +1,5 @@
 Meteor.subscribe('antwoorden');
+Meteor.subscribe('Aanwezigen');
 
 Template.StudentenPagina.events({
 
@@ -35,5 +36,18 @@ Template.StudentenPagina.events({
 			return alert(error.reason);
 		});
 		console.log("gelukt");
+	},
+
+	'click #enterName': function(e) {
+		e.preventDefault();
+
+
+		var naam = $('#naamInput').val();
+		if (naam.length > 0) {
+			Meteor.call('NaamInDatabase', naam, function(error, res) {
+			if (error)
+				return alert(error.reason);
+			});
+		} else alert("Vul je naam in");
 	}
 });

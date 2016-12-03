@@ -2,9 +2,6 @@ import { Meteor } from 'meteor/meteor';
 
 
 Meteor.methods({
-
-
-
 	getRoomcode: function(code) {
 
 	    var checkroomcode = {};
@@ -20,15 +17,23 @@ Meteor.methods({
 	    }
 	    else{
 	    	return false;
-	    }
-	    
-	},AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling) {
+	    } 
+	},
+
+	AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling) {
 		Antwoorden.insert({
 			vraagId: tijdelijkeVraagId,
 			Antwoord: tijdelijkAntwoord,
 			naamLeerling: tijdelijkeNaam_leerling
 		});
+	},
+
+	NaamInDatabase: function(naam) {
+		Aanwezigen.insert({
+			naam: naam
+		});
 	}
+
 
 });
 

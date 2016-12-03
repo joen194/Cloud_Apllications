@@ -11,3 +11,7 @@ Meteor.publish('DataVragen', function(){
 Meteor.publish('DataMultipleChoice', function(){
 	return MultipleChoice.find({userId: this.userId});
 });
+
+Meteor.publish('DataAanwezigen', function() {
+	return Aanwezigen.find();
+});
