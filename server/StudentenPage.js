@@ -29,7 +29,7 @@ Meteor.methods({
 		});
 	},
 
-	NaamInDatabase: function(naam, clientId) {
+	NaamInDatabase: function(naam, clientId, kamerCode) {
 		Aanwezigen.insert({
 			naam: naam,
 			clientId: clientId,
