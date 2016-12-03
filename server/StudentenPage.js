@@ -36,15 +36,12 @@ Meteor.methods({
 	}
 });
 
-var tijdelijkeConnectie = [];
 Meteor.onConnection(function (connection) {
     console.log("New DDP Connection:", connection.id);
     console.log(connection.id);
     connection.onClose(function() {
-    console.log("DDP Disconnect:", connection.id); 
-    function () {
-    	Aanwezigen.delete({clientId: connection.id});
-    }
+    	console.log("DDP Disconnect:", connection.id);
+    	Aanwezigen.remove({clientId: connection.id});
     });
 });
 
