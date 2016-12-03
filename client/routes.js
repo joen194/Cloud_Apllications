@@ -1,4 +1,7 @@
 Router.route('/', function () {
+  this.render('enterCode');
+});
+Router.route('/room', function () {
   this.render('StudentenPagina');
 });
 

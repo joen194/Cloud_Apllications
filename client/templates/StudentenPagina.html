@@ -1,10 +1,8 @@
 <template name="StudentenPagina">
-  	<h2>Vul hier de roomcode in <input type="text" id= "roomCodeField"></h2>
-  	<button id="enterRoom">Enter</button>
 
 
 
-  	<a href="/leerkracht">leerkracht page</a>
+
 
 
   	<div id="NaamInputDiv">
@@ -14,11 +12,27 @@
 
   	</div>
 
-  	<div>
-		<h1>hier moet de vraag zichtbaar worden</h1>
-		<h2>Antwoord: <input type="text" id= "antwoordField"></h2>
-		<button id="submitAntwoord">Submit</button>
-	</div>
+  	<div id="AntwoordInputDiv">
+  		<h1>hier moet de vraag zichtbaar worden</h1>
+  		<h2>Antwoord: <input type="text" id= "antwoordField"></h2>
+  		<button id="submitAntwoord">Submit</button>
+	  </div>
+    <script type="text/javascript">
+    //************************** Dubbel check of de roomcode klopt *************************
+      var roomCode = window.location.hash.substr(1);
+      Meteor.call('getRoomcode', roomCode ,function(err, response) {
+        if(err) {
+          alert(err);
+          Lesinfo = false;
+          return;
+        }
+        Lesinfo = response;
+        console.log(response);
+        if (!Lesinfo) {
+          window.location= "http://localhost:3000"
+        }
+      });
+    </script>
 
   	
 </template>
