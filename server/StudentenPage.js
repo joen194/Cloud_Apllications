@@ -29,11 +29,12 @@ Meteor.methods({
 		});
 	},
 
-	NaamInDatabase: function(naam, clientId) {
+	NaamInDatabase: function(naam, clientId, kamerCode) {
 		console.log("hierzo");
 		Aanwezigen.insert({
 			naam: naam,
-			clientId: clientId
+			clientId: clientId,
+			roomCode: kamerCode
 		});
 	}
 });

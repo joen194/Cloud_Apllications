@@ -1,7 +1,7 @@
 Meteor.subscribe('antwoorden');
 Meteor.subscribe('Aanwezigen');
 
-var Lesinfo;
+
 
 Template.StudentenPagina.events({
 		'click #submitAntwoord': function(e){
@@ -20,11 +20,12 @@ Template.StudentenPagina.events({
 //******************************** Code die de naam in de database zet ******************************
 	'click #enterName': function(e) {
 		e.preventDefault();
+		console.log(Lesinfo);
 		var clientId = Meteor.default_connection._lastSessionId;
 
 		var naam = $('#naamInput').val();
 		if (naam.length > 0) {
-			Meteor.call('NaamInDatabase', naam, clientId,  function(error, res) {
+			Meteor.call('NaamInDatabase', naam, clientId, Lesinfo.roomCode, function(error, res) {
 			if (error)
 				return alert(error.reason);
 			});
