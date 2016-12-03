@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 
-
 Meteor.methods({
 	getRoomcode: function(code) {
 
@@ -28,14 +27,29 @@ Meteor.methods({
 		});
 	},
 
-	NaamInDatabase: function(naam) {
+	NaamInDatabase: function(naam, clientId) {
+		console.log("hierzo");
 		Aanwezigen.insert({
-			naam: naam
+			naam: naam,
+			clientId: clientId
 		});
 	}
-
-
 });
+
+var tijdelijkeConnectie = [];
+Meteor.onConnection(function (connection) {
+    console.log("New DDP Connection:", connection.id);
+    console.log(connection.id);
+    connection.onClose(function() {
+    console.log("DDP Disconnect:", connection.id); 
+    function () {
+    	Aanwezigen.delete({clientId: connection.id});
+    }
+    });
+});
+
+
+
 
 
 

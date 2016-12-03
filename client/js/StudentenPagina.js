@@ -2,7 +2,6 @@ Meteor.subscribe('antwoorden');
 Meteor.subscribe('Aanwezigen');
 
 Template.StudentenPagina.events({
-
 		'click #enterRoom' : function(e){
 		e.preventDefault();
 
@@ -40,11 +39,12 @@ Template.StudentenPagina.events({
 
 	'click #enterName': function(e) {
 		e.preventDefault();
-
+		console.log(Meteor.default_connection._lastSessionId);
+		var clientId = Meteor.default_connection._lastSessionId;
 
 		var naam = $('#naamInput').val();
 		if (naam.length > 0) {
-			Meteor.call('NaamInDatabase', naam, function(error, res) {
+			Meteor.call('NaamInDatabase', naam, clientId,  function(error, res) {
 			if (error)
 				return alert(error.reason);
 			});

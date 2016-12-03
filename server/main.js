@@ -12,7 +12,7 @@ Meteor.startup(() => {
   		lesnaam: 'les x2'
   	});
   };*/
-
+	
 
 });
 
