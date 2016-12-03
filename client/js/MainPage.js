@@ -19,7 +19,6 @@ Template.MainPage.helpers({
   verify(){
 
 		var usergegevens= Meteor.user();
-		console.log(usergegevens);
 		if (!('emails' in usergegevens)) {
 			return true;
 		}else{

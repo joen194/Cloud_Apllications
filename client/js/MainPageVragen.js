@@ -1,5 +1,6 @@
 Meteor.subscribe('DataVragen');
 Meteor.subscribe('DataMultipleChoice');
+Meteor.subscribe('DataAanwezigen');
 
 //var editVraagIsTrue = true;
 //var j = 0;
@@ -74,8 +75,8 @@ Template.MainPageVragen.events({
 		var tijdelijkeRoomCode = Session.get('getRoomCode');
 
 		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode, "", "fullscreen=yes");
+		
 	}
-
 });
 //################################## helpers #########################################
 Template.MainPageVragen.helpers({
@@ -90,6 +91,11 @@ Template.MainPageVragen.helpers({
 	},
 	aangemaakt: function(){
 		return Session.get('aangemaakt');
+	},
+
+	aanwezigheid: function() {
+		var tijdelijkeRoomCode = Session.get('getRoomCode');
+		return Aanwezigen.find({roomCode: tijdelijkeRoomCode});
 	}
 });
 
@@ -173,7 +179,6 @@ Template.OverzichtVragen.events({
 	},
 	'click #saveMultipleChoice':function(e) {
 		e.preventDefault();
-		console.log(this._id);
 
 		var titelAanpassen = $("#input" + this._id).val();
 		Meteor.call('VraagAanpassen', titelAanpassen, this._id, function(error, id){
@@ -187,9 +192,7 @@ Template.OverzichtVragen.events({
 		for (var item in db) {
 			if(item.vragenId == this._id) {
 				var ophalenInputsId = item._id;
-				console.log(ophalenInputsId);
 				var multipleChoiceAanpassen = $('#input' + ophalenInputsId).val();
-				console.log(multipleChoiceAanpassen);
 				Meteor.call('MultipleChoiceAanpassen', multipleChoiceAanpassen, ophalenInputsId, function(error, id){
 
 				if (error)
