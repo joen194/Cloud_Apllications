@@ -13,7 +13,7 @@
   	</div>
 
   	<div id="AntwoordInputDiv">
-  		<h1>hier moet de vraag zichtbaar worden</h1>
+  		<h1 id="LesnaamH1"></h1>
   		<h2>Antwoord: <input type="text" id= "antwoordField"></h2>
   		<button id="submitAntwoord">Submit</button>
 	  </div>
@@ -32,6 +32,7 @@
         if (!Lesinfo) {
           window.location= "http://localhost:3000"
         }
+        $('#LesnaamH1').text(Lesinfo.lesnaam);
       });
     </script>
 
