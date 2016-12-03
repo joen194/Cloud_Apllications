@@ -58,7 +58,6 @@ Template.OverzichtLessen.events({
 		Session.set('tijdelijkIdSession', tijdelijkLesId);
 		var db = Lessen.find({_id: this._id}).fetch();
 		Session.set('getRoomCode', db[0].roomCode);
-		console.log(tijdelijkLesId);
 		
 	},
 	'click #editLes' : function(e){

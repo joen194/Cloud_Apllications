@@ -29,8 +29,7 @@ Meteor.methods({
 		});
 	},
 
-	NaamInDatabase: function(naam, clientId, kamerCode) {
-		console.log("hierzo");
+	NaamInDatabase: function(naam, clientId) {
 		Aanwezigen.insert({
 			naam: naam,
 			clientId: clientId,
@@ -40,10 +39,7 @@ Meteor.methods({
 });
 
 Meteor.onConnection(function (connection) {
-    console.log("New DDP Connection:", connection.id);
-    console.log(connection.id);
     connection.onClose(function() {
-    	console.log("DDP Disconnect:", connection.id);
     	Aanwezigen.remove({clientId: connection.id});
     });
 });
