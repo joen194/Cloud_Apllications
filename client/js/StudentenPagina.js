@@ -5,13 +5,26 @@ Template.StudentenPagina.events({
 		e.preventDefault();
 
 		var tijdelijkeVraagId = Lessen.find({roomCode: roomCode}).fetch();
+		var checkOpenVraag = Vragen.find({_id: tijdelijkeVraagId[0].vraagId}).fetch();
 		var naam = $('#naamInput').val();
-		var tijdelijkAntwoord = $('#antwoordField').val();
+	
+		if (checkOpenVraag[0].openVraag == true){
+			
+			var tijdelijkAntwoord = $('#antwoordField').val();
+			Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naam, function(error, res){
+			if (error)
+				return alert(error.reason);
+			});
+		}
+		else {
+			var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
+			Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naam, function(error, res){
+			if (error)
+				return alert(error.reason);
+			});
 
-		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naam, function(error, res){
-		if (error)
-			return alert(error.reason);
-		});
+		}
+		
 
 	},
 //******************************** Code die de naam in de database zet ******************************
