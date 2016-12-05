@@ -29,15 +29,16 @@
             {{/if}}
               <p>
               {{#if aangemaakt}}
-                Openvraag: <input name="soortVraag" type="radio" checked="" id="Openvraag" value="Openvraag">                                        
+                Openvraag: <input name="soortVraag" type="radio" id="Openvraag" value="Openvraag">                                        
                 Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag">
               {{/if}}
               </p>
               {{#if showOpenvraag}}
                 <div>
                   <p>
-                    Open antwoorden hier
+                    Studenten zullen met een open antwoord antwoorden.
                   </p>
+                  <button type="button" class="btn btn-default" id="bevestigOpenVraag">Bevestig</button>          
                 </div>
               {{/if}}
               {{#if showMeerkeuzevraag}}

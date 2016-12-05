@@ -1,20 +1,21 @@
 <template name="StudentenPagina">
-
-
-
-
-
-
   	<div id="NaamInputDiv">
   		<p>Enter name</p>
   		<input type="text" id="naamInput">
   		<button id="enterName">Enter</button>
-
   	</div>
 
   	<div id="AntwoordInputDiv">
   		<h1 id="LesnaamH1"></h1>
-  		<h2>Antwoord: <input type="text" id= "antwoordField"></h2>
+      <div id="theMultipleChoices">                
+      </div>
+      {{#if openAntwoord}}
+  		  <h2>Antwoord: <input type="text" id= "antwoordField"></h2>
+      {{else}}
+        {{#each oneMultipleChoice}}
+          <input type="radio" name='multipleChoices'>{{multipleChoice}} <br>
+        {{/each}}
+      {{/if}}
   		<button id="submitAntwoord">Submit</button>
 	  </div>
     <script type="text/javascript">

@@ -76,6 +76,14 @@ Template.MainPageVragen.events({
 
 		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode, "", "fullscreen=yes");
 		
+	},
+	'click #bevestigOpenVraag': function(e) {
+		e.preventDefault();
+
+		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
+		Meteor.call('OpenVraag', tijdelijkVraagId);
+
+
 	}
 });
 //################################## helpers #########################################
@@ -235,7 +243,6 @@ Template.OverzichtVragen.events({
 	},
 	'click .buttonRemoveMultipleChoice': function(e){
 		e.preventDefault();
-		console.log(e.currentTarget.id);
 
 		Meteor.call('MultipleChoiceVerwijderen', e.currentTarget.id, function(error,id) {
 			if (error)

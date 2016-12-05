@@ -6,7 +6,8 @@ Meteor.methods({
 			userId: Meteor.userId(),
 			lessenId: tijdelijkLesId,
 			vraagnaam: vraagTitel,
-			roomCode: roomCodeLes
+			roomCode: roomCodeLes,
+			openVraag: false
 		}, function(error,id){
 			tijdelijkVraagId = id;
 			Session.set('tijdelijkVraagId',tijdelijkVraagId);
@@ -16,6 +17,11 @@ Meteor.methods({
 	VraagVerwijderen: function(vraagId) {
 		Vragen.remove(vraagId);
 		MultipleChoice.remove({vragenId:vraagId});
+	},
+
+	OpenVraag: function(vraagId){
+		Vragen.update({_id: vraagId}, {$set:{openVraag: true}});
+
 	},
 
 	MultipleChoiceToevoegen: function(multipleChoiceInput, tijdelijkVraagId, lesId){
