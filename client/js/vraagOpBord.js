@@ -1,5 +1,4 @@
-Meteor.subscribe('DataVragen');
-Meteor.subscribe('DataMultipleChoice');
+
 
 //################ Om de juiste roomcode uit de DB te halen #######################
 Template.vraagOpBord.helpers({

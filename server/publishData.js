@@ -15,3 +15,7 @@ Meteor.publish('DataMultipleChoice', function(){
 Meteor.publish('DataAanwezigen', function() {
 	return Aanwezigen.find();
 });
+
+Meteor.publish('DataAntwoorden', function() {
+	return Antwoorden.find();
+});

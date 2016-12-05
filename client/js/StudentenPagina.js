@@ -1,5 +1,4 @@
-//Meteor.subscribe('antwoorden');
-//Meteor.subscribe('Aanwezigen');
+
 
 Template.StudentenPagina.events({
 		'click #submitAntwoord': function(e){

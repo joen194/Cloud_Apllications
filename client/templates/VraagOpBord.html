@@ -1,4 +1,11 @@
 <template name="vraagOpBord">
+<script type="text/javascript">
+	Meteor.subscribe('DataLessen');
+	Meteor.subscribe('DataVragen');
+	Meteor.subscribe('DataMultipleChoice');
+	Meteor.subscribe('DataAntwoorden');
+</script>
+
   	{{#each vraagOpBord}}
   	<h2>Roomcode: {{roomCode}}</h2>
   		<h1>Vraag: {{vraagnaam}}</h1>

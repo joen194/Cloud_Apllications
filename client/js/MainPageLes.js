@@ -1,8 +1,4 @@
 
-
-//################## Om te abonneren op de lessen data #####################
-Meteor.subscribe('DataLessen');
-
 //###################### Om een les aan te maken ###########################
 
 Template.MainPageLes.events({

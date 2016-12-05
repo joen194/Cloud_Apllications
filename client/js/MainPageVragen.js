@@ -1,6 +1,3 @@
-Meteor.subscribe('DataVragen');
-Meteor.subscribe('DataMultipleChoice');
-Meteor.subscribe('DataAanwezigen');
 
 //var editVraagIsTrue = true;
 //var j = 0;
