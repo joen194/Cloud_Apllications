@@ -60,6 +60,7 @@ function showAntwoordInput() {
 
 	var roomCode = window.location.hash.substr(1);
 	var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+	console.log(tijdelijkeDbStudentenPagina);
 	var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
 	
 	console.log(checkOpenVraag[0].openVraag);

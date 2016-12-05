@@ -19,6 +19,10 @@
   		<button id="submitAntwoord">Submit</button>
 	  </div>
     <script type="text/javascript">
+    Meteor.subscribe('DataMultipleChoice');
+    Meteor.subscribe('DataLessen');
+    Meteor.subscribe('DataVragen');
+
     var Lesinfo;
     //************************** Dubbel check of de roomcode klopt *************************
       var roomCode = window.location.hash.substr(1);
