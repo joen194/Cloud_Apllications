@@ -3,8 +3,8 @@
 Template.StudentenPagina.events({
 		'click #submitAntwoord': function(e){
 		e.preventDefault();
-		var tijdelijkeVraagId = "u9rB6aNSmtXoLutFF"
-		var naam = "jeroen";
+		var tijdelijkeVraagId = "DoM7E7KnJEzvc47D2"
+		var naam = $('#naamInput').val();
 		var tijdelijkAntwoord = $('#antwoordField').val();
 
 
