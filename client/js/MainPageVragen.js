@@ -121,7 +121,6 @@ Template.OverzichtVragen.events({
 	'click #showVraag' : function(e){
 		e.preventDefault();	
 		Meteor.call('VraagIdAanpassen', this.lessenId, this._id, function(error, id){
-
 		if (error)
 			return alert(error.reason);
 		});

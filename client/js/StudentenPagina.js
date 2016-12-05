@@ -45,32 +45,36 @@ Template.StudentenPagina.helpers ({
 	},
 	openAntwoord: function(){
 		console.log("in get");
-		return Session.get('openAntwoord');
+		
+
+		var roomCode = window.location.hash.substr(1);
+		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+		console.log(tijdelijkeDbStudentenPagina);
+		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
+	
+		console.log(checkOpenVraag[0].openVraag);
+		if (checkOpenVraag[0].openVraag == true){
+			console.log("hey");
+			return true;
+		}
+		else {
+			console.log("multi");
+			return false;
+		}		
 	}, 
 
 	
 });
 
 function showAntwoordInput() {
+
+	console.log("SHow Antwoord input");
 	$("#NaamInputDiv").fadeOut(500);
 
 	setTimeout(function(){
  		$("#AntwoordInputDiv").fadeIn(500);
 	}, 500);
 
-	var roomCode = window.location.hash.substr(1);
-	var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
-	console.log(tijdelijkeDbStudentenPagina);
-	var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
-	
-	console.log(checkOpenVraag[0].openVraag);
-	if (checkOpenVraag[0].openVraag == true){
-		console.log("hey");
-		Session.set('openAntwoord', true);
-	}
-	else {
-		console.log("multi");
-		Session.set('openAntwoord', false);
-	}		 	
+	 	
 
 }
