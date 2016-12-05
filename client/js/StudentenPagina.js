@@ -1,8 +1,6 @@
-Meteor.subscribe('antwoorden');
-Meteor.subscribe('Aanwezigen');
+//Meteor.subscribe('antwoorden');
+//Meteor.subscribe('Aanwezigen');
 
-
-var tijdelijkeDbStudentenPagina;
 Template.StudentenPagina.events({
 		'click #submitAntwoord': function(e){
 		e.preventDefault();
@@ -40,14 +38,18 @@ Template.StudentenPagina.events({
 });
 
 Template.StudentenPagina.helpers ({
-	oneMultipleChoice:function (){
+	oneMultipleChoice: function (){
 		console.log("in helpers");
+		var roomCode = window.location.hash.substr(1);
+		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
 	},
-
 	openAntwoord: function(){
+		console.log("in get");
 		return Session.get('openAntwoord');
-	}
+	}, 
+
+	
 });
 
 function showAntwoordInput() {
@@ -56,8 +58,9 @@ function showAntwoordInput() {
 	setTimeout(function(){
  		$("#AntwoordInputDiv").fadeIn(500);
 	}, 500);
+
 	var roomCode = window.location.hash.substr(1);
-	tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+	var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 	var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
 	
 	console.log(checkOpenVraag[0].openVraag);
@@ -68,7 +71,6 @@ function showAntwoordInput() {
 	else {
 		console.log("multi");
 		Session.set('openAntwoord', false);
-		
 	}		 	
 
 }
