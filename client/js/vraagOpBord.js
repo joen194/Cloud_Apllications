@@ -16,8 +16,8 @@ Template.vraagOpBord.helpers({
 
 		var dbVragen = Vragen.find({_id: db[0].vraagId}).fetch();
 		//console.log(dbVragen);
+	
 		var dbAntwoorden = Antwoorden.find().fetch();
-		
 		console.log("azetqsdf" + dbAntwoorden);
 		return Antwoorden.find({vraagId: dbVragen[0]._id});
 	}
