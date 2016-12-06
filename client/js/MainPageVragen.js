@@ -59,22 +59,20 @@ Template.MainPageVragen.events({
 		$('#multipleChoiceInput').val('');
 	},
 //############################### Radio button voor openvraag #################################
-	/*'click #Openvraag': function(e) {
+	'change #Openvraag': function(e) {
 		e.preventDefault();
 		Session.set('showOpenvraag', true);
 		Session.set('showMeerkeuzevraag', false);
-		document.getElementById("Meerkeuzevraag").checked = false;
-		document.getElementById("Openvraag").checked = true;
+
 
 	}, 
 //######################## Radio button voor meerkeuzevraag ###################################
-	'click #Meerkeuzevraag': function(e) {
+	'change #Meerkeuzevraag': function(e) {
 		e.preventDefault();
 		Session.set('showOpenvraag', false);
 		Session.set('showMeerkeuzevraag', true);
-		document.getElementById("Openvraag").checked = false;
-		document.getElementById("Meerkeuzevraag").checked = true;
-	},*/
+		
+	},
 
 	'click #showVragenBord': function(e){
 		e.preventDefault();

@@ -38,21 +38,8 @@
             {{/if}}
               <p>
               {{#if aangemaakt}}
-                  Openvraag: <input name="soortVraag" type="radio" id="Openvraag" value="Openvraag" checked="checked" onclick="checkOpenVraag()">                                        
-                  Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag" onclick="checkMeerkeuzeVraag()">
-
-                  <script type="text/javascript">
-
-                      function checkOpenVraag() {
-                        Session.set('showOpenvraag', true);
-                        Session.set('showMeerkeuzevraag', false);
-                      }
-
-                      function checkMeerkeuzeVraag() {
-                        Session.set('showOpenvraag', false);
-                        Session.set('showMeerkeuzevraag', true);
-                      }
-                  </script>
+                  Openvraag: <input name="soortVraag" type="radio" id="Openvraag" value="Openvraag" checked="checked" >                                        
+                  Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag" >
               {{/if}}
               </p>
               {{#if showOpenvraag}}
