@@ -46,15 +46,18 @@
                 <div>
                   <p>
                     Studenten zullen met een open antwoord antwoorden.
-                  </p>
-                  <button type="button" class="btn btn-default" id="bevestigOpenVraag">Bevestig</button>          
+                  </p>        
                 </div>
               {{/if}}
               {{#if showMeerkeuzevraag}}
-                <div>
+                <div id="divMPCToevoegen">
                   <p>
                     Typ hier je meerkeuze antwoord en druk op bevestig.
-                    <input id="multipleChoiceInput" type="text" > <button type="button" class="btn btn-default" id="bevestigMultipleChoice">Bevestig</button>            
+                    <input id="multipleChoiceInput" type="text" > <button type="button" class="btn btn-default" id="AddMPAntwoord">Toevoegen</button>   
+                    {{#each MPCAntwoorden}}
+                      <br>
+                      <span type="text">{{multipleChoice}}</span> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
+                    {{/each}}         
                   </p>
                 </div>
               {{/if}}
@@ -88,3 +91,6 @@
   {{/each}}   
 </template>
 
+<template name="MPCDiaglogBox">
+
+</template>

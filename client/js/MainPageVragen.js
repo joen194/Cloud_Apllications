@@ -29,33 +29,43 @@ Template.MainPageVragen.events({
 
 		var vraagTitel = $('#TitelVraag').val();
 
-		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
-		var tijdelijkeRoomCode = Session.get('getRoomCode');	
-		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
-			if (error){
-				return alert(error.reason);
-			}
+		if(vraagTitel !== ""){
 
-			tijdelijkVraagId = res;
-		});
-		
-		Session.set('aangemaakt',true);
-		Session.set('showOpenvraag', true);
-		Session.set('nieuweVraag',false);
+			var tijdelijkLesId = Session.get('tijdelijkIdSession');	
+			var tijdelijkeRoomCode = Session.get('getRoomCode');	
+			Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
+				if (error){
+					return alert(error.reason);
+				}
+
+				tijdelijkVraagId = res;
+			});
+			
+			Session.set('aangemaakt',true);
+			Session.set('showOpenvraag', true);
+			Session.set('nieuweVraag',false);
+		}else{
+			alert("Vul een vraag in");
+		}
 
 	},
 //#################### Knop voor meerkeuzeantwoord te bevestigen ##########################
-	'click #bevestigMultipleChoice':function(e){
+	'click #AddMPAntwoord':function(e){
 		e.preventDefault();
 		var multipleChoiceInput = $('#multipleChoiceInput').val();
-		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
 
-		Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, tijdelijkLesId, function(error,res) {
-			if (error)
-				return alert(error.reason);
-			else
-				return alert("MultipleChoice aangemaakt");
-		});
+		if (multipleChoiceInput !== "") {
+			var tijdelijkLesId = Session.get('tijdelijkIdSession');	
+
+			Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, tijdelijkLesId, function(error,res) {
+				if (error)
+					return alert(error.reason);
+				else{
+					//$("#divMPCToevoegen").append("<p>" + multipleChoiceInput+ "</p>");
+					//$("#divMPCToevoegen").append("<button class='buttonRemoveMultipleChoice' id="+MPC_ID+" type='button'>X</button>")
+				}
+			});
+		}
 		$('#multipleChoiceInput').val('');
 	},
 //############################### Radio button voor openvraag #################################
@@ -63,31 +73,27 @@ Template.MainPageVragen.events({
 		e.preventDefault();
 		Session.set('showOpenvraag', true);
 		Session.set('showMeerkeuzevraag', false);
-
-
+		Meteor.call('OpenVraag', tijdelijkVraagId);
+		Meteor.myFunctions.DeleteAllMPC(tijdelijkVraagId);
 	}, 
 //######################## Radio button voor meerkeuzevraag ###################################
 	'change #Meerkeuzevraag': function(e) {
 		e.preventDefault();
 		Session.set('showOpenvraag', false);
 		Session.set('showMeerkeuzevraag', true);
+		Meteor.call('Meerkeuzevraag', tijdelijkVraagId);
 		
 	},
 
 	'click #showVragenBord': function(e){
 		e.preventDefault();
 		var tijdelijkeRoomCode = Session.get('getRoomCode');
-
 		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode, "", "fullscreen=yes");
 		
 	},
-	'click #bevestigOpenVraag': function(e) {
+	'click .buttonRemoveMultipleChoice': function(e){
 		e.preventDefault();
-
-		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
-		Meteor.call('OpenVraag', tijdelijkVraagId);
-
-
+		Meteor.myFunctions.DeleteMPC(e.currentTarget.id);
 	}
 });
 //################################## helpers #########################################
@@ -105,14 +111,12 @@ Template.MainPageVragen.helpers({
 		return Session.get('aangemaakt');
 	},
 
-	aanwezigheid: function() {
-		
-		return Aanwezigen.find();
-	},
-
 	aanwezigheid: function(){
+		return Aanwezigen.find();
 		return Antwoorden.find();
-	},
+	},MPCAntwoorden: function(){
+		return MultipleChoice.find({vragenId: tijdelijkVraagId});
+	}
 });
 
 //################ Om de juiste vragen uit de DB te halen #######################
@@ -250,10 +254,7 @@ Template.OverzichtVragen.events({
 	},
 	'click .buttonRemoveMultipleChoice': function(e){
 		e.preventDefault();
-
-		Meteor.call('MultipleChoiceVerwijderen', e.currentTarget.id, function(error,id) {
-			if (error)
-				return alert(error.reason);
-		});
+		Meteor.myFunctions.DeleteMPC(e.currentTarget.id);
 	}
 });
+
