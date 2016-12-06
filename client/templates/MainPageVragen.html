@@ -3,7 +3,7 @@
   <script type="text/javascript">
     Meteor.subscribe('DataVragen');
     Meteor.subscribe('DataMultipleChoice');
-    var tijdelijkeRoomCode = Session.get('getRoomCode');
+    tijdelijkeRoomCode = Session.get('getRoomCode');
     Meteor.subscribe('DataAanwezigen', tijdelijkeRoomCode);
     Meteor.subscribe('DataAntwoorden');
 

@@ -10,7 +10,7 @@ Template.MainPageVragen.onRendered (function(){
 	Session.set('aangemaakt',false);
 });
 var tijdelijkVraagId;
-
+var tijdelijkeRoomCode;
 
 //###################### Vraag field resetten ###########################
 Template.MainPageVragen.events({
@@ -32,7 +32,7 @@ Template.MainPageVragen.events({
 		if(vraagTitel !== ""){
 
 			var tijdelijkLesId = Session.get('tijdelijkIdSession');	
-			var tijdelijkeRoomCode = Session.get('getRoomCode');	
+
 			Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
 				if (error){
 					return alert(error.reason);
@@ -87,7 +87,7 @@ Template.MainPageVragen.events({
 
 	'click #showVragenBord': function(e){
 		e.preventDefault();
-		var tijdelijkeRoomCode = Session.get('getRoomCode');
+
 		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode, "", "fullscreen=yes");
 		
 	},
@@ -112,8 +112,9 @@ Template.MainPageVragen.helpers({
 	},
 
 	aanwezigheid: function(){
-		return Aanwezigen.find();
-		return Antwoorden.find();
+		tijdelijkeRoomCode = Session.get('getRoomCode');
+		return Aanwezigen.find({roomCode: tijdelijkeRoomCode});
+		//return Antwoorden.find();
 	},MPCAntwoorden: function(){
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
 	}
