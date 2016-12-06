@@ -11,9 +11,10 @@ Meteor.publish('DataVragen', function(){
 Meteor.publish('DataMultipleChoice', function(){
 	return MultipleChoice.find({userId: this.userId});
 });
+	
 
-Meteor.publish('DataAanwezigen', function() {
-	return Aanwezigen.find();
+Meteor.publish('DataAanwezigen', function(LessenCode) {
+	return Aanwezigen.find({roomCode: LessenCode});
 });
 
 Meteor.publish('DataAntwoorden', function() {

@@ -3,7 +3,8 @@
   <script type="text/javascript">
     Meteor.subscribe('DataVragen');
     Meteor.subscribe('DataMultipleChoice');
-    Meteor.subscribe('DataAanwezigen', "ITJn38");
+    var tijdelijkeRoomCode = Session.get('getRoomCode');
+    Meteor.subscribe('DataAanwezigen', tijdelijkeRoomCode);
     Meteor.subscribe('DataAntwoorden');
 
   </script>
@@ -37,8 +38,21 @@
             {{/if}}
               <p>
               {{#if aangemaakt}}
-                Openvraag: <input name="soortVraag" type="radio" id="Openvraag" value="Openvraag">                                        
-                Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag">
+                  Openvraag: <input name="soortVraag" type="radio" id="Openvraag" value="Openvraag" checked="checked" onclick="checkOpenVraag()">                                        
+                  Meerkeuzevraag: <input type="radio" name="soortVraag" id="Meerkeuzevraag" value="Meerkeuzevraag" onclick="checkMeerkeuzeVraag()">
+
+                  <script type="text/javascript">
+
+                      function checkOpenVraag() {
+                        Session.set('showOpenvraag', true);
+                        Session.set('showMeerkeuzevraag', false);
+                      }
+
+                      function checkMeerkeuzeVraag() {
+                        Session.set('showOpenvraag', false);
+                        Session.set('showMeerkeuzevraag', true);
+                      }
+                  </script>
               {{/if}}
               </p>
               {{#if showOpenvraag}}
@@ -86,3 +100,4 @@
     </div>-->
   {{/each}}   
 </template>
+

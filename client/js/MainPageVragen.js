@@ -9,6 +9,8 @@ Template.MainPageVragen.onRendered (function(){
 	Session.set('meerkeuzeBevestigt', false);
 	Session.set('aangemaakt',false);
 });
+var tijdelijkVraagId;
+
 
 //###################### Vraag field resetten ###########################
 Template.MainPageVragen.events({
@@ -30,9 +32,13 @@ Template.MainPageVragen.events({
 		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
 		var tijdelijkeRoomCode = Session.get('getRoomCode');	
 		Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
-		if (error)
-			return alert(error.reason);
+			if (error){
+				return alert(error.reason);
+			}
+
+			tijdelijkVraagId = res;
 		});
+		
 		Session.set('aangemaakt',true);
 		Session.set('showOpenvraag', true);
 		Session.set('nieuweVraag',false);
@@ -42,7 +48,6 @@ Template.MainPageVragen.events({
 	'click #bevestigMultipleChoice':function(e){
 		e.preventDefault();
 		var multipleChoiceInput = $('#multipleChoiceInput').val();
-		var tijdelijkVraagId = Session.get('tijdelijkVraagId');
 		var tijdelijkLesId = Session.get('tijdelijkIdSession');	
 
 		Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, tijdelijkLesId, function(error,res) {
@@ -54,10 +59,12 @@ Template.MainPageVragen.events({
 		$('#multipleChoiceInput').val('');
 	},
 //############################### Radio button voor openvraag #################################
-	'click #Openvraag': function(e) {
+	/*'click #Openvraag': function(e) {
 		e.preventDefault();
 		Session.set('showOpenvraag', true);
 		Session.set('showMeerkeuzevraag', false);
+		document.getElementById("Meerkeuzevraag").checked = false;
+		document.getElementById("Openvraag").checked = true;
 
 	}, 
 //######################## Radio button voor meerkeuzevraag ###################################
@@ -65,7 +72,9 @@ Template.MainPageVragen.events({
 		e.preventDefault();
 		Session.set('showOpenvraag', false);
 		Session.set('showMeerkeuzevraag', true);
-	},
+		document.getElementById("Openvraag").checked = false;
+		document.getElementById("Meerkeuzevraag").checked = true;
+	},*/
 
 	'click #showVragenBord': function(e){
 		e.preventDefault();
@@ -99,12 +108,12 @@ Template.MainPageVragen.helpers({
 	},
 
 	aanwezigheid: function() {
-		var tijdelijkeRoomCode = Session.get('getRoomCode');
-		return Aanwezigen.find({roomCode: tijdelijkeRoomCode});
+		
+		return Aanwezigen.find();
 	},
 
 	aanwezigheid: function(){
-		return Antwoorden.find({vraagId:});
+		return Antwoorden.find();
 	},
 });
 
@@ -250,5 +259,3 @@ Template.OverzichtVragen.events({
 		});
 	}
 });
-
-//################ Om een vraag zichtbaar te maken #######################
