@@ -1,5 +1,5 @@
 
-
+var setDiv = false;
 Template.StudentenPagina.events({
 		'click #submitAntwoord': function(e){
 		e.preventDefault();
@@ -9,7 +9,7 @@ Template.StudentenPagina.events({
 		var naam = $('#naamInput').val();
 	
 		if (checkOpenVraag[0].openVraag == true){
-			
+
 			var tijdelijkAntwoord = $('#antwoordField').val();
 			Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naam, function(error, res){
 			if (error)
@@ -22,10 +22,11 @@ Template.StudentenPagina.events({
 			if (error)
 				return alert(error.reason);
 			});
-
 		}
-		
 
+		setTimeout(function(){
+ 			$("#AntwoordInputDiv").fadeOut(500);
+		}, 500);
 	},
 //******************************** Code die de naam in de database zet ******************************
 	'click #enterName': function(e) {
@@ -43,9 +44,7 @@ Template.StudentenPagina.events({
 			showAntwoordInput();
 
 		} else alert("Vul je naam in");
-
 	},
-
 
 });
 
@@ -56,6 +55,12 @@ Template.StudentenPagina.helpers ({
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
 	},
 	openAntwoord: function(){
+		if (setDiv){
+			setTimeout(function(){
+ 				$("#AntwoordInputDiv").fadeIn(500);
+			}, 500);
+		}
+
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
@@ -77,4 +82,5 @@ function showAntwoordInput() {
 	setTimeout(function(){
  		$("#AntwoordInputDiv").fadeIn(500);
 	}, 500);
+	setDiv = true;
 }

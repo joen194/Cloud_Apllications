@@ -101,7 +101,11 @@ Template.MainPageVragen.helpers({
 	aanwezigheid: function() {
 		var tijdelijkeRoomCode = Session.get('getRoomCode');
 		return Aanwezigen.find({roomCode: tijdelijkeRoomCode});
-	}
+	},
+
+	aanwezigheid: function(){
+		return Antwoorden.find({vraagId:});
+	},
 });
 
 //################ Om de juiste vragen uit de DB te halen #######################
