@@ -13,10 +13,9 @@ Template.vraagOpBord.helpers({
 
 		roomCode = window.location.hash.substr(1);
 		var db = Lessen.find({roomCode: roomCode}).fetch();
-
-		var dbVragen = Vragen.find({_id: db[0].vraagId}).fetch();	
+		var dbVragen = Vragen.find({ $and: [ { _id: db[0].vraagId }, { visibleAnswer: true } ] }).fetch();	
 		var dbAntwoorden = Antwoorden.find().fetch();
-
+		
 		return Antwoorden.find({vraagId: dbVragen[0]._id});
 	}
 });

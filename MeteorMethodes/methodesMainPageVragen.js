@@ -7,7 +7,8 @@ Meteor.methods({
 			lessenId: tijdelijkLesId,
 			vraagnaam: vraagTitel,
 			roomCode: roomCodeLes,
-			openVraag: true
+			openVraag: true,
+			visibleAnswer: false
 		}, function(error,id){
 			return id;
 		});
@@ -60,5 +61,8 @@ Meteor.methods({
 
 	VraagIdAanpassen : function(lessenId, vraagId) {
 		Lessen.update({_id: lessenId},{$set:{vraagId: vraagId}});
+	},
+	AntwoordZichtbaarheid : function( visibilityAnswer, vraagId){
+		Vragen.update({_id: vraagId},{$set:{visibleAnswer: visibilityAnswer}});
 	}
 });	

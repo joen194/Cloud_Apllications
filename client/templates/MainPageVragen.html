@@ -75,6 +75,9 @@
 <template name="OverzichtVragen">
 	{{#each historyVraag}}
 		<h1>{{vraagnaam}}</h1>
+    <div>
+        <input type="checkbox" id="checker"> Laat de antwoorden op het bord zien<br>
+    </div>
     <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button><button>Check</button> </p>
     <div class="divEditSluiten" id='div{{_id}}' style="display: none">
       <input type="text" id="input{{_id}}" value="{{vraagnaam}}">

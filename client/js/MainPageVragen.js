@@ -256,6 +256,24 @@ Template.OverzichtVragen.events({
 	'click .buttonRemoveMultipleChoice': function(e){
 		e.preventDefault();
 		Meteor.myFunctions.DeleteMPC(e.currentTarget.id);
-	}
+	},
+	//######################## Antwoorden zichtbaar maken op het bord ###################################
+	'change #checker': function() {
+    // Also, no need for the pound sign here
+    // Also, no need for the pound sign here
+    if (document.getElementById('checker').checked){
+    	Meteor.call('AntwoordZichtbaarheid', true, this._id, function(error,res) {  
+    	console.log("helaba");		
+			if (error)
+				return alert(error.reason);
+		});
+    }
+    else{
+    	Meteor.call('AntwoordZichtbaarheid', false, this._id, function(error,res) {  		
+			if (error)
+				return alert(error.reason);
+		});
+    }
+}
 });
 
