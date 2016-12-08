@@ -1,7 +1,8 @@
 <template name="MainPageVragen">
 
   <script type="text/javascript">
-    Meteor.subscribe('DataVragen');
+    tijdelijkLesId = Session.get('tijdelijkIdSession');
+    Meteor.subscribe('DataVragen', tijdelijkLesId);
     Meteor.subscribe('DataMultipleChoice');
     tijdelijkeRoomCode = Session.get('getRoomCode');
     Meteor.subscribe('DataAanwezigen', tijdelijkeRoomCode);

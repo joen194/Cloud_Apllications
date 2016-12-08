@@ -11,7 +11,7 @@ Template.MainPageVragen.onRendered (function(){
 });
 var tijdelijkVraagId;
 var tijdelijkeRoomCode;
-
+var tijdelijkLesId;
 //###################### Vraag field resetten ###########################
 Template.MainPageVragen.events({
 	'click #voegVraagToe': function(e){
@@ -30,8 +30,6 @@ Template.MainPageVragen.events({
 		var vraagTitel = $('#TitelVraag').val();
 
 		if(vraagTitel !== ""){
-
-			var tijdelijkLesId = Session.get('tijdelijkIdSession');	
 
 			Meteor.call('VraagToevoegen', vraagTitel, tijdelijkLesId, tijdelijkeRoomCode, function(error, res){
 				if (error){
@@ -55,7 +53,7 @@ Template.MainPageVragen.events({
 		var multipleChoiceInput = $('#multipleChoiceInput').val();
 
 		if (multipleChoiceInput !== "") {
-			var tijdelijkLesId = Session.get('tijdelijkIdSession');	
+			
 
 			Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, tijdelijkVraagId, tijdelijkLesId, function(error,res) {
 				if (error)
@@ -88,7 +86,7 @@ Template.MainPageVragen.events({
 	'click #showVragenBord': function(e){
 		e.preventDefault();
 
-		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode, "", "fullscreen=yes");
+		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode + "/" + tijdelijkLesId, "" ,"fullscreen=yes");
 		
 	},
 	'click .buttonRemoveMultipleChoice': function(e){
@@ -123,7 +121,7 @@ Template.MainPageVragen.helpers({
 //################ Om de juiste vragen uit de DB te halen #######################
 Template.OverzichtVragen.helpers({
 	historyVraag : function(){
-		var tijdelijkLesId = Session.get('tijdelijkIdSession');
+		tijdelijkLesId = Session.get('tijdelijkIdSession');
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
 	multipleChoiceHTML: function(){

@@ -3,10 +3,8 @@ var tijdelijkVraagId;
 Meteor.methods({
 	VraagToevoegen: function(vraagTitel, tijdelijkLesId, roomCodeLes) {
 		return Vragen.insert({
-			userId: Meteor.userId(),
 			lessenId: tijdelijkLesId,
 			vraagnaam: vraagTitel,
-			roomCode: roomCodeLes,
 			openVraag: true,
 			visibleAnswer: false
 		}, function(error,id){

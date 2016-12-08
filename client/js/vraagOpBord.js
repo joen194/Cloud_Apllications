@@ -5,6 +5,7 @@ Template.vraagOpBord.helpers({
 
 	vraagOpBord : function(){
 		roomCode = window.location.hash.substr(1);
+		console.log(roomCode);
 		var db = Lessen.find({roomCode: roomCode}).fetch();
 		
 		return Vragen.find({_id: db[0].vraagId});
