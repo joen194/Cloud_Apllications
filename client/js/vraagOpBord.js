@@ -1,10 +1,6 @@
 
 var roomCode;
 
-
-
-	Meteor.subscribe('DataMultipleChoice');
-	Meteor.subscribe('DataAntwoorden');
 //################ Om de juiste roomcode uit de DB te halen #######################
 Template.vraagOpBord.helpers({
 
