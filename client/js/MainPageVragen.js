@@ -86,7 +86,7 @@ Template.MainPageVragen.events({
 	'click #showVragenBord': function(e){
 		e.preventDefault();
 
-		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode + "/" + tijdelijkLesId, "" ,"fullscreen=yes");
+		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode , "" ,"fullscreen=yes");
 		
 	},
 	'click .buttonRemoveMultipleChoice': function(e){

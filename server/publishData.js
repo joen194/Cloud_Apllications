@@ -20,3 +20,8 @@ Meteor.publish('DataAanwezigen', function(LessenCode) {
 Meteor.publish('DataAntwoorden', function() {
 	return Antwoorden.find();
 });
+
+Meteor.publish('DataLessenPopup', function(Code){
+	//geeft enkel data van de gebruiker terug 
+	return Lessen.find({roomCode: Code});
+});
