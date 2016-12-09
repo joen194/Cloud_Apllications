@@ -14,6 +14,7 @@ Meteor.methods({
 		    var result = {};
 		    result.lesnaam= checkroomcode[0].lesnaam;
 		    result.roomCode=checkroomcode[0].roomCode;
+		    result.lesID = checkroomcode[0]._id
 		    return result;
 	    }
 	    else{

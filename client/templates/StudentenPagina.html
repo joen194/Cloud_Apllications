@@ -18,9 +18,7 @@
   		<button id="submitAntwoord">Submit</button>
 	  </div>
     <script type="text/javascript">
-    Meteor.subscribe('DataMultipleChoice');
-    Meteor.subscribe('DataLessen');
-    Meteor.subscribe('DataVragen');
+
 
     var Lesinfo;
     //************************** Dubbel check of de roomcode klopt *************************
@@ -32,11 +30,14 @@
           return;
         }
         Lesinfo = response;
-        console.log(response);
         if (!Lesinfo) {
           window.location= "http://localhost:3000"
         }
         $('#LesnaamH1').text(Lesinfo.lesnaam);
+        Meteor.subscribe('DataMultipleChoice');
+        Meteor.subscribe('DataLessenPopup',roomCode );
+        Meteor.subscribe('DataVragen', Lesinfo.lesID);
+        
       });
     </script>
 

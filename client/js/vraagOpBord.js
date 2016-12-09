@@ -22,15 +22,18 @@ Template.vraagOpBord.helpers({
 		return window.location.hash.substr(1);;
 	},
 	antwoordOpBord : function(){
-		Meteor.subscribe('DataMultipleChoice');
-		Meteor.subscribe('DataAntwoorden');
-
 		roomCode = window.location.hash.substr(1);
 		Meteor.subscribe('DataLessenPopup', roomCode);
 		var dbLes = Lessen.find().fetch();
-		var dbVragen = Vragen.find({ $and: [ { _id: dbLes[0].vraagId }, { visibleAnswer: true } ] }).fetch();	
-		var dbAntwoorden = Antwoorden.find().fetch();
+		Meteor.subscribe('DataMultipleChoice');
+		Meteor.subscribe('DataVragen', dbLes[0]._id);
+		var vraagID = Vragen.find({_id: dbLes[0].vraagId}).fetch();
+		Meteor.subscribe('DataAntwoorden', vraagID[0]._id);
+		if (vraagID[0].visibleAnswer) {
+			return Antwoorden.find();
+		}
+
 		
-		return Antwoorden.find({vraagId: dbVragen[0]._id});
+		
 	}
 });

@@ -17,8 +17,8 @@ Meteor.publish('DataAanwezigen', function(LessenCode) {
 	return Aanwezigen.find({roomCode: LessenCode});
 });
 
-Meteor.publish('DataAntwoorden', function() {
-	return Antwoorden.find();
+Meteor.publish('DataAntwoorden', function(IDvraag) {
+	return Antwoorden.find({vraagId: IDvraag});
 });
 
 Meteor.publish('DataLessenPopup', function(Code){
