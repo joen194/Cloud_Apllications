@@ -46,7 +46,7 @@ Template.OverzichtLessen.helpers({
 //##################### Om lessen te verwijderen en te bekijken ##########################
 
 Template.OverzichtLessen.events({
-	'click #viewLes' : function(e){
+	'click #lessen' : function(e){
 		e.preventDefault();
 
 		Session.set('showVraag', true);

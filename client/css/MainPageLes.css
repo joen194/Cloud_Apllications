@@ -1,0 +1,30 @@
+#viewLes{
+	background-color: lightblue;
+}
+#editLes{
+	background-color: yellow;
+}
+#deleteLes{
+	background-color: red;
+}
+#lessen{
+	-webkit-font-smoothing: antialiased;
+	border: solid #808080;
+	border-radius: 15px 50px;
+	border-width: 1px;
+	box-shadow: 0px 0px 10px 1px #adadad;
+	margin-top: 15px;
+	margin-left: 15px; 
+	transition:all 500ms ease;
+}
+
+#lessen:hover{
+	cursor: pointer;
+	border: solid #808080;
+	border-radius: 15px 50px;
+	border-width: 1px;
+	box-shadow: 0px 0px 20px 15px #61b9ed;
+	margin-top: 15px;
+	margin-left: 15px; 
+	transition:all 500ms ease;
+}
