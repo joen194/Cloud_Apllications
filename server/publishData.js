@@ -8,8 +8,8 @@ Meteor.publish('DataVragen', function(LesId){
 	return Vragen.find({lessenId: LesId})
 });
 
-Meteor.publish('DataMultipleChoice', function(){
-	return MultipleChoice.find({userId: this.userId});
+Meteor.publish('DataMultipleChoice', function(tijdelijkVraagId){
+	return MultipleChoice.find({vragenId: tijdelijkVraagId});
 });
 	
 

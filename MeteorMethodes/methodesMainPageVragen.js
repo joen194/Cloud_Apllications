@@ -28,9 +28,7 @@ Meteor.methods({
 
 	MultipleChoiceToevoegen: function(multipleChoiceInput, tijdelijkVraagId, lesId){
 		return MultipleChoice.insert({
-			userId: Meteor.userId(),
 			vragenId: tijdelijkVraagId,
-			lessenId: lesId,
 			multipleChoice: multipleChoiceInput
 		}, function(error,id){
 			return id;

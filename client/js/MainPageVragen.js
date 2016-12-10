@@ -114,6 +114,8 @@ Template.MainPageVragen.helpers({
 		return Aanwezigen.find({roomCode: tijdelijkeRoomCode});
 		//return Antwoorden.find();
 	},MPCAntwoorden: function(){
+
+		Meteor.subscribe('DataMultipleChoice',tijdelijkVraagId);
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
 	}
 });
@@ -152,6 +154,7 @@ Template.OverzichtVragen.events({
 	'click .editVraag':function(e) {
 		e.preventDefault();
 		Session.set('tijdelijkVraagId2', this._id);
+		Meteor.subscribe('DataMultipleChoice',this._id);
 		$(".divEditSluiten").hide();
 		$('#div' + this._id).toggle(500);						
 
@@ -256,10 +259,11 @@ Template.OverzichtVragen.events({
 		Meteor.myFunctions.DeleteMPC(e.currentTarget.id);
 	},
 	//######################## Antwoorden zichtbaar maken op het bord ###################################
-	'change #checker': function() {
+	'change .checker': function() {
+		console.log(document.getElementById(this._id).checked);
     // Also, no need for the pound sign here
     // Also, no need for the pound sign here
-    if (document.getElementById('checker').checked){
+    if (document.getElementById(this._id).checked){
     	Meteor.call('AntwoordZichtbaarheid', true, this._id, function(error,res) {  
     	console.log("helaba");		
 			if (error)
