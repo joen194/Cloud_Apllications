@@ -84,21 +84,19 @@
         
       Openvraag: <input name="soortVraag{{_id}}" type="radio" class="changeopen" id="OpenvraagEdit{{_id}}" value="Openvraag" checked={{openVraag}} >                                        
       <br>
-      <span>Vraag: </span><input type="text" id="input{{_id}}" value="{{vraagnaam}}">
+      <span>Vraag: </span><input type="text" id="input{{_id}}" value="{{vraagnaam}}" class="vraaginput"> 
       <br><br>
       {{#unless openVraag}}
 
-
-          {{#each multipleChoiceHTML}}
-            <span>antwoord: </span><input type="text" id="input{{_id}}" value="{{multipleChoice}}"> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
+        
+            {{#each multipleChoiceHTML}}
+            <span>antwoord: </span><input type="text" id="input{{_id}}" value="{{multipleChoice}}" class="MPCinput"> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
             <br><br>
           {{/each}}
-          <input type="text" id="extraMultipleChoiceAanmaken{{_id}}">
-
+          <input type="text" id="extraMultipleChoiceAanmaken{{_id}}" ><button class="buttonAddMultipleChoice" id="{{_id}}" type="button">Add</button>
 
       {{/unless}}
-      
-      <button id="saveMultipleChoice" type="button">Save</button>
+
     </div>
     <!--<div id="div{{_id}}">
     </div>-->
