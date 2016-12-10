@@ -124,12 +124,15 @@ Template.MainPageVragen.helpers({
 Template.OverzichtVragen.helpers({
 	historyVraag : function(){
 		tijdelijkLesId = Session.get('tijdelijkIdSession');
+
+		
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
 	multipleChoiceHTML: function(){
+
 		var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
-	},	
+	}
 });
 
 //################ Om een vraag te deleten, showen en editen #######################
@@ -198,8 +201,24 @@ Template.OverzichtVragen.events({
 			$("#div" + this._id).toggle();
 		}*/					
 	},
+	'change .changeopen': function(e) {
+		e.preventDefault();
+		Meteor.call('OpenVraag', this._id);
+
+	}, 
+	'change .changeMPC': function(e) {
+		e.preventDefault();
+		Meteor.call('Meerkeuzevraag', this._id);
+		
+	},
 	'click #saveMultipleChoice':function(e) {
 		e.preventDefault();
+		if (document.getElementById("OpenvraagEdit"+this._id).checked) {
+			Meteor.call('OpenVraag', this._id);
+			Meteor.myFunctions.DeleteAllMPC(this._id);
+		}else if(document.getElementById("MPC"+this._id).checked){
+			Meteor.call('Meerkeuzevraag', this._id);
+		}
 
 		var titelAanpassen = $("#input" + this._id).val();
 		Meteor.call('VraagAanpassen', titelAanpassen, this._id, function(error, id){
@@ -260,12 +279,10 @@ Template.OverzichtVragen.events({
 	},
 	//######################## Antwoorden zichtbaar maken op het bord ###################################
 	'change .checker': function() {
-		console.log(document.getElementById(this._id).checked);
     // Also, no need for the pound sign here
     // Also, no need for the pound sign here
-    if (document.getElementById(this._id).checked){
-    	Meteor.call('AntwoordZichtbaarheid', true, this._id, function(error,res) {  
-    	console.log("helaba");		
+    if (document.getElementById("checkbox"+this._id).checked){
+    	Meteor.call('AntwoordZichtbaarheid', true, this._id, function(error,res) {  	
 			if (error)
 				return alert(error.reason);
 		});

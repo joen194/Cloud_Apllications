@@ -76,17 +76,28 @@
 	{{#each historyVraag}}
 		<h1>{{vraagnaam}}</h1>
     <div>
-        <input type="checkbox" class= "checker" id={{_id}} checked = {{visibleAnswer}}> Laat de antwoorden op het bord zien<br>
+        <input type="checkbox" class= "checker" id=checkbox{{_id}} checked = {{visibleAnswer}}> Laat de antwoorden op het bord zien<br>
     </div>
     <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button><button>Check</button> </p>
     <div class="divEditSluiten" id='div{{_id}}' style="display: none">
-      <input type="text" id="input{{_id}}" value="{{vraagnaam}}">
+      Meerkeuzevraag: <input type="radio" name="soortVraag{{_id}}" id="MPC{{_id}}" value="Meerkeuzevraag" class="changeMPC" checked=true>
+        
+      Openvraag: <input name="soortVraag{{_id}}" type="radio" class="changeopen" id="OpenvraagEdit{{_id}}" value="Openvraag" checked={{openVraag}} >                                        
+      <br>
+      <span>Vraag: </span><input type="text" id="input{{_id}}" value="{{vraagnaam}}">
       <br><br>
-      {{#each multipleChoiceHTML}}
-        <input type="text" id="input{{_id}}" value="{{multipleChoice}}"> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
-        <br><br>
-      {{/each}}
-      <input type="text" id="extraMultipleChoiceAanmaken{{_id}}">
+      {{#unless openVraag}}
+
+
+          {{#each multipleChoiceHTML}}
+            <span>antwoord: </span><input type="text" id="input{{_id}}" value="{{multipleChoice}}"> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
+            <br><br>
+          {{/each}}
+          <input type="text" id="extraMultipleChoiceAanmaken{{_id}}">
+
+
+      {{/unless}}
+      
       <button id="saveMultipleChoice" type="button">Save</button>
     </div>
     <!--<div id="div{{_id}}">
