@@ -45,31 +45,37 @@ Template.OverzichtLessen.helpers({
 
 //##################### Om lessen te verwijderen en te bekijken ##########################
 
-Template.OverzichtLessen.events({
-	'click #lessen' : function(e){
-		e.preventDefault();
+var editDeletePress ;
 
-		Session.set('showVraag', true);
-		var tijdelijkLesId = this._id;
-		Session.set('tijdelijkIdSession', tijdelijkLesId);
-		var db = Lessen.find({_id: this._id}).fetch();
-		Session.set('getRoomCode', db[0].roomCode);
-		
-	},
+Template.OverzichtLessen.events({
 	'click #editLes' : function(e){
 		e.preventDefault();
-		
+		editDeletePress=this._id;
+		$('#h1' + this._id).toggle();
 		$('#div' + this._id).toggle();	
 	},
 	'click #deleteLes': function(e){
 		e.preventDefault();
-		
+		editDeletePress=this._id;
 		Meteor.call('LesVerwijderen', this._id, function(error, id){
 		if (error)
 			return alert(error.reason);
 		});
 	},
-	'click #saveLessen': function(e) {
+	'click #lessen' : function(e){
+		e.preventDefault();
+		if (editDeletePress !== this._id) {
+			Session.set('showVraag', true);
+			var tijdelijkLesId = this._id;
+			Session.set('tijdelijkIdSession', tijdelijkLesId);
+			var db = Lessen.find({_id: this._id}).fetch();
+			Session.set('getRoomCode', db[0].roomCode);
+		}
+
+		
+		
+	},
+	'input .input': function(e) {
 		e.preventDefault();
 
 		var lesInput = $('#input' + this._id).val();
@@ -77,6 +83,5 @@ Template.OverzichtLessen.events({
 			if (error)
 				return alert(error.reason);
 		});
-		$('#div' + this._id).toggle();
 	}	
 });
