@@ -1,0 +1,11 @@
+
+.antwoordOpBord h1{
+  position: absolute;
+  font-size: 32px;
+  background-color: rgba(255,255,255,0.5);
+}
+.antwoordenBox{
+	height: 500px; 
+	width: 100%;
+    position: relative;
+}

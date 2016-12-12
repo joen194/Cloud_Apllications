@@ -3,9 +3,13 @@
 	<h2 id="RoomCodeVisible">roomcode : {{Roomcode}}</h2>
 
   	
-  		<h1>Vraag: {{vraagnaam}}</h1>
-
-	{{#each antwoordOpBord}}
-  		<h1>{{Antwoord}}</h1>
-	{{/each}}
+  	<h1>Vraag: {{vraagnaam}}</h1>
+	<div class="antwoordenBox">
+		{{#each antwoordOpBord}}
+			<div class="antwoordOpBord">
+				{{antwoordStyling}}
+	  			<h1>{{Antwoord}}</h1>
+	  		</div>
+		{{/each}}
+	</div>
 </template>
