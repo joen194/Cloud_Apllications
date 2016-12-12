@@ -26,9 +26,14 @@ Template.MainPage.helpers({
 		}
 	 	return false;
 
-	},showVraag() {
+	},
+	showVraag() {
 	    return Session.get('showVraag');
+	},
+	AlleAntwoorden() {
+		return Session.get("AlleAntwoorden");
 	}
+	
 });
 Template.MainPage.helpers({
   showVraagOpBord() {

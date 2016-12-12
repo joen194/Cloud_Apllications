@@ -92,6 +92,12 @@ Template.MainPageVragen.events({
 	'click .buttonRemoveMultipleChoice': function(e){
 		e.preventDefault();
 		Meteor.myFunctions.DeleteMPC(e.currentTarget.id);
+	},
+
+	'click #showAlleAntwoorden':function(e){
+		e.preventDefault();
+
+		Session.set('AlleAntwoorden', true);
 	}
 });
 //################################## helpers #########################################

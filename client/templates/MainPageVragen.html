@@ -19,6 +19,7 @@
     <!-- Trigger the modal with a button -->
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="voegVraagToe">Voeg vraag toe</button>
       <button id="showVragenBord">Show Vragen</button>
+      <button id="showAlleAntwoorden">Bekijk alle antwoorden</button>
 
     <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
@@ -78,7 +79,7 @@
     <div>
         <input type="checkbox" class= "checker" id=checkbox{{_id}} checked = {{visibleAnswer}}> Laat de antwoorden op het bord zien<br>
     </div>
-    <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button><button>Check</button> </p>
+    <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button></p>
     <div class="divEditSluiten" id='div{{_id}}' style="display: none">
       Meerkeuzevraag: <input type="radio" name="soortVraag{{_id}}" id="MPC{{_id}}" value="Meerkeuzevraag" class="changeMPC" checked=true>
         

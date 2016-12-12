@@ -1,0 +1,20 @@
+<template name='AntwoordenPage'>
+<script type="text/javascript">
+	tijdelijkLesId = Session.get('tijdelijkIdSession');
+	tijdelijkVraagId = Session.get('tijdelijkVraagId');
+	Meteor.subscribe('DataVragen', tijdelijkLesId);
+	Meteor.subscribe('DataAntwoorden', tijdelijkVraagId);
+</script>
+{{#each AntwoordenLoop}}
+	<h1>{{vraagnaam}}</h1>
+    <p><button class="showAntwoordenPage" id={{_id}}>Show Antwoorden</button></p>
+    <div class="divAntwoordenPageSluiten" id='div{{_id}}' style="display: none">
+    <h3>Antwoorden:</h3>
+	    {{#each Antwoord}}
+	    <h2>hey</h2>
+	    	<p>{{naamLeerling}} : {{Antwoord}} </p>
+	    {{/each}}
+    </div>
+  {{/each}}  	
+</template>
+
