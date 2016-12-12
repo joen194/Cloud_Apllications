@@ -52,6 +52,9 @@ Template.StudentenPagina.helpers ({
 	oneMultipleChoice: function (){
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+		console.log(tijdelijkeDbStudentenPagina);
+		var mp = MultipleChoice.find().fetch();
+		console.log(mp);
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
 	},
 	openAntwoord: function(){

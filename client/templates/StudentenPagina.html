@@ -10,9 +10,9 @@
       </div>
       {{#if openAntwoord}}
   		  <h2>Antwoord: <input type="text" id= "antwoordField"></h2>
-      {{else}}
+      {{else}}   
         {{#each oneMultipleChoice}}
-          <input type="radio" name='multipleChoices' value={{multipleChoice}}>{{multipleChoice}} <br>
+          <input type="radio" name='multipleChoices' value={{multipleChoice}}> {{multipleChoice}} <br>
         {{/each}}
       {{/if}}
   		<button id="submitAntwoord">Submit</button>
