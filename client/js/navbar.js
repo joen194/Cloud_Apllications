@@ -4,6 +4,7 @@ Template.SideNavBar.events({
 	},
 	'click #NavLessen' : function(e){
 		Session.set('showVraag',false);
+		Session.set('AlleAntwoorden', false);
 	}
 });
 

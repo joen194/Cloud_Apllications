@@ -74,12 +74,30 @@
 </template>
 
 <template name="OverzichtVragen">
+  {{#if VraagVerwijderen}}
+    <div class="modal fade" id="myModal1" role="dialog">
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Wilt u deze vraag verwijderen?</h4>
+          </div>
+          <div class="modal-body">
+            <button  id="jaVraag" type="button" class="btn btn-default" data-dismiss="modal">Ja</button>
+            <button  id="neeVraag" type="button" class="btn btn-default" data-dismiss="modal">Nee</button>            
+          </div>
+        </div>          
+      </div>
+    </div> 
+  {{/if}}
 	{{#each historyVraag}}
 		<h1>{{vraagnaam}}</h1>
     <div>
         <input type="checkbox" class= "checker" id=checkbox{{_id}} checked = {{visibleAnswer}}> Laat de antwoorden op het bord zien<br>
     </div>
-    <p><button class="editVraag" id={{_id}}>Edit</button><button  id="deleteVraag">Delete</button><button id="showVraag">Show</button></p>
+    <p><button class="editVraag" id={{_id}}>Edit</button><button type="button" data-toggle="modal" data-target="#myModal1" id="deleteVraag">Delete</button><button id="showVraag">Show</button></p>
     <div class="divEditSluiten" id='div{{_id}}' style="display: none">
       Meerkeuzevraag: <input type="radio" name="soortVraag{{_id}}" id="MPC{{_id}}" value="Meerkeuzevraag" class="changeMPC" checked=true>
         
@@ -88,19 +106,15 @@
       <span>Vraag: </span><input type="text" id="input{{_id}}" value="{{vraagnaam}}" class="vraaginput"> 
       <br><br>
       {{#unless openVraag}}
-
-        
             {{#each multipleChoiceHTML}}
             <span>antwoord: </span><input type="text" id="input{{_id}}" value="{{multipleChoice}}" class="MPCinput"> <button class="buttonRemoveMultipleChoice" id="{{_id}}" type="button">X</button>
             <br><br>
           {{/each}}
           <input type="text" id="extraMultipleChoiceAanmaken{{_id}}" ><button class="buttonAddMultipleChoice" id="{{_id}}" type="button">Add</button>
-
       {{/unless}}
-
     </div>
-    <!--<div id="div{{_id}}">
-    </div>-->
   {{/each}}   
 </template>
+
+
 

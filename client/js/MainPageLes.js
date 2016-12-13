@@ -56,11 +56,14 @@ Template.OverzichtLessen.events({
 	},
 	'click #deleteLes': function(e){
 		e.preventDefault();
-		editDeletePress=this._id;
-		Meteor.call('LesVerwijderen', this._id, function(error, id){
-		if (error)
-			return alert(error.reason);
-		});
+		var r = confirm("Are you sure you want to delete this Lesson? All the questions, answers and multiple choices will also be deleted.")
+		if (r) {
+			editDeletePress=this._id;
+			Meteor.call('LesVerwijderen', this._id, function(error, id){
+			if (error)
+				return alert(error.reason);
+			});
+		}		
 	},
 	'click #lessen' : function(e){
 		e.preventDefault();

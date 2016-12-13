@@ -123,7 +123,9 @@ Template.MainPageVragen.helpers({
 
 		Meteor.subscribe('DataMultipleChoice',tijdelijkVraagId);
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
-	}
+	},
+
+
 });
 
 //################ Om de juiste vragen uit de DB te halen #######################
@@ -138,6 +140,10 @@ Template.OverzichtVragen.helpers({
 
 		var tijdelijkVraagId = Session.get('tijdelijkVraagId2');
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
+	},
+	VraagVerwijderen:function(){
+		//console.log(Session.get('popUpVraagVerwijderen'));
+		return Session.get('popUpVraagVerwijderen');
 	}
 });
 
@@ -153,12 +159,8 @@ Template.OverzichtVragen.events({
 	},
 	'click #deleteVraag': function(e){
 		e.preventDefault();
-
-		Meteor.call('VraagVerwijderen', this._id, function(error, id){
-
-		if (error)
-			return alert(error.reason);
-		});
+		Session.set('tijdelijkeVraagIdDelete', this._id);
+		Session.set('popUpVraagVerwijderen', true);		
 	},
 	'click .editVraag':function(e) {
 		e.preventDefault();
@@ -206,6 +208,20 @@ Template.OverzichtVragen.events({
 			$("#div" + this._id).append($input);
 			$("#div" + this._id).toggle();
 		}*/					
+	},
+	'click #jaVraag': function(e){
+		e.preventDefault();
+		t = Session.get('tijdelijkeVraagIdDelete');
+		Meteor.call('VraagVerwijderen', t, function(error, id){
+
+		if (error)
+			return alert(error.reason);
+		});
+	},
+
+	'click #neeVraag': function(e){
+		e.preventDefault();
+			
 	},
 	'change .changeopen': function(e) {
 		e.preventDefault();
@@ -295,4 +311,3 @@ Template.OverzichtVragen.events({
     }
 }
 });
-
