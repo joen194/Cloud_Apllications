@@ -3,6 +3,8 @@ Template.AntwoordenPage.events({
 		e.preventDefault();
 		Session.set('tijdelijkVraagId', this._id);
 
+		Meteor.subscribe('DataAntwoorden', this._id);
+
 		$(".divAntwoordenPageSluiten").hide();
 		$('#div' + this._id).toggle(500);
 
@@ -15,7 +17,7 @@ Template.AntwoordenPage.helpers({
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
 
-	Antwoord: function(){
+	AntwoordInVraag: function(){
 		tijdelijkId = Session.get('tijdelijkVraagId');
 		console.log(tijdelijkId);
 		console.log(Antwoorden.find({vraagId: tijdelijkId}));
