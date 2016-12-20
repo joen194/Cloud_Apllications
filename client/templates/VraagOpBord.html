@@ -1,15 +1,34 @@
 <template name="vraagOpBord">
-
 	<h2 id="RoomCodeVisible">roomcode : {{Roomcode}}</h2>
-
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
   	
   	<h1>Vraag: {{vraagnaam}}</h1>
-	<div class="antwoordenBox">
-		{{#each antwoordOpBord}}
+	<div class="antwoordenBox">		
 			<div class="antwoordOpBord">
-				{{antwoordStyling}}
-	  			<h1>{{Antwoord}}</h1>
+				{{#if openVraag}}
+					{{#each antwoordOpBord}}
+						<div class="jumpingAnswers">
+							{{antwoordStyling}}
+				  			<h1>{{Antwoord}}</h1>
+
+			  			</div>
+			  		{{/each}}
+			  	{{else}}
+			  		<div>
+
+				  		{{#each antwoordOpBord}}
+				  		
+				  			<p class="graphAnswers">
+				  				{{editGraph}}
+				  					  				
+				  			</p>
+				  		{{/each}}
+	  					<div class="ct-chart ct-perfect-fourth"></div>
+					  		{{showGraph}} 	 
+			  		</div>
+	  			{{/if}}
 	  		</div>
-		{{/each}}
 	</div>
+
 </template>

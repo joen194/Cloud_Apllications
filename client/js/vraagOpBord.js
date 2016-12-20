@@ -1,5 +1,7 @@
 
 var roomCode;
+var amountMP = 0;
+var arrayAntwoorden = [];
 
 //################ Om de juiste roomcode uit de DB te halen #######################
 Template.vraagOpBord.helpers({
@@ -30,6 +32,73 @@ Template.vraagOpBord.helpers({
 		}
 
 	},
+	openVraag : function(){
+		roomCode = window.location.hash.substr(1);
+		Meteor.subscribe('DataLessenPopup', roomCode);
+		var dbLes = Lessen.find().fetch();
+		Meteor.subscribe('DataMultipleChoice');
+		Meteor.subscribe('DataVragen', dbLes[0]._id);
+		var checkOpenVraag = Vragen.find({_id: dbLes[0].vraagId}).fetch();
+
+		if (checkOpenVraag[0].openVraag == true){
+				return true;
+			}
+			else {
+				return false;
+			}	
+		},
+	editGraph : function(){
+		roomCode = window.location.hash.substr(1);
+		Meteor.subscribe('DataLessenPopup', roomCode);
+		var dbLes = Lessen.find().fetch();
+		Meteor.subscribe('DataMultipleChoice');
+		Meteor.subscribe('DataVragen', dbLes[0]._id);
+		var vraagID = Vragen.find({_id: dbLes[0].vraagId}).fetch();
+		var mpId = MultipleChoice.find({vragenId: vraagID[0]._id}).fetch();
+		var mp_ID = mpId[amountMP].multipleChoice;
+		arrayAntwoorden[amountMP] = mp_ID;
+		amountMP++;
+
+
+		const data = {
+		  labels: [arrayAntwoorden[0], arrayAntwoorden[1], arrayAntwoorden[2]],
+		    series:[
+		    [1, 2, 2, 1]
+		  ]
+		};
+
+		const options = {
+		  seriesBarDistance: 5
+		};
+
+		const responsiveOptions = [
+		  ['screen and (min-width: 641px) and (max-width: 1024px)', {
+		    seriesBarDistance: 10,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+		        return value;
+		      }
+		    }
+		  }],
+		  ['screen and (max-width: 640px)', {
+		    seriesBarDistance: 5,
+		    axisX: {
+		      labelInterpolationFnc: function (value) {
+		        return value[0];
+		      }
+		    }
+		  }]
+		];
+
+		const test = new Chartist.Bar('.ct-chart', data, options, responsiveOptions);
+
+		},
+
+	showGraph : function(){
+		
+
+	},
+
 	antwoordStyling : function(){
 		/*willekeurige positionering en kleur */
 		var maxSearchIterations = 100;
