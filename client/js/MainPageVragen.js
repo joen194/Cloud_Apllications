@@ -8,6 +8,7 @@ Template.MainPageVragen.onRendered (function(){
 	Session.set('showMeerkeuzevraag', false);
 	Session.set('meerkeuzeBevestigt', false);
 	Session.set('aangemaakt',false);
+	Session.set('popUpVraagVerwijderen', false);
 });
 var tijdelijkVraagId;
 var tijdelijkeRoomCode;
@@ -132,8 +133,6 @@ Template.MainPageVragen.helpers({
 Template.OverzichtVragen.helpers({
 	historyVraag : function(){
 		tijdelijkLesId = Session.get('tijdelijkIdSession');
-
-		
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
 	multipleChoiceHTML: function(){
@@ -142,9 +141,9 @@ Template.OverzichtVragen.helpers({
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
 	},
 	VraagVerwijderen:function(){
-		//console.log(Session.get('popUpVraagVerwijderen'));
+		console.log("in Vraag");
 		return Session.get('popUpVraagVerwijderen');
-	}
+	},
 });
 
 //################ Om een vraag te deleten, showen en editen #######################
@@ -159,6 +158,7 @@ Template.OverzichtVragen.events({
 	},
 	'click #deleteVraag': function(e){
 		e.preventDefault();
+		$("#tijdelijkeTitel").text("Wilt u deze vraag verwijderen?");
 		Session.set('tijdelijkeVraagIdDelete', this._id);
 		Session.set('popUpVraagVerwijderen', true);		
 	},
@@ -211,27 +211,45 @@ Template.OverzichtVragen.events({
 	},
 	'click #jaVraag': function(e){
 		e.preventDefault();
-		t = Session.get('tijdelijkeVraagIdDelete');
-		Meteor.call('VraagVerwijderen', t, function(error, id){
+		
 
-		if (error)
-			return alert(error.reason);
-		});
+		if ($("#tijdelijkeTitel").text() == "Wilt u deze vraag verwijderen?" ) {
+			t = Session.get('tijdelijkeVraagIdDelete');
+			Meteor.call('VraagVerwijderen', t, function(error, id){
+
+			if (error)
+				return alert(error.reason);
+			});
+		}
+
+		else if ($("#tijdelijkeTitel").text() == "Wilt u van deze vraag een openvraag maken? U verwijdert hier mee alle meerkeuze antwoorden." ) {
+			Meteor.call('OpenVraag', this._id);
+			Meteor.myFunctions.DeleteAllMPC(this._id);
+		}
+
+		else if ($("#tijdelijkeTitel").text() == "Wilt u van deze vraag een meerkeuze vraag maken?"){
+			Meteor.call('Meerkeuzevraag', this._id);
+		}
 	},
 
 	'click #neeVraag': function(e){
 		e.preventDefault();
 			
 	},
+
 	'change .changeopen': function(e) {
 		e.preventDefault();
-		Meteor.call('OpenVraag', this._id);
-		Meteor.myFunctions.DeleteAllMPC(this._id);
+		$("#tijdelijkeTitel").text("Wilt u van deze vraag een openvraag maken? U verwijdert hier mee alle meerkeuze antwoorden.");
+		Session.set('tijdelijkeVraagIdDelete', this._id);
+		Session.set('popUpVraagVerwijderen', true);		
 
 	}, 
+
 	'change .changeMPC': function(e) {
 		e.preventDefault();
-		Meteor.call('Meerkeuzevraag', this._id);
+		$("#tijdelijkeTitel").text("Wilt u van deze vraag een meerkeuze vraag maken?");
+		Session.set('tijdelijkeVraagIdDelete', this._id);
+		Session.set('popUpVraagVerwijderen', true);			
 		
 	},
 	'input .vraaginput': function(e){
