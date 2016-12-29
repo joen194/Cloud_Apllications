@@ -101,10 +101,10 @@
     <p><button class="editVraag" id={{_id}}>Edit</button><button type="button" data-toggle="modal" data-target="#myModal1" id="deleteVraag">Delete</button><button id="showVraag">Show</button></p>
 
     <div class="divEditSluiten" id='div{{_id}}' style="display: none">
-    
-     Meerkeuzevraag: <input type="radio" name="soortVraag{{_id}}" id="MPC{{_id}}" value="Meerkeuzevraag" class="changeMPC" checked=true data-toggle="modal" data-target="#myModal1">
+    <button id="soortVraagVeranderen" data-toggle="modal" data-target="#myModal1">Verander soort vraag</button>
+     <!--Meerkeuzevraag: <input type="radio" name="soortVraag{{_id}}" id="MPC{{_id}}" value="Meerkeuzevraag" class="changeMPC" checked=true data-toggle="modal" data-target="#myModal1">
         
-      Openvraag: <input name="soortVraag{{_id}}" type="radio" class="changeopen" id="OpenvraagEdit{{_id}}" value="Openvraag" checked={{openVraag}} data-toggle="modal" data-target="#myModal1">                                  
+      Openvraag: <input name="soortVraag{{_id}}" type="radio" class="changeopen" id="OpenvraagEdit{{_id}}" value="Openvraag" checked={{openVraag}} data-toggle="modal" data-target="#myModal1">   -->                               
       <br>
       <span>Vraag: </span><input type="text" id="input{{_id}}" value="{{vraagnaam}}" class="vraaginput"> 
       <br><br>

@@ -38,7 +38,11 @@ function makeid()
 Template.OverzichtLessen.helpers({
 	historyLes: function(){
 		return Lessen.find();
-	}
+	},
+	LesVerwijderen:function(){
+		console.log("in Les");
+		return Session.get('popUpLesVerwijderen');
+	},
 });
 
 
@@ -56,14 +60,15 @@ Template.OverzichtLessen.events({
 	},
 	'click #deleteLes': function(e){
 		e.preventDefault();
-		var r = confirm("Are you sure you want to delete this Lesson? All the questions, answers and multiple choices will also be deleted.")
-		if (r) {
-			editDeletePress=this._id;
-			Meteor.call('LesVerwijderen', this._id, function(error, id){
-			if (error)
-				return alert(error.reason);
-			});
-		}		
+		editDeletePress=this._id;
+		Session.set('tijdelijkeLesIdDelete', this._id);
+		$("#tijdelijkeTitelLes").text("Wilt u deze les verwijderen?");
+		Session.set('popUpLesVerwijderen', true);
+		/*Meteor.call('LesVerwijderen', this._id, function(error, id){
+		if (error)
+			return alert(error.reason);
+		});*/
+				
 	},
 	'click #lessen' : function(e){
 		e.preventDefault();
@@ -75,8 +80,6 @@ Template.OverzichtLessen.events({
 			Session.set('getRoomCode', db[0].roomCode);
 		}
 
-		
-		
 	},
 	'input .input': function(e) {
 		e.preventDefault();
@@ -86,5 +89,22 @@ Template.OverzichtLessen.events({
 			if (error)
 				return alert(error.reason);
 		});
-	}	
+	},
+	'click #jaLes': function(e){
+		e.preventDefault();
+
+		if ($("#tijdelijkeTitelLes").text() == "Wilt u deze les verwijderen?" ) {
+			t = Session.get('tijdelijkeLesIdDelete');
+			Meteor.call('LesVerwijderen', t, function(error, id){
+
+			if (error)
+				return alert(error.reason);
+			});
+		}
+	},
+
+	'click #neeLes': function(e){
+		e.preventDefault();
+			
+	},
 });

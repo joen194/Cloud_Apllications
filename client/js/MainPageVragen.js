@@ -141,7 +141,6 @@ Template.OverzichtVragen.helpers({
 		return MultipleChoice.find({vragenId: tijdelijkVraagId});
 	},
 	VraagVerwijderen:function(){
-		console.log("in Vraag");
 		return Session.get('popUpVraagVerwijderen');
 	},
 });
@@ -212,9 +211,10 @@ Template.OverzichtVragen.events({
 	'click #jaVraag': function(e){
 		e.preventDefault();
 		
+		TijdelijkeTitelEdit = $("#tijdelijkeTitel").text();
+		t = Session.get('tijdelijkeVraagIdDelete');
 
-		if ($("#tijdelijkeTitel").text() == "Wilt u deze vraag verwijderen?" ) {
-			t = Session.get('tijdelijkeVraagIdDelete');
+		if ($("#tijdelijkeTitel").text() == "Wilt u deze vraag verwijderen?" ) {		
 			Meteor.call('VraagVerwijderen', t, function(error, id){
 
 			if (error)
@@ -223,12 +223,14 @@ Template.OverzichtVragen.events({
 		}
 
 		else if ($("#tijdelijkeTitel").text() == "Wilt u van deze vraag een openvraag maken? U verwijdert hier mee alle meerkeuze antwoorden." ) {
-			Meteor.call('OpenVraag', this._id);
-			Meteor.myFunctions.DeleteAllMPC(this._id);
+			Meteor.call('OpenVraag', t);
+			Meteor.myFunctions.DeleteAllMPC(t);
+			console.log("Open");
 		}
 
 		else if ($("#tijdelijkeTitel").text() == "Wilt u van deze vraag een meerkeuze vraag maken?"){
-			Meteor.call('Meerkeuzevraag', this._id);
+			Meteor.call('Meerkeuzevraag', t);
+			console.log("meerkeuze");	
 		}
 	},
 
@@ -237,7 +239,19 @@ Template.OverzichtVragen.events({
 			
 	},
 
-	'change .changeopen': function(e) {
+	'click #soortVraagVeranderen': function(e) {
+		e.preventDefault();
+		console.log(this._id);
+
+		checkOpenVraag = Vragen.find({_id: this._id}).fetch();
+		if (checkOpenVraag[0].openVraag) { $("#tijdelijkeTitel").text("Wilt u van deze vraag een meerkeuze vraag maken?"); }
+		else { $("#tijdelijkeTitel").text("Wilt u van deze vraag een openvraag maken? U verwijdert hier mee alle meerkeuze antwoorden."); }
+
+		Session.set('tijdelijkeVraagIdDelete', this._id);
+		Session.set('popUpVraagVerwijderen', true);	
+	},
+
+	/*'change .changeopen': function(e) {
 		e.preventDefault();
 		$("#tijdelijkeTitel").text("Wilt u van deze vraag een openvraag maken? U verwijdert hier mee alle meerkeuze antwoorden.");
 		Session.set('tijdelijkeVraagIdDelete', this._id);
@@ -251,7 +265,7 @@ Template.OverzichtVragen.events({
 		Session.set('tijdelijkeVraagIdDelete', this._id);
 		Session.set('popUpVraagVerwijderen', true);			
 		
-	},
+	},*/
 	'input .vraaginput': function(e){
 		var titelAanpassen = $("#input" + this._id).val();
 		if(titelAanpassen !== ""){

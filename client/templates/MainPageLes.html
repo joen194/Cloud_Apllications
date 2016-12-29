@@ -38,11 +38,29 @@
 
 
 <template name="OverzichtLessen" >
+{{#if LesVerwijderen}}
+    <div class="modal fade" id="myModal2" role="dialog" >
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="tijdelijkeTitelLes" text=""></h4>
+          </div>
+          <div class="modal-body">
+            <button  id="jaLes" type="button" class="btn btn-default" data-dismiss="modal">Ja</button>
+            <button  id="neeLes" type="button" class="btn btn-default" data-dismiss="modal">Nee</button>            
+          </div>
+        </div>          
+      </div>
+    </div> 
+  {{/if}}
   <div class="row" >
     {{#each historyLes}}
     <div class="col-sm-3" id="lessen"> 
 	     <h1 id='h1{{_id}}'>{{lesnaam}}</h1> <div id='div{{_id}}' style="display:none"><input type="text" id='input{{_id}}' class='input' value="{{lesnaam}}"></div>
-       <img id="deleteLes" src="SystemDelete.ico" class="deleteIcon" alt="delete"><img src="settings-icon-16.png" alt="settings" id="editLes" class="editIcon">
+       <img id="deleteLes" src="SystemDelete.ico" class="deleteIcon" alt="delete" data-toggle="modal" data-target="#myModal2"><img src="settings-icon-16.png" alt="settings" id="editLes" class="editIcon">
     </div>
 	 {{/each}}
   </div>
