@@ -15,6 +15,7 @@ Template.StudentenPagina.events({
 			if (error)
 				return alert(error.reason);
 			});
+			
 		}
 		else {
 			var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
@@ -22,11 +23,12 @@ Template.StudentenPagina.events({
 			if (error)
 				return alert(error.reason);
 			});
+
 		}
 
 		setTimeout(function(){
- 			$("#AntwoordInputDiv").fadeOut(500);
-		}, 500);
+ 			$("#AntwoordInputDiv").fadeOut(1);
+		});
 	},
 //******************************** Code die de naam in de database zet ******************************
 	'click #enterName': function(e) {
