@@ -15,7 +15,7 @@ Meteor.methods({
 	},
 	LesVerwijderen: function(lesId){
 		Lessen.remove(lesId);
-		Vragen.remove({lesId: lesId});
+		Vragen.remove({lessenId: lesId});
 		MultipleChoice.remove({lesId: lesId});
 		
 	},

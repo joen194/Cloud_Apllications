@@ -40,7 +40,6 @@ Template.OverzichtLessen.helpers({
 		return Lessen.find();
 	},
 	LesVerwijderen:function(){
-		console.log("in Les");
 		return Session.get('popUpLesVerwijderen');
 	},
 });
@@ -63,12 +62,7 @@ Template.OverzichtLessen.events({
 		editDeletePress=this._id;
 		Session.set('tijdelijkeLesIdDelete', this._id);
 		$("#tijdelijkeTitelLes").text("Wilt u deze les verwijderen?");
-		Session.set('popUpLesVerwijderen', true);
-		/*Meteor.call('LesVerwijderen', this._id, function(error, id){
-		if (error)
-			return alert(error.reason);
-		});*/
-				
+		Session.set('popUpLesVerwijderen', true);				
 	},
 	'click #lessen' : function(e){
 		e.preventDefault();
@@ -96,9 +90,8 @@ Template.OverzichtLessen.events({
 		if ($("#tijdelijkeTitelLes").text() == "Wilt u deze les verwijderen?" ) {
 			t = Session.get('tijdelijkeLesIdDelete');
 			Meteor.call('LesVerwijderen', t, function(error, id){
-
-			if (error)
-				return alert(error.reason);
+				if (error)
+					return alert(error.reason);
 			});
 		}
 	},
