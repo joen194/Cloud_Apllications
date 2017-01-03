@@ -48,6 +48,7 @@ Template.vraagOpBord.helpers({
 			}	
 		},
 	editGraph : function(){
+				console.log("!!!!!!!!! editGraph");
 		roomCode = window.location.hash.substr(1);
 		Meteor.subscribe('DataLessenPopup', roomCode);
 		var dbLes = Lessen.find().fetch();
@@ -59,7 +60,7 @@ Template.vraagOpBord.helpers({
 		arrayAntwoorden[amountMP] = mp_ID;
 		amountMP++;
 
-
+		console.log(arrayAntwoorden[1]);
 		const data = {
 		  labels: [arrayAntwoorden[0], arrayAntwoorden[1], arrayAntwoorden[2]],
 		    series:[
@@ -67,36 +68,15 @@ Template.vraagOpBord.helpers({
 		  ]
 		};
 
-		const options = {
-		  seriesBarDistance: 5
-		};
-
-		const responsiveOptions = [
-		  ['screen and (min-width: 641px) and (max-width: 1024px)', {
-		    seriesBarDistance: 10,
-		    axisX: {
-		      labelInterpolationFnc: function (value) {
-		        return value;
-		      }
-		    }
-		  }],
-		  ['screen and (max-width: 640px)', {
-		    seriesBarDistance: 5,
-		    axisX: {
-		      labelInterpolationFnc: function (value) {
-		        return value[0];
-		      }
-		    }
-		  }]
-		];
-
-		const test = new Chartist.Bar('.ct-chart', data, options, responsiveOptions);
+		setTimeout(function(){
+			const test = new Chartist.Bar('.ct-chart', data);
+		}, 0);
+		
 
 		},
 
 	showGraph : function(){
 		
-
 	},
 
 	antwoordStyling : function(){

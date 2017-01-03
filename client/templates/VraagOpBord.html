@@ -1,7 +1,5 @@
 <template name="vraagOpBord">
 	<h2 id="RoomCodeVisible">roomcode : {{Roomcode}}</h2>
-	<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
   	
   	<h1>Vraag: {{vraagnaam}}</h1>
 	<div class="antwoordenBox">		
@@ -15,17 +13,14 @@
 			  			</div>
 			  		{{/each}}
 			  	{{else}}
-			  		<div>
-
-				  		{{#each antwoordOpBord}}
-				  		
+			  		<div><div class="ct-chart ct-perfect-fourth ct-label">
 				  			<p class="graphAnswers">
 				  				{{editGraph}}
 				  					  				
 				  			</p>
-				  		{{/each}}
-	  					<div class="ct-chart ct-perfect-fourth"></div>
+	  					
 					  		{{showGraph}} 	 
+					  	</div>
 			  		</div>
 	  			{{/if}}
 	  		</div>
