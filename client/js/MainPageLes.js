@@ -48,12 +48,21 @@ Template.OverzichtLessen.helpers({
 
 //##################### Om lessen te verwijderen en te bekijken ##########################
 
-var editDeletePress ;
+var editDeletePress = null;
+
 
 Template.OverzichtLessen.events({
 	'click #editLes' : function(e){
 		e.preventDefault();
-		editDeletePress=this._id;
+		if(editDeletePress===null){
+			editDeletePress=this._id;
+		}else{
+			setTimeout(function(){
+ 				editDeletePress = null;
+			},0);
+			
+		}
+		
 		$('#h1' + this._id).toggle();
 		$('#div' + this._id).toggle();	
 	},
@@ -77,6 +86,9 @@ Template.OverzichtLessen.events({
 	},
 	'click #saveLes': function(e){
 		e.preventDefault();
+		setTimeout(function(){
+ 			editDeletePress = null;
+		},0);
 		var lesInput = $('#input' + this._id).val();
 		Meteor.call('LessenAanpassen',lesInput, this._id, function(error,id) {
 			if (error)
@@ -99,6 +111,6 @@ Template.OverzichtLessen.events({
 
 	'click #neeLes': function(e){
 		e.preventDefault();
-			
+		editDeletePress = null;	
 	},
 });

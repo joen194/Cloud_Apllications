@@ -2,6 +2,7 @@
 var setDiv = false;
 var tijdelijkeVraagId;
 var naamStudent;
+var SubmittedVraagID;
 Template.StudentenPagina.events({
 		'click #submitAntwoordOpen': function(e){
 			console.log(tijdelijkeVraagId);	
@@ -15,6 +16,7 @@ Template.StudentenPagina.events({
 		if (!res) {
 			alert("vraag al ingevoerd");
 		}
+		SubmittedVraagID = tijdelijkeVraagId;
 		});
 		
 
@@ -37,6 +39,7 @@ Template.StudentenPagina.events({
 		if (!res) {
 			alert("vraag al ingevoerd");
 		}else{
+			SubmittedVraagID = tijdelijkeVraagId;
 			Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId,  function(error, res){
 			if (error)
 				return alert(error.reason);
@@ -81,14 +84,28 @@ Template.StudentenPagina.events({
 });
 
 Template.StudentenPagina.helpers ({
+	NogNietGeantwoord: function(){
+		var roomCode = window.location.hash.substr(1);
+		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
+		console.log(tijdelijkeVraagId +  " en " + tijdelijkeDbStudentenPagina[0].vraagId);
+		if (tijdelijkeVraagId !== SubmittedVraagID) {
+			console.log("trueueu");
+			return true;
+		}else{
+			console.log("nope");
+			return false;
+			
+		}
+	},
 	oneMultipleChoice: function (){
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
-		console.log(tijdelijkeDbStudentenPagina);
 		var mp = MultipleChoice.find().fetch();
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
-		console.log(tijdelijkeVraagId);
+
+		
 	},
 	openAntwoord: function(){
 		if (setDiv){
@@ -100,15 +117,15 @@ Template.StudentenPagina.helpers ({
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
+
 		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
-	
 		if (checkOpenVraag[0].openVraag == true){
 			return true;
 		}
 		else {
 			return false;
 		}	
-		console.log(tijdelijkeVraagId);	
+		
 	} 
 
 	

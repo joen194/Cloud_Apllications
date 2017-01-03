@@ -8,16 +8,17 @@
   	<div id="AntwoordInputDiv"> 
       <div id="theMultipleChoices">                
       </div>
-      {{#if openAntwoord}}
-  		  <h2>Antwoord: <input type="text" id= "antwoordField"></h2>
-        <button id="submitAntwoordOpen">Submit</button>
-      {{else}}   
-        {{#each oneMultipleChoice}}
-          <input type="radio" name='multipleChoices' value={{multipleChoice}}> {{multipleChoice}} <br>
-        {{/each}}
-        <button id="submitAntwoordMPC">Submit</button>
-      {{/if}}
-  		
+      {{#if NogNietGeantwoord}}
+        {{#if openAntwoord}}
+    		  <h2>Antwoord: <input type="text" id= "antwoordField"></h2>
+          <button id="submitAntwoordOpen">Submit</button>
+        {{else}}   
+          {{#each oneMultipleChoice}}
+            <input type="radio" name='multipleChoices' value={{multipleChoice}}> {{multipleChoice}} <br>
+          {{/each}}
+          <button id="submitAntwoordMPC">Submit</button>
+        {{/if}}
+  		{{/if}}
 	  </div>
     <script type="text/javascript">
 
@@ -39,7 +40,7 @@
         Meteor.subscribe('DataMultipleChoice');
         Meteor.subscribe('DataLessenPopup',roomCode );
         Meteor.subscribe('DataVragen', Lesinfo.lesID);
-        
+
         
       });
     </script>
