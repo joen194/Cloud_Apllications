@@ -27,6 +27,10 @@ Template.StudentenPagina.events({
 		if (error)
 			return alert(error.reason);
 		});
+		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naamStudent, function(error, res){
+		if (error)
+			return alert(error.reason);
+		});
 
 		setTimeout(function(){
  			$("#AntwoordInputDiv").fadeOut(1);
