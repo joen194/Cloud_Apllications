@@ -13,6 +13,8 @@ Template.MainPageVragen.onRendered (function(){
 var tijdelijkVraagId;
 var tijdelijkeRoomCode;
 var tijdelijkLesId;
+var tijdelijkeEditVar2;
+var tijdelijkeEditVar1;
 //###################### Vraag field resetten ###########################
 Template.MainPageVragen.events({
 	'click #voegVraagToe': function(e){
@@ -165,8 +167,26 @@ Template.OverzichtVragen.events({
 		e.preventDefault();
 		Session.set('tijdelijkVraagId2', this._id);
 		Meteor.subscribe('DataMultipleChoice',this._id);
-		$(".divEditSluiten").hide();
-		$('#div' + this._id).toggle(500);						
+		tijdelijkeEditVar1 = this._id;
+
+		if (tijdelijkeEditVar1 != tijdelijkeEditVar2) {
+			$('#div' + tijdelijkeEditVar1).toggle(500);
+			$('#div' + tijdelijkeEditVar2).toggle(500);
+			tijdelijkeEditVar2 = tijdelijkeEditVar1;
+		}
+		else {
+			$('#div' + tijdelijkeEditVar1).toggle(500);
+		}
+		
+		
+
+
+
+		
+		//$(".divEditSluiten").toggle(500);
+
+		//$(".divEditSluiten").hide();
+		//$('#div' + this._id).toggle(500);						
 
 		/*var obj = MultipleChoice.find();
 		var db = obj.collection._docs._map;
