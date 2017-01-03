@@ -59,8 +59,12 @@
   <div class="row" >
     {{#each historyLes}}
     <div class="col-sm-3" id="lessen"> 
-	     <h1 id='h1{{_id}}'>{{lesnaam}}</h1> <div id='div{{_id}}' style="display:none"><input type="text" id='input{{_id}}' class='input' value="{{lesnaam}}"></div>
-       <img id="deleteLes" src="SystemDelete.ico" class="deleteIcon" alt="delete" data-toggle="modal" data-target="#myModal2"><img src="settings-icon-16.png" alt="settings" id="editLes" class="editIcon">
+	    <h1 id='h1{{_id}}'>{{lesnaam}}</h1> 
+      <div id='div{{_id}}' style="display:none">
+        <input type="text" id='input{{_id}}' class='input' value="{{lesnaam}}">
+        <button id="saveLes">Save</button>
+      </div>
+      <img id="deleteLes" src="SystemDelete.ico" class="deleteIcon" alt="delete" data-toggle="modal" data-target="#myModal2"><img src="settings-icon-16.png" alt="settings" id="editLes" class="editIcon">
     </div>
 	 {{/each}}
   </div>
