@@ -307,10 +307,11 @@ Template.OverzichtVragen.events({
 				});
 			}			
 		}*/
+		console.log(this._id);
 		var multipleChoiceInput = $("#extraMultipleChoiceAanmaken" + this._id).val();
 		if (multipleChoiceInput != ''){
 			
-			Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, this._id, function(error,res) {
+			Meteor.call('MultipleChoiceToevoegen', multipleChoiceInput, this._id, tijdelijkLesId, function(error,res) {
 				if (error)
 					return alert(error.reason);
 			});
