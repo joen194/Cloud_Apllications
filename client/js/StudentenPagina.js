@@ -4,10 +4,11 @@ var tijdelijkeVraagId;
 var naamStudent;
 Template.StudentenPagina.events({
 		'click #submitAntwoordOpen': function(e){
+			console.log(tijdelijkeVraagId);	
 		e.preventDefault();
 
 		var tijdelijkAntwoord = $('#antwoordField').val();
-		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naamStudent, function(error, res){
+		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, function(error, res){
 		if (error)
 			return alert(error.reason);
 		});
@@ -18,16 +19,17 @@ Template.StudentenPagina.events({
 		});
 	},
 	'click #submitAntwoordMPC': function(e){
+		console.log(tijdelijkeVraagId);	
 		e.preventDefault();
 		var naam = $('#naamInput').val();
 	
 		var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
 
-		Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId[0]._id,  function(error, res){
+		Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId,  function(error, res){
 		if (error)
 			return alert(error.reason);
 		});
-		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naamStudent, function(error, res){
+		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, function(error, res){
 		if (error)
 			return alert(error.reason);
 		});
@@ -75,6 +77,7 @@ Template.StudentenPagina.helpers ({
 		console.log(tijdelijkeDbStudentenPagina);
 		var mp = MultipleChoice.find().fetch();
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
+		console.log(tijdelijkeVraagId);
 	},
 	openAntwoord: function(){
 		if (setDiv){
@@ -93,8 +96,9 @@ Template.StudentenPagina.helpers ({
 		}
 		else {
 			return false;
-		}		
-	}, 
+		}	
+		console.log(tijdelijkeVraagId);	
+	} 
 
 	
 });
