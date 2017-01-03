@@ -30,7 +30,8 @@ Meteor.methods({
 		return MultipleChoice.insert({
 			vragenId: tijdelijkVraagId,
 			multipleChoice: multipleChoiceInput,
-			lesId: lesId
+			lesId: lesId,
+			timesChosen: 0
 		}, function(error,id){
 			return id;
 		});
@@ -42,6 +43,15 @@ Meteor.methods({
 
 	MultipleChoiceAanpassen: function(multipleChoiceAanpassen,ophalenInputsId){
 		MultipleChoice.update({_id: ophalenInputsId}, {$set:{multipleChoice: multipleChoiceAanpassen}});
+	},
+
+	MultipleChoiceChosenToevoegen: function(multipleChoiceNaam, ophalenInputsId){
+		var mp = MultipleChoice.find( { $and: [ { lesId: ophalenInputsId}, { multipleChoice: multipleChoiceNaam}]}).fetch();
+		var getThaInt = mp[0].timesChosen;
+		var getThaInt = 1 + getThaInt ;
+		console.log(getThaInt);
+		//MultipleChoice.update({_id: ophalenInputsId}, {$set:{timesChosen: multipleChoicePlusOne}});
+		MultipleChoice.update( { $and: [ { lesId: ophalenInputsId}, { multipleChoice: multipleChoiceNaam}]}, {$set:{timesChosen: getThaInt}});
 	},
 
 	MultipleChoiceVerwijderen: function(id) {

@@ -19,7 +19,8 @@ Template.StudentenPagina.events({
 		}
 		else {
 			var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
-			Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naam, function(error, res){
+			console.log(tijdelijkAntwoord);
+			Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId[0]._id,  function(error, res){
 			if (error)
 				return alert(error.reason);
 			});

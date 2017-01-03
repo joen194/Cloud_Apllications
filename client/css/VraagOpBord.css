@@ -22,12 +22,12 @@
 
 .ct-series-a .ct-bar {
   /* Colour of your bars */
-  stroke: green;
+  stroke: green; 
   /* The width of your bars */
   stroke-width: 50px;
-  font-size: 200px;
+  font-size: 40px;
 }
 .ct-label {
-    font-size: 50px;
+    font-size: 20px;
     color: black;
 }

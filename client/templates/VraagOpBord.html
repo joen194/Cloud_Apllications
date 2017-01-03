@@ -13,15 +13,11 @@
 			  			</div>
 			  		{{/each}}
 			  	{{else}}
-			  		<div><div class="ct-chart ct-perfect-fourth ct-label">
-				  			<p class="graphAnswers">
-				  				{{editGraph}}
-				  					  				
-				  			</p>
-	  					
-					  		{{showGraph}} 	 
-					  	</div>
-			  		</div>
+			  		{{#each editGraph}}
+			  			<div>
+			  				<p>{{multipleChoice}}  : {{timesChosen}}</p>
+			  			</div>
+			  		{{/each}}
 	  			{{/if}}
 	  		</div>
 	</div>

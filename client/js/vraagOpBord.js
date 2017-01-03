@@ -48,7 +48,22 @@ Template.vraagOpBord.helpers({
 			}	
 		},
 	editGraph : function(){
-				console.log("!!!!!!!!! editGraph");
+		roomCode = window.location.hash.substr(1);
+		Meteor.subscribe('DataLessenPopup', roomCode);
+		var dbLes = Lessen.find().fetch();
+		Meteor.subscribe('DataMultipleChoice');
+		Meteor.subscribe('DataVragen', dbLes[0]._id);
+		var vraagID = Vragen.find({_id: dbLes[0].vraagId}).fetch();
+		Meteor.subscribe('DataAntwoorden', vraagID[0]._id);
+		var mpId = MultipleChoice.find({vragenId: vraagID[0]._id}).fetch();
+		if (vraagID[0].visibleAnswer) {
+		return mpId;
+		}
+
+		},
+
+	showGraph : function(){
+		/*
 		roomCode = window.location.hash.substr(1);
 		Meteor.subscribe('DataLessenPopup', roomCode);
 		var dbLes = Lessen.find().fetch();
@@ -72,11 +87,7 @@ Template.vraagOpBord.helpers({
 			const test = new Chartist.Bar('.ct-chart', data);
 		}, 0);
 		
-
-		},
-
-	showGraph : function(){
-		
+*/
 	},
 
 	antwoordStyling : function(){
