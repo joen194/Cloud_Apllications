@@ -23,11 +23,19 @@ Meteor.methods({
 	},
 
 	AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling) {
-		Antwoorden.insert({
-			vraagId: tijdelijkeVraagId,
-			Antwoord: tijdelijkAntwoord,
-			naamLeerling: tijdelijkeNaam_leerling
-		});
+		var checkAntwoord = Antwoorden.find({ $and: [{ vraagId: tijdelijkeVraagId},{ naamLeerling: tijdelijkeNaam_leerling}]}).fetch();
+		console.log(checkAntwoord.length);
+		if (checkAntwoord.length > 0) {
+			return false;
+		}else{
+
+			Antwoorden.insert({
+				vraagId: tijdelijkeVraagId,
+				Antwoord: tijdelijkAntwoord,
+				naamLeerling: tijdelijkeNaam_leerling
+			});
+			return true;
+		}
 	},
 
 	NaamInDatabase: function(Naam, clientId, kamerCode) {

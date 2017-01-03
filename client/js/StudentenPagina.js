@@ -11,6 +11,10 @@ Template.StudentenPagina.events({
 		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, function(error, res){
 		if (error)
 			return alert(error.reason);
+
+		if (!res) {
+			alert("vraag al ingevoerd");
+		}
 		});
 		
 
@@ -25,13 +29,20 @@ Template.StudentenPagina.events({
 	
 		var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
 
-		Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId,  function(error, res){
-		if (error)
-			return alert(error.reason);
-		});
+
 		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, function(error, res){
 		if (error)
 			return alert(error.reason);
+				
+		if (!res) {
+			alert("vraag al ingevoerd");
+		}else{
+			Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId,  function(error, res){
+			if (error)
+				return alert(error.reason);
+			});
+		}
+
 		});
 
 		setTimeout(function(){
