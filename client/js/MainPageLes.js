@@ -75,14 +75,15 @@ Template.OverzichtLessen.events({
 		}
 
 	},
-	'input .input': function(e) {
+	'click #saveLes': function(e){
 		e.preventDefault();
-
 		var lesInput = $('#input' + this._id).val();
 		Meteor.call('LessenAanpassen',lesInput, this._id, function(error,id) {
 			if (error)
 				return alert(error.reason);
 		});
+		$('#h1' + this._id).toggle();
+		$('#div' + this._id).toggle();
 	},
 	'click #jaLes': function(e){
 		e.preventDefault();
