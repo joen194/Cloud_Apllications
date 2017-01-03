@@ -7,7 +7,7 @@ Meteor.methods({
 
 	    var checkroomcode = {};
 	    checkroomcode = Lessen.find({"roomCode" : code}).fetch();
-	    console.log(checkroomcode);
+
 
 	    if (checkroomcode.length > 0) {
 
@@ -30,12 +30,20 @@ Meteor.methods({
 		});
 	},
 
-	NaamInDatabase: function(naam, clientId, kamerCode) {
-		Aanwezigen.insert({
-			naam: naam,
-			clientId: clientId,
-			roomCode: kamerCode
-		});
+	NaamInDatabase: function(Naam, clientId, kamerCode) {
+		checkname = Aanwezigen.find({"naam" : Naam}).fetch();
+		if (checkname.length > 0) {
+			return false;  
+	    }
+	    else{
+	    	Aanwezigen.insert({
+				naam: Naam,
+				clientId: clientId,
+				roomCode: kamerCode
+			});
+			return true;
+	    } 
+
 	}
 });
 

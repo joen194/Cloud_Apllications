@@ -1,31 +1,32 @@
 
 var setDiv = false;
+var tijdelijkeVraagId;
+var naamStudent;
 Template.StudentenPagina.events({
-		'click #submitAntwoord': function(e){
+		'click #submitAntwoordOpen': function(e){
 		e.preventDefault();
 
-		var tijdelijkeVraagId = Lessen.find({roomCode: roomCode}).fetch();
-		var checkOpenVraag = Vragen.find({_id: tijdelijkeVraagId[0].vraagId}).fetch();
+		var tijdelijkAntwoord = $('#antwoordField').val();
+		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naamStudent, function(error, res){
+		if (error)
+			return alert(error.reason);
+		});
+		
+
+		setTimeout(function(){
+ 			$("#AntwoordInputDiv").fadeOut(1);
+		});
+	},
+	'click #submitAntwoordMPC': function(e){
+		e.preventDefault();
 		var naam = $('#naamInput').val();
 	
-		if (checkOpenVraag[0].openVraag == true){
+		var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
 
-			var tijdelijkAntwoord = $('#antwoordField').val();
-			Meteor.call('AntwoordToevoegen', tijdelijkeVraagId[0].vraagId, tijdelijkAntwoord, naam, function(error, res){
-			if (error)
-				return alert(error.reason);
-			});
-			
-		}
-		else {
-			var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
-			console.log(tijdelijkAntwoord);
-			Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId[0]._id,  function(error, res){
-			if (error)
-				return alert(error.reason);
-			});
-
-		}
+		Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId[0]._id,  function(error, res){
+		if (error)
+			return alert(error.reason);
+		});
 
 		setTimeout(function(){
  			$("#AntwoordInputDiv").fadeOut(1);
@@ -36,18 +37,29 @@ Template.StudentenPagina.events({
 		e.preventDefault();
 
 		var clientId = Meteor.default_connection._lastSessionId;
-
 		var naam = $('#naamInput').val();
 		if (naam.length > 0) {
-			Meteor.call('NaamInDatabase', naam, clientId, Lesinfo.roomCode, function(error, res) {
-			if (error)
-				return alert(error.reason);
+				Meteor.call('NaamInDatabase', naam, clientId, Lesinfo.roomCode, function(error, res) {
+				if (error){
+					alert(error.reason);
+					return;
+				}
+				else {
+					if (res) {
+						naamStudent = naam;
+						showAntwoordInput();
+					}else alert("Naam al in gebruik!");
+					return;
+				}
+
 			});
+			
 
-			showAntwoordInput();
-
-		} else alert("Vul je naam in");
-	},
+		
+		}
+		else alert("Vul je naam in");
+		
+	}
 
 });
 
@@ -55,6 +67,7 @@ Template.StudentenPagina.helpers ({
 	oneMultipleChoice: function (){
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
 		console.log(tijdelijkeDbStudentenPagina);
 		var mp = MultipleChoice.find().fetch();
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
@@ -68,6 +81,7 @@ Template.StudentenPagina.helpers ({
 
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
+		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
 		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
 	
 		if (checkOpenVraag[0].openVraag == true){
