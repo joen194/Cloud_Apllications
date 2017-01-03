@@ -175,7 +175,7 @@ Template.OverzichtVragen.events({
 			tijdelijkeEditVar2 = tijdelijkeEditVar1;
 		}
 		else {
-			$('#div' + tijdelijkeEditVar1).toggle(500);
+			$('#div' + tijdelijkeEditVar2).toggle(500);
 		}
 		
 		
