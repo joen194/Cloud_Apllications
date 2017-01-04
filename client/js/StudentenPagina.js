@@ -84,39 +84,25 @@ Template.StudentenPagina.events({
 });
 
 Template.StudentenPagina.helpers ({
-	NogNietGeantwoord: function(){
-		var roomCode = window.location.hash.substr(1);
-		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
-		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
-		console.log(tijdelijkeVraagId +  " en " + tijdelijkeDbStudentenPagina[0].vraagId);
-		if (tijdelijkeVraagId !== SubmittedVraagID) {
-			console.log("trueueu");
-			return true;
-		}else{
-			console.log("nope");
-			return false;
-			
-		}
-	},
 	oneMultipleChoice: function (){
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
 		var mp = MultipleChoice.find().fetch();
+		
+		ShowAntwoordInput(tijdelijkeVraagId);
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
+
 
 		
 	},
 	openAntwoord: function(){
-		if (setDiv){
-			setTimeout(function(){
- 				$("#AntwoordInputDiv").fadeIn(500);
-			}, 500);
-		}
 
+		
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
+		ShowAntwoordInput(tijdelijkeVraagId);
 
 		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
 		if (checkOpenVraag[0].openVraag == true){
@@ -138,4 +124,16 @@ function showAntwoordInput() {
  		$("#AntwoordInputDiv").fadeIn(500);
 	}, 500);
 	setDiv = true;
+}
+
+function ShowAntwoordInput(tijdelijkeVraagId){
+	if (tijdelijkeVraagId !== SubmittedVraagID) {
+			if (setDiv){
+
+				setTimeout(function(){
+	 				$("#AntwoordInputDiv").fadeIn(500);
+
+				}, 500);
+			}
+		}
 }
