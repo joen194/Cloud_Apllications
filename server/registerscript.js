@@ -21,7 +21,7 @@ Meteor.methods({
 
 AccountsTemplates.configure({
     reCaptcha: {
-        secretKey: 'nope'
+        secretKey: 'wDwRJkYLtzUS7pzwNjHHkFRK'
     },
 });
 
@@ -43,7 +43,7 @@ Accounts.onCreateUser(function(options, user) {
 //################## Mail Settings ###############################
     // 1. Set up stmp
     var username = 'student.interactor@outlook.be';
-    var password = 'nope';
+    var password = 'CloudApplications';
     var server = 'smtp-mail.outlook.com';
     var port = '587';
 
