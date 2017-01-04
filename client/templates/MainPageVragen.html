@@ -1,9 +1,11 @@
 <template name="MainPageVragen">
 
   <script type="text/javascript">
-    tijdelijkLesId = Session.get('tijdelijkIdSession');
+    //tijdelijkLesId = Session.get('tijdelijkIdSession');
+    tijdelijkLesId = $.cookie('tijdelijkIdSession');
     Meteor.subscribe('DataVragen', tijdelijkLesId);
-    tijdelijkeRoomCode = Session.get('getRoomCode');
+    //tijdelijkeRoomCode = Session.get('getRoomCode');
+    tijdelijkeRoomCode = $.cookie('getRoomCode');
     Meteor.subscribe('DataAanwezigen', tijdelijkeRoomCode);
     Meteor.subscribe('DataAntwoorden');
 
@@ -71,6 +73,7 @@
         </div>
       </div>    
     </div>
+    {{> OverzichtVragen}}
 </template>
 
 <template name="OverzichtVragen">

@@ -6,7 +6,7 @@
 Template.MainPageVragen.onRendered (function(){
 	Session.set('showOpenvraag', false);
 	Session.set('showMeerkeuzevraag', false);
-	Session.set('meerkeuzeBevestigt', false);
+	//Session.set('meerkeuzeBevestigt', false);
 	Session.set('aangemaakt',false);
 	Session.set('popUpVraagVerwijderen', false);
 });
@@ -100,7 +100,9 @@ Template.MainPageVragen.events({
 	'click #showAlleAntwoorden':function(e){
 		e.preventDefault();
 
-		Session.set('AlleAntwoorden', true);
+		//Session.set('AlleAntwoorden', true);
+		$.cookie('AlleAntwoorden', true, {expires : 1});
+		window.location= "http://localhost:3000/leerkracht/vragen/AlleAntwoorden";
 	}
 });
 //################################## helpers #########################################
@@ -134,7 +136,8 @@ Template.MainPageVragen.helpers({
 //################ Om de juiste vragen uit de DB te halen #######################
 Template.OverzichtVragen.helpers({
 	historyVraag : function(){
-		tijdelijkLesId = Session.get('tijdelijkIdSession');
+		//tijdelijkLesId = Session.get('tijdelijkIdSession');
+		tijdelijkLesId = $.cookie('tijdelijkIdSession');
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
 	multipleChoiceHTML: function(){

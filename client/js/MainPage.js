@@ -28,10 +28,12 @@ Template.MainPage.helpers({
 
 	},
 	showVraag() {
-	    return Session.get('showVraag');
+	    //return Session.get('showVraag');
+	    return $.cookie('showVraag');
 	},
 	AlleAntwoorden() {
-		return Session.get("AlleAntwoorden");
+		return $.cookie('AlleAntwoorden');
+		//return Session.get("AlleAntwoorden");
 	}
 	
 });

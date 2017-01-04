@@ -14,13 +14,12 @@ Template.AntwoordenPage.events({
 
 Template.AntwoordenPage.helpers({
 	AntwoordenLoop: function() {
+		tijdelijkLesId = $.cookie('tijdelijkIdSession');
 		return Vragen.find({lessenId: tijdelijkLesId});
 	},
 
 	AntwoordInVraag: function(){
 		tijdelijkId = Session.get('tijdelijkVraagId');
-		console.log(tijdelijkId);
-		console.log(Antwoorden.find({vraagId: tijdelijkId}));
 		return Antwoorden.find({vraagId: tijdelijkId});
 	}
 });

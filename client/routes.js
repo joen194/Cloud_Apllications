@@ -6,12 +6,21 @@ Router.route('/room', function () {
 });
 
 Router.route('/leerkracht', function () {
-  this.render('MainPage');
+	this.render('MainPage');
 });
-Router.route('/leerkracht/les', function () {
+
+Router.route('/leerkracht/vragen', function () {
+	this.render('MainPage');
+});
+
+Router.route('/leerkracht/vragen/AlleAntwoorden', function () {
   this.render('MainPage');
 });
 
+
+
+/*
 Router.route('/roomCodeLeerkrachten', function() {
 	this.render('vraagOpBord');
-});
+});*/
+

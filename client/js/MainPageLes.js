@@ -11,8 +11,8 @@ Template.MainPageLes.events({
 		if (error)
 			return alert(error.reason);
 		});
-		Session.set('getRoomCode', idpinboard);
-		console.log("hier is de room " + idpinboard);
+		//Session.set('getRoomCode', idpinboard);
+		//$.cookie('getRoomCode', idpinboard, { expires: 1 });
 	}
 });
 
@@ -76,11 +76,15 @@ Template.OverzichtLessen.events({
 	'click #lessen' : function(e){
 		e.preventDefault();
 		if (editDeletePress !== this._id) {
-			Session.set('showVraag', true);
+			//Session.set('showVraag', true);
+			$.cookie('showVraag', true, { expires: 1 });
 			var tijdelijkLesId = this._id;
-			Session.set('tijdelijkIdSession', tijdelijkLesId);
+			//Session.set('tijdelijkIdSession', tijdelijkLesId);
+			$.cookie('tijdelijkIdSession', tijdelijkLesId, { expires: 1 });
 			var db = Lessen.find({_id: this._id}).fetch();
-			Session.set('getRoomCode', db[0].roomCode);
+			//Session.set('getRoomCode', db[0].roomCode);
+			$.cookie('getRoomCode', db[0].roomCode, { expires: 1 });
+			window.location= "http://localhost:3000/leerkracht/vragen";
 		}
 
 	},

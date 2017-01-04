@@ -1,6 +1,8 @@
 <template name='AntwoordenPage'>
 <script type="text/javascript">
-	tijdelijkLesId = Session.get('tijdelijkIdSession');
+	//tijdelijkLesId = Session.get('tijdelijkIdSession');
+	tijdelijkLesId = $.cookie('tijdelijkIdSession');
+	console.log(tijdelijkLesId);
 	Meteor.subscribe('DataVragen', tijdelijkLesId);	
 </script>
 {{#each AntwoordenLoop}}
