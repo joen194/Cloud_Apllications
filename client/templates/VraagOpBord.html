@@ -14,8 +14,10 @@
 			  		{{/each}}
 			  	{{else}}
 			  		{{#each editGraph}}
-			  			<div>
-			  				<p>{{multipleChoice}}  : {{timesChosen}}</p>
+			  			<div class="mpAntwoord">
+			  				{{mpStyling}}
+			  				<h2 >{{multipleChoice}}  : {{timesChosen}}</h2>
+			  				
 			  			</div>
 			  		{{/each}}
 	  			{{/if}}

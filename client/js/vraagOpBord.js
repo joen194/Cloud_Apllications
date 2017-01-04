@@ -1,6 +1,7 @@
 
 var roomCode;
 var amountMP = 0;
+var colorPicker = 0;
 var arrayAntwoorden = [];
 
 //################ Om de juiste roomcode uit de DB te halen #######################
@@ -88,6 +89,91 @@ Template.vraagOpBord.helpers({
 		}, 0);
 		
 */
+	},
+	
+	mpStyling : function(){
+		console.log("hierin se")
+		$('.mpAntwoord h2').each(function() {
+		    	var rndm = Math.floor((Math.random() * 10) + 1);
+		    console.log("ma nie hiere?");
+		switch(rndm){
+
+		        	case 0:
+		        	$(this).css({
+		        	color: "DarkSalmon"
+		        	});
+		        	break;
+
+		        	case 1:
+		        	$(this).css({
+		        	color: "blue"
+		        	});
+		        	break;
+
+		        	case 2:
+		        	$(this).css({
+		        	color: "green"
+		        	});
+		        	break;
+
+		        	case 3:
+		        	$(this).css({
+		        	color: "darkyellow"
+		        	});
+		        	break;
+
+		        	case 4:
+		        	$(this).css({
+		        	color: "red"
+		        	});
+		        	break
+
+		        	case 5:
+		        	$(this).css({
+		        	color: "black"
+		        	});
+		        	break;
+
+		        	case 6:
+		        	$(this).css({
+		        	color: "orange"
+		        	});
+		        	break;
+		        	
+		        	case 7:
+		        	$(this).css({
+		        	color: "purple"
+		        	});
+		        	break;
+
+		        	case 8:
+		        	$(this).css({
+		        	color: "Chartreuse "
+		        	});
+		        	break;
+
+		        	case 9:
+		        	$(this).css({
+		        	color: "FireBrick "
+		        	});
+		        	break;
+
+		        	case 10:
+		        	$(this).css({
+		        	color: "DarkSlateGray"
+		        	});
+		        	break;
+		        }
+		       });
+		/*if (colorPicker === 0 ){
+			document.getElementById("mpAntwoord").style.color = "red";
+		}
+		if (colorPicker === 1 ){
+			document.getElementById("mpAntwoord").style.color = "blue";
+		}
+		colorPicker++;
+		console.log(colorPicker);*/
+		//$(".mpStyling").css("color", "red");
 	},
 
 	antwoordStyling : function(){
