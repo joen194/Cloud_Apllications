@@ -121,7 +121,7 @@ Template.MainPageVragen.helpers({
 	},
 
 	aanwezigheid: function(){
-		tijdelijkeRoomCode = Session.get('getRoomCode');
+		tijdelijkeRoomCode = $.cookie('getRoomCode');
 		return Aanwezigen.find({roomCode: tijdelijkeRoomCode});
 		//return Antwoorden.find();
 	},MPCAntwoorden: function(){
