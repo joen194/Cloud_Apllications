@@ -3,8 +3,7 @@ Template.SideNavBar.events({
 		Meteor.logout();
 	},
 	'click #NavLessen' : function(e){
-		Session.set('showVraag',false);
-		Session.set('AlleAntwoorden', false);
+		window.location= "http://localhost:3000/leerkracht";
 	}
 });
 

@@ -1,5 +1,7 @@
 
 <template name="MainPageLes" >
+<div id="PageContent">
+
   <script type="text/javascript">
     //################## Om te abonneren op de lessen data #####################
     Meteor.subscribe('DataLessen');
@@ -35,6 +37,8 @@
   
   </div>
   {{> OverzichtLessen}}
+  {{> SideNavBar}}
+  </div>
 </template>
 
 
@@ -69,6 +73,7 @@
     </div>
 	 {{/each}}
   </div>
+
 </template>
 
 

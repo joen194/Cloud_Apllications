@@ -2,7 +2,7 @@
   
 
   <div id="PageContent">
-    	{{#if currentUser}}
+
 
 
         {{#if verify}}
@@ -23,18 +23,19 @@
 
           {{else}}
 
-            <p class="alert alert-warning">You need to verify your email address. <a href="#" class="resend-verification-link">Resend verification link</a>.</p>
+            
           
         {{/if}}
 
-      {{else}}
-        {{> LoginForm}}
-      {{/if}}
+
     </div>
 
 
   	
   </template>
 
+<template name="verifyMail">
+<p class="alert alert-warning">You need to verify your email address. <a href="#" class="resend-verification-link">Resend verification link</a>. Or <a href="#" class="logoutLink">logout</a></p>
 
 
+ </template>

@@ -1,4 +1,6 @@
 <template name='AntwoordenPage'>
+<div id="PageContent">
+
 <script type="text/javascript">
 	//tijdelijkLesId = Session.get('tijdelijkIdSession');
 	tijdelijkLesId = $.cookie('tijdelijkIdSession');
@@ -14,6 +16,8 @@
 	    	<p>{{naamLeerling}} : {{Antwoord}} </p>
 	    {{/each}}
     </div>
-  {{/each}}  	
+  {{/each}}
+  {{> SideNavBar}}  
+  </div>	
 </template>
 
