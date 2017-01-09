@@ -47,6 +47,10 @@ Router.route('/leerkracht/vragen', function () {
 Router.route('/leerkracht/vragen/AlleAntwoorden', function () {
   this.render('AntwoordenPage');
 });
+Router.route('/leerkracht/settings', function () {
+    this.render('SettingsPage');
+});
+
 Router.route('/roomCodeLeerkrachten', function() {
     this.render('vraagOpBord');
 });

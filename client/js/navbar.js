@@ -4,6 +4,9 @@ Template.SideNavBar.events({
 	},
 	'click #NavLessen' : function(e){
 		window.location= "http://localhost:3000/leerkracht";
+	},
+	'click #NavSettings' : function(e){
+		window.location= "http://localhost:3000/leerkracht/settings";
 	}
 });
 

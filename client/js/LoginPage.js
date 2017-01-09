@@ -25,19 +25,21 @@ T9n.setLanguage('nl');
 
 AccountsTemplates.addFields([
 	{
-		_id: 'firstname',
+		errStr: 'vul een naam in',
+		_id: 'name',
 		type: 'text',
-		displayName: 'First Name',
+		displayName: 'Voornaam',
 		required: true,
-		re: /(?=.*[a-z])/,
-    	errStr: 'vul een naam in'
+		re: /(?=.*[a-z])/
+    	
 	},{
-		_id: 'Lastname',
+
+    	errStr: 'vul een achternaam in',
+		_id: 'family_name',
 		type: 'text',
-		displayName: 'Last Name',
+		displayName: 'Achternaam',
 		required: true,
-		re: /(?=.*[a-z])/,
-    	errStr: 'vul een achternaam in'
+		re: /(?=.*[a-z])/
 	},{
 		_id:'geslacht',
 		type:'select',
