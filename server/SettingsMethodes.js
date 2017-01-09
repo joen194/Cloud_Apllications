@@ -6,20 +6,28 @@ import { Meteor } from 'meteor/meteor';
 
 
 Meteor.methods({
+  ChangePasswd: function(id, passwd){
+    Accounts.setPassword(id, passwd);
+    return true;
+  },
+  ChangeMail: function(id,mail){
+    Meteor.users.update(id, {
+      $set: {emails: []}
+    });
+    Accounts.addEmail(id, mail, false);
+    return true;
+  },
 
   userUpdate: function (id, doc) {
         // Update account
         console.log(doc);
-        doc.Mail =  "[ { 'address' : 'tim.Asscherickx@hotmail.com', 'verified' : true } ]";
+        doc.Mail =  "[ { 'address' : 'tim.asscherickx@hotmail.com', 'verified' : true } ]";
 
             Meteor.users.update(id, {
                 $set: {profile: {
-                  name: doc.username,
-                  family_name: doc.FamName
-                }},
-                $set:{
-                  emails:doc.Mail
-                }
+                  naam: doc.username,
+                  achternaam: doc.FamName
+                }}
             });
 
         // Update password

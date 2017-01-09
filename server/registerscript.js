@@ -30,7 +30,7 @@ AccountsTemplates.configure({
 //################## Code voor verificatie email ################
 
 Accounts.onCreateUser(function(options, user) {
-    user.profile = {};
+    user.profile = {options};
 
     // we wait for Meteor to create the user before sending an email
     Meteor.setTimeout(function() {

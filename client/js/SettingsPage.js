@@ -9,10 +9,17 @@ Template.SettingsPage.events({
     },
     'click #SaveSettings': function(e){
         var doc= {};
-        var Main = $('#MailInputSettings').val();
         doc.FamName = $('#AchternaamInputSettings').val();
         doc.username = $('#NaamInputSettings').val();
          Meteor.call('userUpdate',Meteor.userId(),doc, function(error, id){
+        if (error)
+            return alert(error.reason);
+        });
+    },
+    'click #MailSettings': function(e){
+
+        var mail = $('#MailInputSettings').val();
+         Meteor.call('ChangeMail',Meteor.userId(),mail, function(error, id){
         if (error)
             return alert(error.reason);
         });

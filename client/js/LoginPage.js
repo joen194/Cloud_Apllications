@@ -26,7 +26,7 @@ T9n.setLanguage('nl');
 AccountsTemplates.addFields([
 	{
 		errStr: 'vul een naam in',
-		_id: 'name',
+		_id: 'naam',
 		type: 'text',
 		displayName: 'Voornaam',
 		required: true,
@@ -35,7 +35,7 @@ AccountsTemplates.addFields([
 	},{
 
     	errStr: 'vul een achternaam in',
-		_id: 'family_name',
+		_id: 'achternaam',
 		type: 'text',
 		displayName: 'Achternaam',
 		required: true,
