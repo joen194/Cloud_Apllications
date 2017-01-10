@@ -11,6 +11,10 @@ Meteor.myFunctions = {
 			if (error)
 				return alert(error.reason);
 		});
+     },
+     DropDownMenu: function(idDiv, idImg){
+
+     	$("#"+idDiv).toggle(0);
      }
 
 		

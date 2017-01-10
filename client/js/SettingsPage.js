@@ -34,6 +34,12 @@ Template.SettingsPage.events({
                 return alert(error.reason);
             });
         }
+    },
+    'click #dropdownimg1': function(e){
+        //$("#dropdownimg1").rotate(180);
+        Meteor.myFunctions.DropDownMenu("dropdowndiv1","dropdownimg1");
     }
+
+
 
 });
