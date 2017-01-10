@@ -6,6 +6,11 @@ import { Meteor } from 'meteor/meteor';
 
 
 Meteor.methods({
+  getinfo: function(id){
+    console.log(Meteor.users.find(id).fetch());
+    return Meteor.users.find(id).fetch();
+    
+  },
   ChangePasswd: function(id, passwd){
     Accounts.setPassword(id, passwd);
     return true;

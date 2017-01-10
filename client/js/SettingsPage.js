@@ -4,26 +4,32 @@ var rotate3= false;
 Template.SettingsPage.events({
     'click #RemoveUser': function(e){
         console.log(Meteor.userId());
-        Meteor.call('userRemove',Meteor.userId(), function(error, id){
+        Meteor.call('userRemove',Meteor.userId(), function(error, res){
         if (error)
             return alert(error.reason);
+        if(res)
+            return alert("Gebruiker verwijderd");
         });
     },
     'click #SaveSettings': function(e){
         var doc= {};
         doc.FamName = $('#AchternaamInputSettings').val();
         doc.username = $('#NaamInputSettings').val();
-         Meteor.call('userUpdate',Meteor.userId(),doc, function(error, id){
+         Meteor.call('userUpdate',Meteor.userId(),doc, function(error, res){
         if (error)
             return alert(error.reason);
+        if (res)
+            return alert("Naam Veranderd");
         });
     },
     'click #MailSettings': function(e){
 
         var mail = $('#MailInputSettings').val();
-         Meteor.call('ChangeMail',Meteor.userId(),mail, function(error, id){
+         Meteor.call('ChangeMail',Meteor.userId(),mail, function(error, res){
         if (error)
             return alert(error.reason);
+        if(res)
+            return alert("Mail Veranderd");
         });
     },
     'click #PassSettings': function(e){
@@ -31,9 +37,11 @@ Template.SettingsPage.events({
         var pass1 = $('#PassInputSettings').val();
         var pass2 = $('#PassInputSettings2').val();
         if (pass1 === pass2) {
-             Meteor.call('ChangePasswd',Meteor.userId(),pass1, function(error, id){
+             Meteor.call('ChangePasswd',Meteor.userId(),pass1, function(error, res){
             if (error)
                 return alert(error.reason);
+            if(res)
+            return alert("Paswoord aangepast");
             });
         }
     },

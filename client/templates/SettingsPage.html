@@ -7,9 +7,9 @@
 <div class="dorpdowndiv">
 <h2>Verander Naam  </h2>
 	<div id="dropdowndiv1" style="display: none;" >
-		<p>Naam: <input type="text" id="NaamInputSettings"></p>
-		<p>Achternaam: <input type="text" id="AchternaamInputSettings"></p>
-		<button id="SaveSettings">Save</button>
+		<p>Naam: <input type="text" id="NaamInputSettings" ></p>
+		<p>Achternaam: <input type="text" id="AchternaamInputSettings" ></p>
+		<button id="SaveSettings" class="btn">Save</button>
 	</div>
 	<img src="http://localhost:3000/arrowdown.png" alt="dropdown" id="dropdownimg1">
 </div>
@@ -18,25 +18,39 @@
 <h2>Verander Mail </h2>
 	<div id="dropdowndiv2" style="display: none;" >
 		<p>mail: <input type="text" id="MailInputSettings"></p> 
-		<button id="MailSettings">Verander Mail</button>
+		<button id="MailSettings" class="btn">Verander Mail</button>
 	</div>
 	<img src="http://localhost:3000/arrowdown.png" alt="dropdown" id="dropdownimg2">
 </div>
 
 <div class="dorpdowndiv">
-<h2>Verander Paswoord </h2>
+<h2>Verander wachtwoord </h2>
 	<div id="dropdowndiv3" style="display: none;" >
-		<p>New Password: <input type="password" id="PassInputSettings"></p> 
-		<p>Hertyp New Password: <input type="password" id="PassInputSettings2"></p> 
-		<button id="PassSettings">Verander passwoord</button>
+		<p>New wachtwoord: <input type="password" id="PassInputSettings"></p> 
+		<p>Hertyp New wachtwoord: <input type="password" id="PassInputSettings2"></p> 
+		<button id="PassSettings" class="btn">Verander wachtwoord</button>
 		<br>
 	</div>
 	<img src="http://localhost:3000/arrowdown.png" alt="dropdown" id="dropdownimg3">
 </div>
 
-<button id="RemoveUser">Verwijder Account</button>
+<button class="btn btn-danger" id="RemoveUser">Verwijder Account</button>
 
  {{> SideNavBar}}
 </div>
+<script type="text/javascript">
+var userinfo;
+	Meteor.call('getinfo',Meteor.userId(), function(error, res){
+            if (error)
+                return alert(error.reason);
+            if (res.length > 0 ) {
+            	userinfo = res;
+            	console.log(userinfo[0].emails[0].address);
+            	$("#NaamInputSettings").val(userinfo[0].profile.naam);
+            	$("#AchternaamInputSettings").val(userinfo[0].profile.achternaam);
+            	$("#MailInputSettings").val(userinfo[0].emails[0].address);
+            }
+            });
+</script>
 
 </template>
