@@ -23,6 +23,17 @@ Template.SettingsPage.events({
         if (error)
             return alert(error.reason);
         });
+    },
+    'click #PassSettings': function(e){
+
+        var pass1 = $('#PassInputSettings').val();
+        var pass2 = $('#PassInputSettings2').val();
+        if (pass1 === pass2) {
+             Meteor.call('ChangePasswd',Meteor.userId(),pass1, function(error, id){
+            if (error)
+                return alert(error.reason);
+            });
+        }
     }
 
 });
