@@ -37,7 +37,7 @@
         if (!Lesinfo) {
           window.location= "http://localhost:3000"
         }
-        $('#LesnaamH1').text("Les: "+Lesinfo.lesnaam);
+        $('#LesnaamH1').text(Lesinfo.lesnaam);
         Meteor.subscribe('DataMultipleChoice');
         Meteor.subscribe('DataLessenPopup',roomCode );
         Meteor.subscribe('DataVragen', Lesinfo.lesID);

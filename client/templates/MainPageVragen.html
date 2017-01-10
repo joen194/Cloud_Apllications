@@ -14,17 +14,17 @@
   </script>
   <h1>Overzicht van alle vragen</h1>
   <div id="aanwezigen">
-    {{#each aanwezigheid}}
-      {{naam}}
-      <br>
-     {{/each}}
+    
   </div>
     <div class="container">
     <!-- Trigger the modal with a button -->
       <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="voegVraagToe">Voeg vraag toe</button>
-      <button id="showVragenBord">Show Vragen</button>
-      <button id="showAlleAntwoorden">Bekijk alle antwoorden</button>
-
+      <button type="button" class="btn btn-info btn-lg" id="showVragenBord">Toon vraag op bord</button>
+      <button type="button" class="btn btn-info btn-lg" id="showAlleAntwoorden">Bekijk alle antwoorden</button>
+      {{#each aanwezigheid}}
+      {{naam}}
+      <br>
+     {{/each}}
     <!-- Modal -->
       <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
