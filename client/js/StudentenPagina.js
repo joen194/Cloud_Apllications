@@ -68,6 +68,7 @@ Template.StudentenPagina.events({
 					if (res) {
 						naamStudent = naam;
 						showAntwoordInput();
+
 					}else alert("Naam al in gebruik!");
 					return;
 				}
@@ -91,6 +92,7 @@ Template.StudentenPagina.helpers ({
 		var mp = MultipleChoice.find().fetch();
 		
 		ShowAntwoordInput(tijdelijkeVraagId);
+		$('#vraagH2').text(tijdelijkeDbStudentenPagina[0].vraagnaam);
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
 
 
@@ -106,6 +108,7 @@ Template.StudentenPagina.helpers ({
 
 		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
 		if (checkOpenVraag[0].openVraag == true){
+			$('#vraagH2').text(checkOpenVraag[0].vraagnaam);
 			return true;
 		}
 		else {
@@ -122,6 +125,7 @@ function showAntwoordInput() {
 
 	setTimeout(function(){
  		$("#AntwoordInputDiv").fadeIn(500);
+ 		$(".SubmitButton").fadeIn(500);
 	}, 500);
 	setDiv = true;
 }
@@ -132,6 +136,8 @@ function ShowAntwoordInput(tijdelijkeVraagId){
 
 				setTimeout(function(){
 	 				$("#AntwoordInputDiv").fadeIn(500);
+	 				$(".SubmitButton").fadeIn(500);
+
 
 				}, 500);
 			}
