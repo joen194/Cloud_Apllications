@@ -11,8 +11,11 @@ Router.route('/room', function () {
 
 
 Router.onBeforeAction(function(pause) {
-
-    if (! Meteor.user()) {
+    if (Router.current().route._path === '/') {
+        this.render('enterCode');
+        this.next();
+    }
+    else if (! Meteor.user()) {
 
         this.render('LoginForm');
 
