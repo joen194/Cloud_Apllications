@@ -15,16 +15,25 @@
 </div>
 
 <div class="dorpdowndiv">
-	<p>mail: <input type="text" id="MailInputSettings"></p> 
-	<button id="MailSettings">Verander Mail</button>
+<h2>Verander Mail </h2>
+	<div id="dropdowndiv2" style="display: none;" >
+		<p>mail: <input type="text" id="MailInputSettings"></p> 
+		<button id="MailSettings">Verander Mail</button>
+	</div>
+	<img src="http://localhost:3000/arrowdown.png" alt="dropdown" id="dropdownimg2">
 </div>
 
 <div class="dorpdowndiv">
-	<p>New Password: <input type="password" id="PassInputSettings"></p> 
-	<p>Hertyp New Password: <input type="password" id="PassInputSettings2"></p> 
-	<button id="PassSettings">Verander passwoord</button>
-	<br>
+<h2>Verander Paswoord </h2>
+	<div id="dropdowndiv3" style="display: none;" >
+		<p>New Password: <input type="password" id="PassInputSettings"></p> 
+		<p>Hertyp New Password: <input type="password" id="PassInputSettings2"></p> 
+		<button id="PassSettings">Verander passwoord</button>
+		<br>
+	</div>
+	<img src="http://localhost:3000/arrowdown.png" alt="dropdown" id="dropdownimg3">
 </div>
+
 <button id="RemoveUser">Verwijder Account</button>
 
  {{> SideNavBar}}

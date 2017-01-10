@@ -1,0 +1,26 @@
+.dorpdowndiv img{
+  width: 2%;
+  height: 2%;
+  float: left;
+  margin-top: 20px;
+  transition: all 700ms cubic-bezier(0.17, 0.04, 0.03, 0.94);
+}
+.dorpdowndiv{
+
+ clear: both;
+ 
+}
+
+.dorpdowndiv h2{
+  
+  float: left;
+
+}
+.dorpdowndiv div{
+
+  clear: both;
+}
+#RemoveUser{
+  clear: both;
+  float: left;
+}
