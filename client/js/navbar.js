@@ -3,13 +3,13 @@ Template.SideNavBar.events({
 		Meteor.logout();
 	},
 	'click #NavLessen' : function(e){
-		window.location= "http://localhost:3000/leerkracht";
+		window.location= Meteor.absoluteUrl()+"leerkracht";
 	},
 	'click #NavSettings' : function(e){
-		window.location= "http://localhost:3000/leerkracht/settings";
+		window.location= Meteor.absoluteUrl()+"leerkracht/settings";
 	},
 	'click #NavInfo' : function(e){
-		window.location= "http://localhost:3000/leerkracht/info";
+		window.location= Meteor.absoluteUrl()+"leerkracht/info";
 	}
 });
 

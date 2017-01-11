@@ -84,7 +84,7 @@ Template.OverzichtLessen.events({
 			var db = Lessen.find({_id: this._id}).fetch();
 			//Session.set('getRoomCode', db[0].roomCode);
 			$.cookie('getRoomCode', db[0].roomCode, { expires: 1 });
-			window.location= "http://localhost:3000/leerkracht/vragen";
+			window.location= Meteor.absoluteUrl()+"leerkracht/vragen";
 		}
 
 	},

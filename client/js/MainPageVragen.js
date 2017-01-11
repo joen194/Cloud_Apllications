@@ -89,7 +89,7 @@ Template.MainPageVragen.events({
 	'click #showVragenBord': function(e){
 		e.preventDefault();
 
-		var win = window.open("http://localhost:3000/roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode , "" ,"fullscreen=yes");
+		var win = window.open(Meteor.absoluteUrl()+"roomCodeLeerkrachten" + "#" + tijdelijkeRoomCode , "" ,"fullscreen=yes");
 		
 	},
 	'click .buttonRemoveMultipleChoice': function(e){
@@ -102,7 +102,7 @@ Template.MainPageVragen.events({
 
 		//Session.set('AlleAntwoorden', true);
 		$.cookie('AlleAntwoorden', true, {expires : 1});
-		window.location= "http://localhost:3000/leerkracht/vragen/AlleAntwoorden";
+		window.location= Meteor.absoluteUrl()+"leerkracht/vragen/AlleAntwoorden";
 	}
 });
 //################################## helpers #########################################
