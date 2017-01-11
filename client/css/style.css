@@ -12,3 +12,7 @@
 #RoomCodeStudents{
 	text-align: center;
 }
+.floatNrLinks{
+	width: 75%;
+	float: left;
+}
