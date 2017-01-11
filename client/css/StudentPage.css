@@ -13,10 +13,9 @@
     resize: none;
 }
 
+
 #divNaam, #AntwoordInputDiv, #antwoordField {
 	text-align: center;
 }
 
-#antwoordenCenter {
-	float: center;
-}
+

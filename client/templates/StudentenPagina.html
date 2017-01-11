@@ -15,7 +15,7 @@
     		  <h2>Antwoord: <input type="text" id= "antwoordField"></h2>
           <button id="submitAntwoordOpen" style="display: none;" class="SubmitButton btn btn-info btn-lg">Submit</button>
         {{else}}
-        <div id="antwoordenCenter">
+        <div id="antwoordenCenter" style="display: inline-block; text-align: left">
           {{#each oneMultipleChoice}}
             <input type="radio" name='multipleChoices' value={{multipleChoice}}> {{multipleChoice}} <br>
           {{/each}}
