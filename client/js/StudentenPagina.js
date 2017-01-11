@@ -112,6 +112,7 @@ Template.StudentenPagina.helpers ({
 			return true;
 		}
 		else {
+			$('#antwoordenCenter').fadeIn(500);
 			return false;
 		}	
 		
