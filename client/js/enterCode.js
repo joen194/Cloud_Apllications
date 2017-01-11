@@ -20,7 +20,7 @@ Template.enterCode.events({
 				window.alert("invalid roomcode");
 				return;
 			}else{
-				window.location= "http://localhost:3000/room#"+Lesinfo.roomCode;
+				window.location= Meteor.absoluteUrl() + "room#"+Lesinfo.roomCode;
 			}
 		});
 
