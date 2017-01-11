@@ -11,7 +11,7 @@ Router.route('/room', function () {
 
 
 Router.onBeforeAction(function(pause) {
-    if (Router.current().route._path === '/') {
+    if (Router.current().route._path === '/' || Router.current().route._path === '/room') {
         this.render('enterCode');
         this.next();
     }
