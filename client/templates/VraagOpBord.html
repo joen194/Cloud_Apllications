@@ -1,7 +1,26 @@
 <template name="vraagOpBord">
-	<h2 id="RoomCodeVisible">roomcode : {{Roomcode}}</h2>
-  	
-  	<h1>Vraag: {{vraagnaam}}</h1>
+<style type="text/css">
+#textbord{
+	text-align: center;
+	background: #42a7f4;
+	color: white;
+	padding: 1%;
+	
+}
+#textbord h2{
+	font-size: 400%;
+}
+#textbord h1{
+	font-size: 550%;
+}
+	
+
+</style>
+	<div id="textbord">
+		<h2 id="RoomCodeVisible">roomcode : {{Roomcode}}</h2>
+	  	
+	  	<h1>Vraag: {{vraagnaam}}</h1>
+  	</div>
 	<div class="antwoordenBox">		
 			<div class="antwoordOpBord">
 				{{#if openVraag}}
