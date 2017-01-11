@@ -1,23 +1,27 @@
 <template name="StudentenPagina">
-  <h1 id="LesnaamH1"> </h1> 
-  	<div id="NaamInputDiv">
-  		<p>Enter name</p>
-  		<input type="text" id="naamInput">
-  		<button id="enterName">Enter</button>
-  	</div>  
+  <div id="divNaam">
+    <h1 id="LesnaamH1"> </h1> 
+    	<div id="NaamInputDiv">
+    		<p>Enter name</p>
+    		<input type="text" id="naamInput">
+        <br>
+    		<button id="enterName" type="button" class="btn btn-info btn-lg">Enter</button>
+    	</div>  
+    </div>
   	<div id="AntwoordInputDiv"> 
-      <div id="theMultipleChoices">                
-      </div>
        <h2 id="vraagH2"></h2>
         {{#if openAntwoord}}
        
     		  <h2>Antwoord: <input type="text" id= "antwoordField"></h2>
-          <button id="submitAntwoordOpen" style="display: none;" class="SubmitButton">Submit</button>
-        {{else}}   
+          <button id="submitAntwoordOpen" style="display: none;" class="SubmitButton btn btn-info btn-lg">Submit</button>
+        {{else}}
+        <div id="antwoordenCenter">
           {{#each oneMultipleChoice}}
             <input type="radio" name='multipleChoices' value={{multipleChoice}}> {{multipleChoice}} <br>
           {{/each}}
-          <button id="submitAntwoordMPC" style="display: none;" class="SubmitButton">Submit</button>
+        </div>
+          <br>
+          <button id="submitAntwoordMPC" style="display: none;" class="SubmitButton btn btn-info btn-lg">Submit</button>
         {{/if}}
   		
 	  </div>
