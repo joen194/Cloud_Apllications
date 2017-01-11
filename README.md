@@ -32,6 +32,8 @@ In de map voeg de volgende commando's uit:
 `npm install`
 Om dan meteor te starten:
 `meteor`
+Om meteor te starten op een poort van een site:
+`env ROOT_URL=http://'urlsite:poort meteor`
 
 ### Stap 4
 
@@ -43,6 +45,7 @@ Na de configuratie verwijderd men lijn 21 in LoginPage.html.
 
 ### Stap 5
 
-Nu Al de stappen compleet zijn start men meteor op door `meteor` uit te voeren.
+Nu Al de stappen compleet zijn start men meteor op door `env ROOT_URL=http://'urlsite:poort meteor` uit te voeren.
 En je bent klaar ! 
+
 
