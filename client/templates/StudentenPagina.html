@@ -19,15 +19,16 @@
           {{#each oneMultipleChoice}}
             <input type="radio" name='multipleChoices' value={{multipleChoice}}> {{multipleChoice}} <br>
           {{/each}}
+          <button id="submitAntwoordMPC" style="display: none;" class="SubmitButton btn btn-info btn-lg">Submit</button>
         </div>
           <br>
-          <button id="submitAntwoordMPC" style="display: none;" class="SubmitButton btn btn-info btn-lg">Submit</button>
+          
         {{/if}}
   		
 	  </div>
     <script type="text/javascript">
 
-
+$('#antwoordenCenter').fadeOut(0);
     var Lesinfo;
     //************************** Dubbel check of de roomcode klopt *************************
       var roomCode = window.location.hash.substr(1);
