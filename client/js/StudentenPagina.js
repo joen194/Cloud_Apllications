@@ -91,8 +91,11 @@ Template.StudentenPagina.helpers ({
 		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
 		var mp = MultipleChoice.find().fetch();
 		
-		ShowAntwoordInput(tijdelijkeVraagId);
-		$('#vraagH2').text(tijdelijkeDbStudentenPagina[0].vraagnaam);
+		var vraagobj = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
+		var textvraag = vraagobj[0].vraagnaam;
+		ShowAntwoordInput(tijdelijkeVraagId,textvraag);
+		//$('#vraagH2MPC').text(tijdelijkeDbStudentenPagina[0].vraagnaam);
+
 		return MultipleChoice.find({vragenId: tijdelijkeDbStudentenPagina[0].vraagId});
 
 
@@ -104,11 +107,12 @@ Template.StudentenPagina.helpers ({
 		var roomCode = window.location.hash.substr(1);
 		var tijdelijkeDbStudentenPagina = Lessen.find({roomCode: roomCode}).fetch();
 		tijdelijkeVraagId = tijdelijkeDbStudentenPagina[0].vraagId;
-		ShowAntwoordInput(tijdelijkeVraagId);
 
-		var checkOpenVraag = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
-		if (checkOpenVraag[0].openVraag == true){
-			$('#vraagH2').text(checkOpenVraag[0].vraagnaam);
+
+		var vraagobj = Vragen.find({_id: tijdelijkeDbStudentenPagina[0].vraagId}).fetch();
+		var textvraag = vraagobj[0].vraagnaam;
+		ShowAntwoordInput(tijdelijkeVraagId,textvraag);
+		if (vraagobj[0].openVraag == true){
 			return true;
 		}
 		else {
@@ -116,6 +120,9 @@ Template.StudentenPagina.helpers ({
 			return false;
 		}	
 		
+	},
+	vraagH2: function(){
+		return tijdelijkeVraagId[0].vraagId;
 	} 
 
 	
@@ -131,8 +138,10 @@ function showAntwoordInput() {
 	setDiv = true;
 }
 
-function ShowAntwoordInput(tijdelijkeVraagId){
+function ShowAntwoordInput(tijdelijkeVraagId,textvraag){
 	if (tijdelijkeVraagId !== SubmittedVraagID) {
+
+		$('#vraagH2').text(textvraag);
 			if (setDiv){
 
 				setTimeout(function(){
