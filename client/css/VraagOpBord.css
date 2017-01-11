@@ -39,3 +39,12 @@
   text-align: center;
 
 }
+
+.historyVraagDiv {
+    border-bottom: 2px solid grey;
+} 
+
+#deleteVraag, .editVraag  {
+  float: right;
+  margin-right: 1%;
+}

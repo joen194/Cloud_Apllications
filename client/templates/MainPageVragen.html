@@ -55,9 +55,9 @@
 
   <h1>Overzicht van alle vragen</h1>
     <!-- Trigger the modal with a button -->
-      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="voegVraagToe">Voeg vraag toe</button>
-      <button type="button" class="btn btn-info btn-lg" id="showVragenBord">Toon vraag op bord</button>
-      <button type="button" class="btn btn-info btn-lg" id="showAlleAntwoorden">Bekijk alle antwoorden</button>
+    <button type="button" class="btn btn-success btn-lg " id="showVragenBord">Bord zichtbaar maken</button>
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="voegVraagToe">Voeg vraag toe</button>      
+    <button type="button" class="btn btn-info btn-lg" id="showAlleAntwoorden">Bekijk alle antwoorden</button>
       
       
       <br>
@@ -139,11 +139,12 @@
   {{/if}} 
 
 	{{#each historyVraag}}
+  <div class="historyVraagDiv">
 		<h1>{{vraagnaam}}</h1>
     <div>
-        <input type="checkbox" class="checker" id='checkbox{{_id}}' checked = '{{visibleAnswer}}'> Laat de antwoorden op het bord zien<br>
+        <input type="checkbox" class="checker" id='checkbox{{_id}}' checked = '{{visibleAnswer}}'> Antwoorden zichtbaar op bord<br>
     </div>
-    <p><button  class="editVraag btn btn-warning" id='{{_id}}'>Edit</button> <button type="button" data-toggle="modal" data-target="#myModal1" id="deleteVraag" class=" btn btn-danger">Delete</button> <button id="showVraag" class="btn btn-info">toon op bord</button></p>
+    <p><button id="showVraag" class="btn btn-info">Vraag op bord </button> <button type="button" data-toggle="modal" data-target="#myModal1" id="deleteVraag" class=" btn btn-danger">Delete</button> <button  class="editVraag btn btn-warning" id='{{_id}}'>Edit</button></p>
 
     <div class="divEditSluiten" id='div{{_id}}' style="display: none">
     <button id="soortVraagVeranderen" data-toggle="modal" data-target="#myModal1" class="btn">Verander soort vraag</button>
@@ -161,6 +162,7 @@
           {{/each}}
           <input type="text" id="extraMultipleChoiceAanmaken{{_id}}" ><button class="buttonAddMultipleChoice" id="{{_id}}" type="button">Add</button>
       {{/unless}}
+    </div>
     </div>
   {{/each}}   
 
