@@ -39,7 +39,7 @@
         }
         Lesinfo = response;
         if (!Lesinfo) {
-          window.location= "http://localhost:3000"
+          window.location= Meteor.absoluteUrl();
         }
         $('#LesnaamH1').text(Lesinfo.lesnaam);
         Meteor.subscribe('DataMultipleChoice');
