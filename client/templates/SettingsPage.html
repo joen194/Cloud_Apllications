@@ -1,4 +1,22 @@
 <template name="SettingsPage">
+{{#if UserVerwijderen}}
+    <div class="modal fade" id="myModal2" role="dialog" >
+      <div class="modal-dialog">
+      
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title" id="tijdelijkeTitel" text=""></h4>
+          </div>
+          <div class="modal-body">
+            <button  id="jaVraag" type="button" class="btn btn-default" data-dismiss="modal">Ja</button>
+            <button  id="neeVraag" type="button" class="btn btn-default" data-dismiss="modal">Nee</button>            
+          </div>
+        </div>          
+      </div>
+    </div> 
+  {{/if}} 
 
 
 <div id="PageContent">
@@ -34,7 +52,7 @@
 	<img src="http://localhost:3000/arrowdown.png" alt="dropdown" id="dropdownimg3">
 </div>
 
-<button class="btn btn-danger" id="RemoveUser">Verwijder Account</button>
+<button class="btn btn-danger" id="RemoveUser" data-toggle="modal" data-target="#myModal2">Verwijder Account</button>
 
  {{> SideNavBar}}
 </div>

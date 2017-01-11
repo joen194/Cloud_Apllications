@@ -1,15 +1,20 @@
 var rotate1= false;
 var rotate2= false;
 var rotate3= false;
+Template.SettingsPage.helpers ({
+    UserVerwijderen:function(){
+        return Session.get('popUpUserVerwijderen');
+    }
+});
+
 Template.SettingsPage.events({
     'click #RemoveUser': function(e){
         console.log(Meteor.userId());
-        Meteor.call('userRemove',Meteor.userId(), function(error, res){
-        if (error)
-            return alert(error.reason);
-        if(res)
-            return alert("Gebruiker verwijderd");
-        });
+
+        $("#tijdelijkeTitel").text("Ben je zeker dat je je account wilt verwijderen? Alle lessen, vragen en antwoorden zullen in dit geval verwijderd worden.");
+        Session.set('popUpUserVerwijderen', true); 
+
+       
     },
     'click #SaveSettings': function(e){
         var doc= {};
@@ -74,8 +79,16 @@ Template.SettingsPage.events({
             rotate3 =true;
        }   
         Meteor.myFunctions.DropDownMenu("dropdowndiv3","dropdownimg3");
-    }
+    },
+    'click #jaVraag': function(e){
+        e.preventDefault();
 
-
+        Meteor.call('userRemove',Meteor.userId(), function(error, res){
+        if (error)
+            return alert(error.reason);
+        if(res)
+            return alert("Gebruiker verwijderd");
+        });        
+    },
 
 });
