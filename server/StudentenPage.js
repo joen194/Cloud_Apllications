@@ -40,7 +40,7 @@ Meteor.methods({
 	},
 
 	NaamInDatabase: function(Naam, clientId, kamerCode) {
-		checkname = Aanwezigen.find({"naam" : Naam}).fetch();
+		checkname = Aanwezigen.find({$and:[{"naam" : Naam},{ roomCode: kamerCode}]}).fetch();
 		if (checkname.length > 0) {
 			return false;  
 	    }
