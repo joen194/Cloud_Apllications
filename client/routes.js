@@ -57,3 +57,7 @@ Router.route('/leerkracht/settings', function () {
 Router.route('/roomCodeLeerkrachten', function() {
     this.render('vraagOpBord');
 });
+
+Router.route('/leerkracht/info', function() {
+    this.render('infoPage');
+});
