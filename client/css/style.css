@@ -1,0 +1,14 @@
+.inputFieldRoom{
+    height: 50px;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+#RoomCodeStudents{
+	text-align: center;
+}
