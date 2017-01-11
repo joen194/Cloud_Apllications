@@ -3,13 +3,14 @@ var setDiv = false;
 var tijdelijkeVraagId;
 var naamStudent;
 var SubmittedVraagID;
+
 Template.StudentenPagina.events({
 		'click #submitAntwoordOpen': function(e){
-			console.log(tijdelijkeVraagId);	
 		e.preventDefault();
 
 		var tijdelijkAntwoord = $('#antwoordField').val();
-		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, function(error, res){
+		var lesID= Lesinfo.lesID;
+		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent,lesID, function(error, res){
 		if (error)
 			return alert(error.reason);
 
@@ -25,14 +26,14 @@ Template.StudentenPagina.events({
 		});
 	},
 	'click #submitAntwoordMPC': function(e){
-		console.log(tijdelijkeVraagId);	
+
 		e.preventDefault();
 		var naam = $('#naamInput').val();
 	
 		var tijdelijkAntwoord = document.querySelector('input[name="multipleChoices"]:checked').value;
 
-
-		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, function(error, res){
+		var lesID= Lesinfo.lesID;
+		Meteor.call('AntwoordToevoegen', tijdelijkeVraagId, tijdelijkAntwoord, naamStudent, lesID, function(error, res){
 		if (error)
 			return alert(error.reason);
 				
@@ -40,7 +41,8 @@ Template.StudentenPagina.events({
 			alert("vraag al ingevoerd");
 		}else{
 			SubmittedVraagID = tijdelijkeVraagId;
-			Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId,  function(error, res){
+			
+			Meteor.call('MultipleChoiceChosenToevoegen', tijdelijkAntwoord, tijdelijkeVraagId, function(error, res){
 			if (error)
 				return alert(error.reason);
 			});

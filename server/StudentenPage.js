@@ -22,7 +22,7 @@ Meteor.methods({
 	    } 
 	},
 
-	AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling) {
+	AntwoordToevoegen: function(tijdelijkeVraagId, tijdelijkAntwoord, tijdelijkeNaam_leerling, lesID) {
 		var checkAntwoord = Antwoorden.find({ $and: [{ vraagId: tijdelijkeVraagId},{ naamLeerling: tijdelijkeNaam_leerling}]}).fetch();
 		console.log(checkAntwoord.length);
 		if (checkAntwoord.length > 0) {
@@ -32,7 +32,8 @@ Meteor.methods({
 			Antwoorden.insert({
 				vraagId: tijdelijkeVraagId,
 				Antwoord: tijdelijkAntwoord,
-				naamLeerling: tijdelijkeNaam_leerling
+				naamLeerling: tijdelijkeNaam_leerling,
+				lessenId: lesID
 			});
 			return true;
 		}

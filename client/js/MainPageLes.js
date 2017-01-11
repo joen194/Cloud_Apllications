@@ -37,6 +37,8 @@ function makeid()
 
 Template.OverzichtLessen.helpers({
 	historyLes: function(){
+
+
 		return Lessen.find();
 	},
 	LesVerwijderen:function(){

@@ -9,7 +9,7 @@ Template.SettingsPage.helpers ({
 
 Template.SettingsPage.events({
     'click #RemoveUser': function(e){
-        console.log(Meteor.userId());
+
 
         $("#tijdelijkeTitel").text("Ben je zeker dat je je account wilt verwijderen? Alle lessen, vragen en antwoorden zullen in dit geval verwijderd worden.");
         Session.set('popUpUserVerwijderen', true); 
@@ -82,13 +82,25 @@ Template.SettingsPage.events({
     },
     'click #jaVraag': function(e){
         e.preventDefault();
-
+        var lesids = Lessen.find().fetch();
+        console.log(lesids);
+        for (_id in lesids) {
+            let id = _id;
+          Meteor.call('LesVerwijderen', lesids[id]._id, function(error, id){
+                    if (error)
+                    return alert(error.reason);
+            });
+        }
+        
+        setTimeout(function(){
+        
         Meteor.call('userRemove',Meteor.userId(), function(error, res){
         if (error)
             return alert(error.reason);
         if(res)
             return alert("Gebruiker verwijderd");
-        });        
+        }); 
+        },0);       
     },
 
 });

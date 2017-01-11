@@ -17,6 +17,7 @@ Meteor.methods({
 		Lessen.remove(lesId);
 		Vragen.remove({lessenId: lesId});
 		MultipleChoice.remove({lesId: lesId});
+		Antwoorden.remove({lessenId: lesId});
 		
 	},
 	LessenAanpassen: function(lesInput, lesId) {
